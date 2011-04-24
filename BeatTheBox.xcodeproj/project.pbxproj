@@ -1,0 +1,198 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AE55C36013647EE800AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C35F13647EE800AFFF8B /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AE55C35913647EE800AFFF8B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AE55C35B13647EE800AFFF8B /* BeatTheBox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BeatTheBox; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE55C35F13647EE800AFFF8B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AE55C36113647EE800AFFF8B /* BeatTheBox.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = BeatTheBox.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE55C35813647EE800AFFF8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE55C35013647EE700AFFF8B = {
+			isa = PBXGroup;
+			children = (
+				AE55C35E13647EE800AFFF8B /* BeatTheBox */,
+				AE55C35C13647EE800AFFF8B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE55C35C13647EE800AFFF8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE55C35B13647EE800AFFF8B /* BeatTheBox */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE55C35E13647EE800AFFF8B /* BeatTheBox */ = {
+			isa = PBXGroup;
+			children = (
+				AE55C35F13647EE800AFFF8B /* main.cpp */,
+				AE55C36113647EE800AFFF8B /* BeatTheBox.1 */,
+			);
+			path = BeatTheBox;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE55C35A13647EE800AFFF8B /* BeatTheBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE55C36413647EE800AFFF8B /* Build configuration list for PBXNativeTarget "BeatTheBox" */;
+			buildPhases = (
+				AE55C35713647EE800AFFF8B /* Sources */,
+				AE55C35813647EE800AFFF8B /* Frameworks */,
+				AE55C35913647EE800AFFF8B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeatTheBox;
+			productName = BeatTheBox;
+			productReference = AE55C35B13647EE800AFFF8B /* BeatTheBox */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE55C35213647EE700AFFF8B /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = AE55C35513647EE700AFFF8B /* Build configuration list for PBXProject "BeatTheBox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AE55C35013647EE700AFFF8B;
+			productRefGroup = AE55C35C13647EE800AFFF8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE55C35A13647EE800AFFF8B /* BeatTheBox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE55C35713647EE800AFFF8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE55C36013647EE800AFFF8B /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AE55C36213647EE800AFFF8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AE55C36313647EE800AFFF8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AE55C36513647EE800AFFF8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AE55C36613647EE800AFFF8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE55C35513647EE700AFFF8B /* Build configuration list for PBXProject "BeatTheBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE55C36213647EE800AFFF8B /* Debug */,
+				AE55C36313647EE800AFFF8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE55C36413647EE800AFFF8B /* Build configuration list for PBXNativeTarget "BeatTheBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE55C36513647EE800AFFF8B /* Debug */,
+				AE55C36613647EE800AFFF8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AE55C35213647EE700AFFF8B /* Project object */;
+}
