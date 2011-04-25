@@ -10,6 +10,9 @@
 		AE55C36013647EE800AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C35F13647EE800AFFF8B /* main.cpp */; };
 		AE55C36F13647EF600AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C36E13647EF600AFFF8B /* main.cpp */; };
 		AE55C382136481ED00AFFF8B /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE55C381136481ED00AFFF8B /* gtest.framework */; };
+		AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
+		AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
+		AED7B60D1365915200FAD28F /* DSPTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B60B1365915200FAD28F /* DSPTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +44,9 @@
 		AE55C36E13647EF600AFFF8B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AE55C37013647EF600AFFF8B /* UnitTests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UnitTests.1; sourceTree = "<group>"; };
 		AE55C381136481ED00AFFF8B /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = Frameworks/gtest.framework; sourceTree = SOURCE_ROOT; };
+		AED7B5FC13658A7600FAD28F /* DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSP.cpp; sourceTree = "<group>"; };
+		AED7B5FD13658A7600FAD28F /* DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSP.h; sourceTree = "<group>"; };
+		AED7B60B1365915200FAD28F /* DSPTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSPTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,8 @@
 			children = (
 				AE55C35F13647EE800AFFF8B /* main.cpp */,
 				AE55C36113647EE800AFFF8B /* BeatTheBox.1 */,
+				AED7B5FC13658A7600FAD28F /* DSP.cpp */,
+				AED7B5FD13658A7600FAD28F /* DSP.h */,
 			);
 			path = BeatTheBox;
 			sourceTree = "<group>";
@@ -95,6 +103,7 @@
 			children = (
 				AE55C36E13647EF600AFFF8B /* main.cpp */,
 				AE55C37013647EF600AFFF8B /* UnitTests.1 */,
+				AED7B60B1365915200FAD28F /* DSPTest.cpp */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -174,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE55C36013647EE800AFFF8B /* main.cpp in Sources */,
+				AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE55C36F13647EF600AFFF8B /* main.cpp in Sources */,
+				AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */,
+				AED7B60D1365915200FAD28F /* DSPTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +305,7 @@
 				AE55C36613647EE800AFFF8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE55C37113647EF600AFFF8B /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
@@ -301,6 +314,7 @@
 				AE55C37313647EF600AFFF8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
