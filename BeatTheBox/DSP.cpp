@@ -7,6 +7,7 @@
 //
 
 #include "DSP.h"
+#include <iostream>
 #include <math.h>
 
 double DSP::foldl(double* arr, int length, double init, double (^f)(double x, double y)){
@@ -46,8 +47,13 @@ double DSP::rms(double* arr, int length){
 }
 
 double* DSP::hamming(int m){
-    double *result = DSP::line(m);
-    double pi = 3.141;
-    return DSP::map(result, m, ^(double n){return (0.54-0.46*cos((2*pi*n)/(m-1)));});
+    return DSP::map(DSP::line(m), m, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
 }
 
+void DSP::printMatlabArray(double *arr, int length){
+    std::cout << "[";
+    for(int i=0;i<length;i++){
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "]";
+}

@@ -23,4 +23,6 @@ public:
     static double rms(double* arr, int length);
     
     static double* hamming(int m);
+    
+    static void printMatlabArray(double *arr, int length);
 };
