@@ -9,9 +9,8 @@
 #pragma once
 
 #include "HostController.h"
-//#include "SegmentOwner.h"
 
-class ISegmentOwner;
+class ISegmentOwner; // forward-declaration
 
 class Segment{
 private: 
