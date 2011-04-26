@@ -24,5 +24,12 @@ public:
     
     static double* hamming(int m);
     
+    static void zeroPad(double* arr, int length, int winSize, double *&resultArr, int &resultLength);
+    
+    static void energyEnvelope(double* arr, int length, int winSize, double *&resultArr, int &resultLength);
+    
+    static double* copyRange(double* arr, int start, int length);
+
     static void printMatlabArray(double *arr, int length);
+
 };

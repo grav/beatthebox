@@ -18,6 +18,7 @@ double DSP::foldl(double* arr, int length, double init, double (^f)(double x, do
     return result;
 }
 
+
 double* DSP::map(double* arr, int length,double (^f)(double x)){
     double *result = new double[length];
     for(int i=0; i<length;i++){
@@ -48,6 +49,42 @@ double DSP::rms(double* arr, int length){
 
 double* DSP::hamming(int m){
     return DSP::map(DSP::line(m), m, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
+}
+
+void DSP::zeroPad(double* arr, int length, int winSize, double *&resultArr, int &resultLength){
+    int rest = length % winSize;
+    if(rest == 0){
+        resultLength = length;
+    } else {        
+        resultLength = length+(winSize-rest);
+    }
+    resultArr = new double[resultLength];
+    for(int i=0;i<length;i++){
+        resultArr[i]=arr[i];
+    }
+    for(int i=length;i<resultLength;i++){
+        resultArr[i]=0;
+    }
+
+}
+
+void DSP::energyEnvelope(double *arr, int length, int winSize, double *&resultArr, int &resultLength){
+    double *paddedArr;
+    int paddedLength;    
+    DSP::zeroPad(arr, length, winSize, paddedArr, paddedLength);
+    resultLength = paddedLength/winSize;
+    resultArr = new double[resultLength];
+    for(int i=0;i<resultLength;i++){        
+        resultArr[i]=DSP::rms(DSP::copyRange(paddedArr, i*winSize, winSize),winSize);
+    }		
+}
+
+double* DSP::copyRange(double* arr, int start, int length){
+    double* result = new double[length];
+    for(int i=0;i<length;i++){
+        result[i]=arr[start+i];
+    }
+    return result;
 }
 
 void DSP::printMatlabArray(double *arr, int length){
