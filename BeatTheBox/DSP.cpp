@@ -18,13 +18,16 @@ double DSP::foldl(double* arr, int length, double init, double (^f)(double x, do
     return result;
 }
 
-
-double* DSP::map(double* arr, int length,double (^f)(double x)){
+double* DSP::mapWithIndex(double *arr, int length, double (^f)(double x, int i)) {
     double *result = new double[length];
     for(int i=0; i<length;i++){
-        result[i] = f(arr[i]); // apply f on i'th element of arr
+        result[i] = f(arr[i], i); // apply f on i'th element of arr
     }
-    return result;
+    return result;    
+}
+
+double* DSP::map(double* arr, int length,double (^f)(double x)){
+    return DSP::mapWithIndex(arr, length, ^(double x, int i){return f(x);});
 }
 
 double* DSP::line(double from, double to, int length){

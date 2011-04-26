@@ -12,6 +12,8 @@ public:
     // TODO - enable generic types
     static double foldl(double* arr, int length, double init, double (^f)(double x, double y));
     
+    static double* mapWithIndex(double* arr, int length, double (^f)(double x, int i));
+                              
     static double* map(double* arr, int length, double (^f)(double x));    
 
     static double* line(double from, double to, int length);
