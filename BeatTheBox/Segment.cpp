@@ -12,10 +12,10 @@
 #include <assert.h>
 #define SECONDS 10
 
-Segment::Segment(ISegmentOwner *owner, double sr){
+Segment::Segment(ISegmentOwner& owner, double sr) : _owner(owner){
     _signalLength = (int)(SECONDS * sr);
     _signal = new double[_signalLength];
-    _owner = owner;
+//    _owner = owner;
     init();
 }
 
@@ -75,7 +75,7 @@ void Segment::pushSample(double s, bool isOnset){
             _onset = _signalPos;
         } else {
             int nextOnset = _signalPos;
-            _owner->receiveSegment(DSP::copyRange(_signal, 0, nextOnset), nextOnset, _onset);
+            _owner.receiveSegment(DSP::copyRange(_signal, 0, nextOnset), nextOnset, _onset);
             for(int j=_onset;j<=nextOnset;j++){
                 _signal[j-_onset]=_signal[j];
             }

@@ -18,7 +18,7 @@ private:
     int _startDelta;
     int _stopDelta;
 public:
-    Segment(ISegmentOwner *owner, double sr);
+    Segment(ISegmentOwner& owner, double sr);
     void init();
     int getSegmentStartDelta();
     int getSegmentStopDelta();
@@ -42,6 +42,6 @@ public:
     // flag signalling whether an onset has ever been detected
 	// will be set to and remain true, when the first onset is detected
 	bool _onsetDetected;
-    ISegmentOwner *_owner;
+    ISegmentOwner& _owner;
     
 };
