@@ -5,6 +5,8 @@
 //  Created by Mikkel Gravgaard on 26/04/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+#pragma once
+
 class IHostController{
 public: 
     virtual ~IHostController(){}
@@ -18,5 +20,3 @@ public:
     virtual void restartLoop(){}
     
 };
-
-

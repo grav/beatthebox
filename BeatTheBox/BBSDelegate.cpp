@@ -7,3 +7,9 @@
 //
 
 #include "BBSDelegate.h"
+
+void BBSDelegate::receiveSegment(double *arr, int length, int onset){
+    
+}
+
+//void setClass(int 

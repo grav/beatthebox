@@ -92,7 +92,7 @@ int DSP::attackTime(double *arr, int length, int k){
     double *env;
     int envLength;
     energyEnvelope(arr, length, winSize, env, envLength);
-    int max = DSP::max(env,envLength);
+    double max = DSP::max(env,envLength);
     for(int i=0;i<envLength;i++){
         if(env[i]>k*max) return i*winSize;
     }

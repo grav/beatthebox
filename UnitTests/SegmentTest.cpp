@@ -7,7 +7,7 @@
 //
 
 #include "gtest/gtest.h"
-#include "Segment.h"
+#include "SegmentOwner.h"
 #include "DSP.h"
 
 #define TEST_SIZE 4

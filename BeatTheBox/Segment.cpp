@@ -7,6 +7,7 @@
 //
 
 #include "Segment.h"
+#include "SegmentOwner.h"
 #include "DSP.h"
 #include <assert.h>
 #define SECONDS 10
