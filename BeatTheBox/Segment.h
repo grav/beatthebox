@@ -78,7 +78,7 @@ public:
         _s = segment;
     }
     
-    virtual void handleDSP(double* sound, double* onsets, 
+    void handleDSP(double* sound, double* onsets, 
                            double* outputTrack, double* similarTrack,
                            int length, IHostController *hostController) {
         for(int i=0;i<length;i++){
@@ -86,14 +86,14 @@ public:
         }
     }
     
-    virtual void receiveSegment(double* arr, int length, int onset) {
+    void receiveSegment(double* arr, int length, int onset) {
         //TODO: delete old segment?
         _segment = arr;
         _segmentLength = length;
         _onset = onset;
     }
     
-    virtual int getLastOnset(){
+    int getLastOnset(){
         return _onset;
     }
     Segment *_s;
