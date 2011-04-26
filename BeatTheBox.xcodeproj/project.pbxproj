@@ -13,6 +13,17 @@
 		AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B60D1365915200FAD28F /* DSPTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B60B1365915200FAD28F /* DSPTest.cpp */; };
+		AEFFB6591366E9F7002CCE9A /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
+		AEFFB65A1366E9F7002CCE9A /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
+		AEFFB6611366FE1C002CCE9A /* SegmentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */; };
+		AEFFB66413670184002CCE9A /* HostController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66213670183002CCE9A /* HostController.cpp */; };
+		AEFFB66513670184002CCE9A /* HostController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66213670183002CCE9A /* HostController.cpp */; };
+		AEFFB66813675171002CCE9A /* BBSDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66613675170002CCE9A /* BBSDelegate.cpp */; };
+		AEFFB66913675171002CCE9A /* BBSDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66613675170002CCE9A /* BBSDelegate.cpp */; };
+		AEFFB66C1367589C002CCE9A /* SegmentOwner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66A1367589B002CCE9A /* SegmentOwner.cpp */; };
+		AEFFB66D1367589C002CCE9A /* SegmentOwner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66A1367589B002CCE9A /* SegmentOwner.cpp */; };
+		AEFFB67113675975002CCE9A /* Classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66F13675974002CCE9A /* Classification.cpp */; };
+		AEFFB67213675975002CCE9A /* Classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66F13675974002CCE9A /* Classification.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +58,18 @@
 		AED7B5FC13658A7600FAD28F /* DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSP.cpp; sourceTree = "<group>"; };
 		AED7B5FD13658A7600FAD28F /* DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSP.h; sourceTree = "<group>"; };
 		AED7B60B1365915200FAD28F /* DSPTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSPTest.cpp; sourceTree = "<group>"; };
+		AEFFB6571366E9F7002CCE9A /* Segment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segment.cpp; sourceTree = "<group>"; };
+		AEFFB6581366E9F7002CCE9A /* Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
+		AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentTest.cpp; sourceTree = "<group>"; };
+		AEFFB66213670183002CCE9A /* HostController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HostController.cpp; sourceTree = "<group>"; };
+		AEFFB66313670183002CCE9A /* HostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostController.h; sourceTree = "<group>"; };
+		AEFFB66613675170002CCE9A /* BBSDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BBSDelegate.cpp; sourceTree = "<group>"; };
+		AEFFB66713675170002CCE9A /* BBSDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSDelegate.h; sourceTree = "<group>"; };
+		AEFFB66A1367589B002CCE9A /* SegmentOwner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentOwner.cpp; sourceTree = "<group>"; };
+		AEFFB66B1367589C002CCE9A /* SegmentOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentOwner.h; sourceTree = "<group>"; };
+		AEFFB66E13675950002CCE9A /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		AEFFB66F13675974002CCE9A /* Classification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Classification.cpp; sourceTree = "<group>"; };
+		AEFFB67013675974002CCE9A /* Classification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Classification.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +117,17 @@
 				AE55C36113647EE800AFFF8B /* BeatTheBox.1 */,
 				AED7B5FC13658A7600FAD28F /* DSP.cpp */,
 				AED7B5FD13658A7600FAD28F /* DSP.h */,
+				AEFFB6571366E9F7002CCE9A /* Segment.cpp */,
+				AEFFB6581366E9F7002CCE9A /* Segment.h */,
+				AEFFB66213670183002CCE9A /* HostController.cpp */,
+				AEFFB66313670183002CCE9A /* HostController.h */,
+				AEFFB66613675170002CCE9A /* BBSDelegate.cpp */,
+				AEFFB66713675170002CCE9A /* BBSDelegate.h */,
+				AEFFB66A1367589B002CCE9A /* SegmentOwner.cpp */,
+				AEFFB66B1367589C002CCE9A /* SegmentOwner.h */,
+				AEFFB66E13675950002CCE9A /* constants.h */,
+				AEFFB66F13675974002CCE9A /* Classification.cpp */,
+				AEFFB67013675974002CCE9A /* Classification.h */,
 			);
 			path = BeatTheBox;
 			sourceTree = "<group>";
@@ -104,6 +138,7 @@
 				AE55C36E13647EF600AFFF8B /* main.cpp */,
 				AE55C37013647EF600AFFF8B /* UnitTests.1 */,
 				AED7B60B1365915200FAD28F /* DSPTest.cpp */,
+				AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -184,6 +219,11 @@
 			files = (
 				AE55C36013647EE800AFFF8B /* main.cpp in Sources */,
 				AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */,
+				AEFFB6591366E9F7002CCE9A /* Segment.cpp in Sources */,
+				AEFFB66413670184002CCE9A /* HostController.cpp in Sources */,
+				AEFFB66813675171002CCE9A /* BBSDelegate.cpp in Sources */,
+				AEFFB66C1367589C002CCE9A /* SegmentOwner.cpp in Sources */,
+				AEFFB67113675975002CCE9A /* Classification.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +234,12 @@
 				AE55C36F13647EF600AFFF8B /* main.cpp in Sources */,
 				AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */,
 				AED7B60D1365915200FAD28F /* DSPTest.cpp in Sources */,
+				AEFFB65A1366E9F7002CCE9A /* Segment.cpp in Sources */,
+				AEFFB6611366FE1C002CCE9A /* SegmentTest.cpp in Sources */,
+				AEFFB66513670184002CCE9A /* HostController.cpp in Sources */,
+				AEFFB66913675171002CCE9A /* BBSDelegate.cpp in Sources */,
+				AEFFB66D1367589C002CCE9A /* SegmentOwner.cpp in Sources */,
+				AEFFB67213675975002CCE9A /* Classification.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +312,7 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -282,6 +329,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
