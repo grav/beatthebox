@@ -32,6 +32,8 @@ public:
     
     static double* copyRange(double* arr, int start, int length);
 
+    static double max(double* arr, int length);
+    
     static void printMatlabArray(double *arr, int length);
 
 };

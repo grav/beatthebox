@@ -91,3 +91,9 @@ TEST(DSPTests,energyEnvelope){
     }
     
 }
+
+TEST(DSPTests,max){
+    double arr[] = {2,3,0.23,4,1,23.98,0.03,11,0};
+    int l = 9;
+    EXPECT_EQ(23.98, DSP::max(arr,l));
+}

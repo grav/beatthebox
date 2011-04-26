@@ -9,6 +9,7 @@
 #include "DSP.h"
 #include <iostream>
 #include <math.h>
+#include <float.h>
 
 double DSP::foldl(double* arr, int length, double init, double (^f)(double x, double y)){
     double result = init;
@@ -73,11 +74,12 @@ void DSP::energyEnvelope(double *arr, int length, int winSize, double *&resultAr
 }
 
 double* DSP::copyRange(double* arr, int start, int length){
-    double* result = new double[length];
-    for(int i=0;i<length;i++){
-        result[i]=arr[start+i];
-    }
-    return result;
+    // TODO: since the body of the closure refers directly to arr, it isn't a real mapping?
+    return DSP::mapWithIndex(arr, length, ^(double x, int i){return arr[start+i];});
+}
+
+double DSP::max(double* arr, int length){
+    return DSP::foldl(arr, length, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
 }
 
 void DSP::printMatlabArray(double *arr, int length){
