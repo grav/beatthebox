@@ -18,15 +18,15 @@ TEST(SegmentTest, InsertSamples){
     double signal[] = {1,2,3,4};
     double zeros[] = {0,0,0,0}; 
     SegmentOwnerMock so = SegmentOwnerMock();
-    Segment *s = new Segment(so, SAMPLE_RATE);
-    so.setSegment(s);
+    Segment s(so, SAMPLE_RATE);
+    so.setSegment(&s);
     so.handleDSP(signal,zeros,zeros,zeros,TEST_SIZE,mock);
-    EXPECT_EQ(TEST_SIZE, s->_signalPos);
+    EXPECT_EQ(TEST_SIZE, s._signalPos);
     
     double signal2[] = {7,9,25,3};
     double onsets2[] = {0,0,1,0};
     so.handleDSP(signal2, onsets2, zeros, zeros, TEST_SIZE, mock);
-    EXPECT_EQ(6,s->_onset);
+    EXPECT_EQ(6,s._onset);
     
     double signal3[] = {2,4,6,8};
     double onsets3[] = {0,0,0,1};
@@ -38,13 +38,13 @@ TEST(SegmentTest, InsertSamples){
         EXPECT_EQ(expected[i], so._segment[i]);
     }
     EXPECT_EQ(6,so._onset);
-    EXPECT_EQ(5,s->_onset);
+    EXPECT_EQ(5,s._onset);
     
-    EXPECT_EQ(6,s->_signalPos);
+    EXPECT_EQ(6,s._signalPos);
 
     double expected2[] = {25,3,2,4,6,8,0,0,0,0,0,0,0};
     int expectedLength2 = 13;
-    double *actual = DSP::copyRange(s->_signal,0,expectedLength2);
+    double *actual = DSP::copyRange(s._signal,0,expectedLength2);
     for(int i=0;i<expectedLength2;i++){
         EXPECT_EQ(expected2[i], actual[i]);
     }
