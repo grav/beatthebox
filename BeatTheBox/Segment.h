@@ -6,6 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#include "HostController.h"
+
 enum InstrumentClass{
     BD = 2,
     SD = 3,
@@ -19,22 +21,21 @@ public:
     virtual InstrumentClass query(double* segment, int length) = 0;
 };
 
-class IHostController{
-public: 
-    virtual void makeOnset() = 0;
-    virtual void restartLoop() = 0;
+class ClassificationMock : public IClassification{
+    virtual void init(char* path){}
+    virtual InstrumentClass query(double* segment, int length) { return InstrumentClass(BD);};
 };
 
 class ISegmentOwner{
 public:
     virtual ~ISegmentOwner(){}
     virtual void receiveSegment(double* arr, int length, int onset) = 0;
-    virtual void setClass(int index, InstrumentClass klass) = 0;
-    virtual IClassification getClassification() = 0;
-    virtual void updateSimilarTrack(int index, double* read, int length) = 0;
+    virtual void setClass(int index, InstrumentClass klass) {};
+    virtual IClassification* getClassification() {return new ClassificationMock();};
+    virtual void updateSimilarTrack(int index, double* read, int length) {};
     virtual void handleDSP(double* sound, double* onsets, 
                            double* outputTrack, double* similarTrack,
-                           IHostController hostController) = 0;
+                           int length, IHostController *hostController) = 0;
 };
 
 class Segment{
@@ -42,7 +43,7 @@ private:
     int _startDelta;
     int _stopDelta;
 public:
-    Segment(ISegmentOwner &owner, double sr);
+    Segment(ISegmentOwner *owner, double sr);
     void init();
     int getSegmentStartDelta();
     int getSegmentStopDelta();
@@ -66,6 +67,39 @@ public:
     // flag signalling whether an onset has ever been detected
 	// will be set to and remain true, when the first onset is detected
 	bool _onsetDetected;
-    ISegmentOwner &_owner;
+    ISegmentOwner *_owner;
     
 };
+
+class SegmentOwnerMock : public ISegmentOwner{
+public:
+    void setSegment(Segment *segment){
+        // todo - delete old s?
+        _s = segment;
+    }
+    
+    virtual void handleDSP(double* sound, double* onsets, 
+                           double* outputTrack, double* similarTrack,
+                           int length, IHostController *hostController) {
+        for(int i=0;i<length;i++){
+            _s->pushSample(sound[i], onsets[i]==1);
+        }
+    }
+    
+    virtual void receiveSegment(double* arr, int length, int onset) {
+        //TODO: delete old segment?
+        _segment = arr;
+        _segmentLength = length;
+        _onset = onset;
+    }
+    
+    virtual int getLastOnset(){
+        return _onset;
+    }
+    Segment *_s;
+    int _onset;
+    double* _segment;
+    int _segmentLength;
+    
+};
+
