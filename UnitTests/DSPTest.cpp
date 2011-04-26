@@ -97,3 +97,33 @@ TEST(DSPTests,max){
     int l = 9;
     EXPECT_EQ(23.98, DSP::max(arr,l));
 }
+
+TEST(DSPTests, reverse_even){
+    double arr[] = {2,3};
+    double exp[] = {3,2};
+    int length = 2;
+    double *result = DSP::reverse(arr,length);
+    for(int i=0;i<length;i++){
+        EXPECT_DOUBLE_EQ(exp[i], result[i]);
+    }
+}
+
+TEST(DSPTests, reverse_uneven){
+    double arr[] = {2,3,1};
+    double exp[] = {1,3,2};
+    int length = 3;
+    double *result = DSP::reverse(arr,length);
+    for(int i=0;i<length;i++){
+        EXPECT_DOUBLE_EQ(exp[i], result[i]);
+    }
+}
+
+TEST(DSPTests, firstLowPoint){
+    double x[] = {78,34,3,67,0,8};
+    int length = 6;
+    EXPECT_DOUBLE_EQ(2, DSP::firstLowPoint(x, length));
+    
+    double y[] = {3,4,4,5,4,3,4,5,2,4};
+    length = 10;
+    EXPECT_DOUBLE_EQ(8, DSP::firstLowPoint(y, length));
+}

@@ -82,6 +82,39 @@ double DSP::max(double* arr, int length){
     return DSP::foldl(arr, length, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
 }
 
+double* DSP::reverse(double *arr, int length){
+    return DSP::mapWithIndex(arr, length, ^(double v, int i){return arr[length-1-i];});
+}
+
+int DSP::attackTime(double *arr, int length, int k){
+    //TODO - make winSize constants somewhere
+    int winSize = 256;
+    double *env;
+    int envLength;
+    DSP::energyEnvelope(arr, length, winSize, env, envLength);
+    int max = DSP::max(env,envLength);
+    for(int i=0;i<envLength;i++){
+        if(env[i]>k*max) return i*winSize;
+    }
+    return INT_MAX;
+}
+
+int DSP::firstLowPoint(double *arr, int length){
+    double t = 0.05; // threshold
+    double max = DSP::max(arr,length);
+    int minIndex = 0; 
+    for(int i=0;i<length;i++){
+        if(arr[i]<t*max){
+            return i;
+        }
+        if(arr[i]<arr[minIndex]){
+            minIndex=i;
+        }
+    }
+    return minIndex;
+
+}
+
 void DSP::printMatlabArray(double *arr, int length){
     std::cout << "[";
     for(int i=0;i<length;i++){

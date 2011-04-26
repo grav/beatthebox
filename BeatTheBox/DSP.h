@@ -34,6 +34,12 @@ public:
 
     static double max(double* arr, int length);
     
+    static double* reverse(double* arr, int length);
+    
+    static int attackTime(double *arr, int length, int k);
+    
+    static int firstLowPoint(double *arr, int length);
+    
     static void printMatlabArray(double *arr, int length);
-
+    
 };
