@@ -28,27 +28,27 @@ double* DSP::mapWithIndex(double *arr, int length, double (^f)(double x, int i))
 }
 
 double* DSP::map(double* arr, int length,double (^f)(double x)){
-    return DSP::mapWithIndex(arr, length, ^(double x, int i){return f(x);});
+    return mapWithIndex(arr, length, ^(double x, int i){return f(x);});
 }
 
 double* DSP::line(double from, double to, int length){
-    return DSP::mapWithIndex(new double[length], length, ^(double v, int i){return (to-from)/length * i+from;});
+    return mapWithIndex(new double[length], length, ^(double v, int i){return (to-from)/length * i+from;});
 }
 
 double* DSP::line(int length){
-    return DSP::line(0, length, length);
+    return line(0, length, length);
 }
 
 double DSP::sum(double* arr, int length){
-    return DSP::foldl(arr, length, 0, ^(double x, double y){return x+y;});
+    return foldl(arr, length, 0, ^(double x, double y){return x+y;});
 }
 
 double DSP::rms(double* arr, int length){
-    return sqrt(DSP::sum(DSP::map(arr, length, ^(double x){return pow(x, 2);}),length)/length);
+    return sqrt(sum(map(arr, length, ^(double x){return pow(x, 2);}),length)/length);
 }
 
 double* DSP::hamming(int m){
-    return DSP::map(DSP::line(m), m, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
+    return map(line(m), m, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
 }
 
 void DSP::zeroPad(double* arr, int length, int winSize, double *&resultArr, int &resultLength){
@@ -58,32 +58,32 @@ void DSP::zeroPad(double* arr, int length, int winSize, double *&resultArr, int 
     } else {        
         resultLength = length+(winSize-rest);
     }
-    resultArr = DSP::mapWithIndex(arr, resultLength, ^(double v, int i){return i<length?v:0;});
+    resultArr = mapWithIndex(arr, resultLength, ^(double v, int i){return i<length?v:0;});
 }
 
 void DSP::energyEnvelope(double *arr, int length, int winSize, double *&resultArr, int &resultLength){
     double *paddedArr;
     int paddedLength;    
-    DSP::zeroPad(arr, length, winSize, paddedArr, paddedLength);
+    zeroPad(arr, length, winSize, paddedArr, paddedLength);
     resultLength = paddedLength/winSize;
     
     resultArr = new double[resultLength];
     for(int i=0;i<resultLength;i++){        
-        resultArr[i]=DSP::rms(DSP::copyRange(paddedArr, i*winSize, winSize),winSize);
+        resultArr[i]=rms(copyRange(paddedArr, i*winSize, winSize),winSize);
     }		
 }
 
 double* DSP::copyRange(double* arr, int start, int length){
     // TODO: since the body of the closure refers directly to arr, it isn't a real mapping?
-    return DSP::mapWithIndex(arr, length, ^(double x, int i){return arr[start+i];});
+    return mapWithIndex(arr, length, ^(double x, int i){return arr[start+i];});
 }
 
 double DSP::max(double* arr, int length){
-    return DSP::foldl(arr, length, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
+    return foldl(arr, length, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
 }
 
 double* DSP::reverse(double *arr, int length){
-    return DSP::mapWithIndex(arr, length, ^(double v, int i){return arr[length-1-i];});
+    return mapWithIndex(arr, length, ^(double v, int i){return arr[length-1-i];});
 }
 
 int DSP::attackTime(double *arr, int length, int k){
@@ -91,7 +91,7 @@ int DSP::attackTime(double *arr, int length, int k){
     int winSize = 256;
     double *env;
     int envLength;
-    DSP::energyEnvelope(arr, length, winSize, env, envLength);
+    energyEnvelope(arr, length, winSize, env, envLength);
     int max = DSP::max(env,envLength);
     for(int i=0;i<envLength;i++){
         if(env[i]>k*max) return i*winSize;
