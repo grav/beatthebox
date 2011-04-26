@@ -31,11 +31,7 @@ double* DSP::map(double* arr, int length,double (^f)(double x)){
 }
 
 double* DSP::line(double from, double to, int length){
-    double *l = new double[length];
-    for(int i=0;i<length;i++){
-        l[i] = (to-from)/length * i+from;
-    }
-    return l;
+    return DSP::mapWithIndex(new double[length], length, ^(double v, int i){return (to-from)/length * i+from;});
 }
 
 double* DSP::line(int length){
