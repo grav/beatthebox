@@ -57,14 +57,7 @@ void DSP::zeroPad(double* arr, int length, int winSize, double *&resultArr, int 
     } else {        
         resultLength = length+(winSize-rest);
     }
-    resultArr = new double[resultLength];
-    for(int i=0;i<length;i++){
-        resultArr[i]=arr[i];
-    }
-    for(int i=length;i<resultLength;i++){
-        resultArr[i]=0;
-    }
-
+    resultArr = DSP::mapWithIndex(arr, resultLength, ^(double v, int i){return i<length?v:0;});
 }
 
 void DSP::energyEnvelope(double *arr, int length, int winSize, double *&resultArr, int &resultLength){
@@ -72,6 +65,7 @@ void DSP::energyEnvelope(double *arr, int length, int winSize, double *&resultAr
     int paddedLength;    
     DSP::zeroPad(arr, length, winSize, paddedArr, paddedLength);
     resultLength = paddedLength/winSize;
+    
     resultArr = new double[resultLength];
     for(int i=0;i<resultLength;i++){        
         resultArr[i]=DSP::rms(DSP::copyRange(paddedArr, i*winSize, winSize),winSize);
