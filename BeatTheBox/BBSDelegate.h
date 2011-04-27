@@ -24,7 +24,26 @@ public:
                            int length, IHostController *hostController);
     
     
-//    bool switchClassification(Classification type);
+    bool switchClassification(Classification type);
+
+    void drumDir(char* path);
+    
+    void startRecord();
+    
+    void startPlayback();
+    
+    char* setPath(char* path);
+
+    bool isReady();
+    
+    void initSegment(double sr);
+    
+    void setLoopSize(int size);
+    
+    
+    void switchState(int arg, int inletIndex, IHostController *hostController);
+    
+    
     
     /* member vars */
     // AsyncClassification &_async;
