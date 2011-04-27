@@ -43,12 +43,58 @@ void BBSDelegate::receiveSegment(double *arr, int length, int onset){
 }
 
 void BBSDelegate::setClass(int index, InstrumentClass klass){
-    //TODO - stub
-    
+    _onsetTrack[index] = klass;
+    for (int i = index - _segment->getSegmentStartDelta();
+         i <= index + _segment->getSegmentStopDelta();
+         i++) {
+        _outputSelectorTrack[i] = klass;
+    }
 }
 
 void BBSDelegate::handleDSP(double *sound, double *onsets, double *outputTrack, double *similarTrack, int length, IHostController *hostController){
-    //TODO - stub
+    for (int i = 0; i < length; i++) {
+        // ignore signal until we have a loop size
+        switch (_state) {
+            case PLAYBACK:
+                outputTrack[i] = _outputSelectorTrack[_trackPointer];
+                similarTrack[i] = _similarTrack[_trackPointer];
+                if (_onsetTrack[_trackPointer] >= BD) {
+                    hostController->makeOnset();
+                }
+                _trackPointer = _trackPointer + 1;
+                if (_trackPointer == _loopSize) {
+                    _trackPointer = 0;
+                    hostController->restartLoop();
+                }
+                break;
+                
+            case HALT:
+                // mute
+                similarTrack[i] = 0;
+                break;
+            case RECORD:
+                bool isOnset = onsets[i] == 1;
+                _segment->pushSample(sound[i], isOnset);
+                if (isOnset) {
+                    _lastOnsetIndex = _trackPointer;
+                }
+                // between here, we might receive a classified onset
+                _trackPointer = _trackPointer + 1;
+                if (_trackPointer >= _loopSize) {
+                    hostController->restartLoop();
+                    startPlayback();
+                }
+                // just let input run through
+                outputTrack[i] = 1;
+                break;
+        }
+    }
+}
+
+void BBSDelegate::startPlayback(){
+    _trackPointer = 0;
+    _state = PLAYBACK;
+    _segment->pushSample(0, true);
 }
 
 void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
@@ -59,6 +105,7 @@ void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
 }
 
 IClassification* BBSDelegate::getClassification(){
+    //TODO - stub
     return 0;
 }
 
