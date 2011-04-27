@@ -97,11 +97,20 @@ void BBSDelegate::startPlayback(){
     _segment->pushSample(0, true);
 }
 
+void BBSDelegate::startRecord(){
+    //TODO - stub
+}
+
 void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
     int limit = min(index+length, _bufferSize);
     for (int i = index; i < limit; i++) {
         _similarTrack[i] = drum[i - index];
     }
+}
+
+bool BBSDelegate::switchClassification(Classification type){
+    //TODO - stub
+    return false;
 }
 
 IClassification* BBSDelegate::getClassification(){
