@@ -9,7 +9,7 @@
 
 #include "SegmentOwner.h"
 
-#define BUFFER_SIZE 44100 * 20;
+#define MAX_BUFFER_SIZE 44100 * 20;
 
 class BBSDelegate : public ISegmentOwner {
 public:
@@ -43,8 +43,6 @@ public:
     
     void switchState(int arg, int inletIndex, IHostController *hostController);
     
-    
-    
     /* member vars */
     // AsyncClassification &_async;
     bool _runSynchronized;
@@ -52,6 +50,8 @@ public:
     int _counter;
     State _state;
     int _trackPointer;
+    
+    int _bufferSize;
 
     // ins
     double *_onsetTrack;
@@ -66,5 +66,11 @@ public:
     // todo - init in ctor
     bool _playback;
     Segment *_segment;
+
+private:
+    bool mockClassification();
+    
     
 };
+
+
