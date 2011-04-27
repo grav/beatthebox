@@ -12,4 +12,16 @@ void BBSDelegate::receiveSegment(double *arr, int length, int onset){
     
 }
 
-//void setClass(int 
+void BBSDelegate::setClass(int index, InstrumentClass klass){
+}
+
+void BBSDelegate::handleDSP(double *sound, double *onsets, double *outputTrack, double *similarTrack, int length, IHostController *hostController){
+}
+
+void BBSDelegate::updateSimilarTrack(int index, double *read, int length){
+    
+}
+
+IClassification* BBSDelegate::getClassification(){
+    return 0;
+}

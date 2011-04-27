@@ -14,3 +14,7 @@ enum InstrumentClass{
     HH = 4,
     NN = -1
 };
+
+enum State{
+    HALT,RECORD,PLAYBACK
+};

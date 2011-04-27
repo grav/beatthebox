@@ -9,15 +9,43 @@
 
 #include "SegmentOwner.h"
 
+#define BUFFER_SIZE 44100 * 20;
+
 class BBSDelegate : public ISegmentOwner {
 public:
-    void receiveSegment(double* arr, int length, int onset);
-//    void setClass(int index, InstrumentClass klass);
-//    IClassification* getClassification();
-//    void updateSimilarTrack(int index, double* read, int length);
-//    void handleDSP(double* sound, double* onsets, 
-//                           double* outputTrack, double* similarTrack,
-//                           int length, IHostController *hostController);
     
+    /* inherited from ISegmentOwner */
+    void receiveSegment(double* arr, int length, int onset);
+    void setClass(int index, InstrumentClass klass);
+    IClassification* getClassification();
+    void updateSimilarTrack(int index, double* read, int length);
+    void handleDSP(double* sound, double* onsets, 
+                           double* outputTrack, double* similarTrack,
+                           int length, IHostController *hostController);
+    
+    
+//    bool switchClassification(Classification type);
+    
+    /* member vars */
+    // AsyncClassification &_async;
+    bool _runSynchronized;
+    // for debugging
+    int _counter;
+    State _state;
+    int _trackPointer;
+
+    // ins
+    double *_onsetTrack;
+    
+    // outs
+    double *_similarTrack;
+    double *_outputSelectorTrack;
+    int _loopSize;
+    IClassification *_classification;
+    int _lastOnsetIndex;
+    char* _path;
+    // todo - init in ctor
+    bool _playback;
+    Segment *_segment;
     
 };
