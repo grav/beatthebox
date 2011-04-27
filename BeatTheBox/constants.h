@@ -18,3 +18,7 @@ enum InstrumentClass{
 enum State{
     HALT,RECORD,PLAYBACK
 };
+
+enum Classification{
+    MOCK = 0, NEAREST_NEIGHBOUR = 1, LINEAR = 2
+};
