@@ -9,6 +9,7 @@
 #include "BBSDelegate.h"
 #include "DSP.h"
 #include <typeinfo>
+#include <assert.h>
 
 //TODO define with macro somewhere
 int min(int a, int b){
@@ -98,7 +99,17 @@ void BBSDelegate::startPlayback(){
 }
 
 void BBSDelegate::startRecord(){
-    //TODO - stub
+    _segment->init();
+    _state = RECORD;
+    _trackPointer = 0;
+    _lastOnsetIndex = 0;
+    // TODO - delete old refs?
+    _outputSelectorTrack = new double[_bufferSize];
+    _onsetTrack = new double[_bufferSize];
+    _similarTrack = new double[_bufferSize];
+    for(int i=0;i<_bufferSize;i++){
+        _outputSelectorTrack[i]=_onsetTrack[i]=_similarTrack[i]=0;
+    }
 }
 
 void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
@@ -109,12 +120,20 @@ void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
 }
 
 bool BBSDelegate::switchClassification(Classification type){
-    //TODO - stub
-    return false;
+    switch (type) {
+        case MOCK:
+            _classification = new ClassificationMock();
+            break;
+        //TODO - other classifications
+        default:
+            assert(false);
+            break;
+    }
+    return true;
 }
 
 IClassification* BBSDelegate::getClassification(){
     //TODO - stub
-    return 0;
+    return _classification;
 }
 
