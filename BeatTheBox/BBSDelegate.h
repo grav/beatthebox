@@ -24,7 +24,7 @@ public:
                            int length, IHostController *hostController);
     
     
-    bool switchClassification(Classification type);
+    void setClassification(IClassification *c);
 
     void drumDir(char* path);
     
@@ -40,8 +40,9 @@ public:
     
     void setLoopSize(int size);
     
-    
     void switchState(int arg, int inletIndex, IHostController *hostController);
+
+    bool mockClassification();
     
     /* member vars */
     // AsyncClassification &_async;
@@ -67,10 +68,6 @@ public:
     bool _playback;
     Segment *_segment;
 
-private:
-    bool mockClassification();
-    
-    
 };
 
 

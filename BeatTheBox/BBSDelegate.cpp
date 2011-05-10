@@ -8,8 +8,10 @@
 
 #include "BBSDelegate.h"
 #include "DSP.h"
+#include "Classification.h"
 #include <typeinfo>
 #include <assert.h>
+#include "Segment.h"
 
 //TODO define with macro somewhere
 int min(int a, int b){
@@ -17,7 +19,7 @@ int min(int a, int b){
 }
 
 bool BBSDelegate::mockClassification(){
-    return typeid(_classification)==typeid(ClassificationMock);
+    return _classification->type()==MOCK;
 }
 
 void BBSDelegate::receiveSegment(double *arr, int length, int onset){
@@ -119,21 +121,22 @@ void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
     }
 }
 
-bool BBSDelegate::switchClassification(Classification type){
-    switch (type) {
-        case MOCK:
-            _classification = new ClassificationMock();
-            break;
-        //TODO - other classifications
-        default:
-            assert(false);
-            break;
-    }
-    return true;
+void BBSDelegate::setClassification(IClassification *c){
+    //TODO - remove old
+    _classification = new ClassificationMock();
 }
 
 IClassification* BBSDelegate::getClassification(){
-    //TODO - stub
     return _classification;
 }
+
+void BBSDelegate::initSegment(double sr){
+    _segment = new Segment(*this,sr);
+    _segment->init();
+}
+
+void BBSDelegate::setLoopSize(int size){
+    _loopSize = size;
+}
+
 
