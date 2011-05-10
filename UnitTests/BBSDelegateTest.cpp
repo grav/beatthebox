@@ -10,6 +10,8 @@
 #include "HostController.h"
 #include "BBSDelegate.h"
 #include "Classification.h"
+#include "sndfile.hh"
+#include <iostream.h>
 
 #define LOOP_SIZE 9
 #define BUFFER_SIZE 4
@@ -96,4 +98,15 @@ TEST(BBSDelegateTest, InsertSamples){
     }
     
     
+}
+
+TEST(BBSDelegateTest, WholeSample){
+    std::string fileName = "/Users/grav/repositories/uni/feature/session2/mikkel_02.wav";
+
+    SndfileHandle handle(fileName); // alloc on stack
+    sf_count_t numSamples = handle.frames()*handle.channels();
+    EXPECT_EQ(122880,numSamples);
+    double samples[handle.frames()*handle.channels()];
+    sf_count_t read = handle.read(samples,numSamples);
+    EXPECT_EQ(numSamples,read);
 }
