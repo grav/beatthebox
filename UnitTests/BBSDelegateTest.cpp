@@ -39,6 +39,8 @@ TEST(BBSDelegateTest, InsertSamples){
     // sample: 2 4 6 8 10 12 14 16 18 
     // onsets: 0 0 1 0 0  1  0  0  0
     
+    double zeros[] = {0,0,0,0};
+
     double b[] = {2,4,6,8};
     double o[] = {0,0,1,0};
     double *out = new double[BUFFER_SIZE];
@@ -51,5 +53,10 @@ TEST(BBSDelegateTest, InsertSamples){
     double o2[] = {0,1,0,0};
     delegate->handleDSP(b2, o2, out, sim, BUFFER_SIZE, mock);
     EXPECT_EQ(5, delegate->_lastOnsetIndex);
+
+    double b3[] = {18,20,22,24};
+    delegate->handleDSP(b3, zeros, out, sim, BUFFER_SIZE, mock);
+    
+    EXPECT_EQ(PLAYBACK, delegate->_state);
     
 }
