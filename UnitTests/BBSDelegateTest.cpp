@@ -16,6 +16,15 @@
 #define LOOP_SIZE 9
 #define BUFFER_SIZE 4
 
+// util function
+double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes){
+    double *onsets = new double[sampleLength];
+    for(int i=0;i<numIndexes;i++){
+        onsets[indexes[i]]=1;
+    }
+    return onsets;
+}
+
 TEST(BBSDelegateTest, mockClassification){
     BBSDelegate *delegate = new BBSDelegate();
     delegate->setClassification(new ClassificationMock());
@@ -106,7 +115,35 @@ TEST(BBSDelegateTest, WholeSample){
     SndfileHandle handle(fileName); // alloc on stack
     sf_count_t numSamples = handle.frames()*handle.channels();
     EXPECT_EQ(122880,numSamples);
-    double samples[handle.frames()*handle.channels()];
+    
+    sf_count_t paddedLength = numSamples + BUFFER_SIZE-(numSamples % BUFFER_SIZE);
+    
+    double samples[paddedLength];
+    for(sf_count_t i=0;i<paddedLength;i++){
+        samples[i]=0;
+    }
     sf_count_t read = handle.read(samples,numSamples);
     EXPECT_EQ(numSamples,read);
+    
+    int indexes[] = {
+        3850,
+        19635,
+        33880,
+        48510,
+        58135,
+        62755,
+        78155,
+        93555,
+        108955
+    };
+    
+    int numIndexes = 9;
+    
+    double *onsetSignal = makeOnsetsSignal((int)paddedLength, indexes, numIndexes);
+    
+    IHostController *mock = new HostControllerMock();
+    BBSDelegate *delegate = new BBSDelegate();
+    delegate->_runSynchronized=true;
+    
 }
+
