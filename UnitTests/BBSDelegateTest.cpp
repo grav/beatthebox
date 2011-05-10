@@ -58,5 +58,16 @@ TEST(BBSDelegateTest, InsertSamples){
     delegate->handleDSP(b3, zeros, out, sim, BUFFER_SIZE, mock);
     
     EXPECT_EQ(PLAYBACK, delegate->_state);
+
+    // TODO - THESE FAIL
+    double e1[] = {0,0,-1,0,0,-1,0,0,0};
+    for(int i=0;i<LOOP_SIZE;i++){
+        EXPECT_DOUBLE_EQ(e1[i], delegate->_outputSelectorTrack[i]);
+    }
+    
+    double e2[] = {1,0,0,-1};
+    for(int i=0;i<BUFFER_SIZE;i++){
+        EXPECT_DOUBLE_EQ(e2[i], out[i]);
+    }
     
 }

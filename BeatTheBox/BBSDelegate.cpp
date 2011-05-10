@@ -13,6 +13,8 @@
 #include <assert.h>
 #include "Segment.h"
 
+#define BUFFER_SIZE 44100 * 20
+
 //TODO define with macro somewhere
 int min(int a, int b){
     return a<b?a:b;
@@ -106,16 +108,16 @@ void BBSDelegate::startRecord(){
     _trackPointer = 0;
     _lastOnsetIndex = 0;
     // TODO - delete old refs?
-    _outputSelectorTrack = new double[_bufferSize];
-    _onsetTrack = new double[_bufferSize];
-    _similarTrack = new double[_bufferSize];
-    for(int i=0;i<_bufferSize;i++){
+    _outputSelectorTrack = new double[BUFFER_SIZE];
+    _onsetTrack = new double[BUFFER_SIZE];
+    _similarTrack = new double[BUFFER_SIZE];
+    for(int i=0;i<BUFFER_SIZE;i++){
         _outputSelectorTrack[i]=_onsetTrack[i]=_similarTrack[i]=0;
     }
 }
 
 void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
-    int limit = min(index+length, _bufferSize);
+    int limit = min(index+length, BUFFER_SIZE);
     for (int i = index; i < limit; i++) {
         _similarTrack[i] = drum[i - index];
     }

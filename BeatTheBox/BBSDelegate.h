@@ -52,8 +52,6 @@ public:
     State _state;
     int _trackPointer;
     
-    int _bufferSize;
-
     // ins
     double *_onsetTrack;
     
