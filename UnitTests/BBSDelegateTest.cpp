@@ -15,7 +15,6 @@
 #define BUFFER_SIZE 4
 
 TEST(BBSDelegateTest, mockClassification){
-    IHostController *mock = new HostControllerMock();
     BBSDelegate *delegate = new BBSDelegate();
     delegate->setClassification(new ClassificationMock());
     EXPECT_TRUE(delegate->mockClassification());
@@ -69,5 +68,32 @@ TEST(BBSDelegateTest, InsertSamples){
     for(int i=0;i<BUFFER_SIZE;i++){
         EXPECT_DOUBLE_EQ(e2[i], out[i]);
     }
+    
+    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    EXPECT_EQ(PLAYBACK, delegate->_state);
+    
+    double e3[] = {0,0,-1,0};
+    for(int i=0;i<BUFFER_SIZE;i++){
+        EXPECT_EQ(e3[i], out[i]);
+    }
+    
+    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    double e4[] = {0,0,0,0};
+    for(int i=0;i<BUFFER_SIZE;i++){
+        EXPECT_EQ(e4[i], out[i]);
+    }
+    
+    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    double e5[] = {-1,0,0,-1};
+    for(int i=0;i<BUFFER_SIZE;i++){
+        EXPECT_EQ(e5[i], out[i]);
+    }
+    
+    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    double e6[] = {0,0,0,0};
+    for(int i=0;i<BUFFER_SIZE;i++){
+        EXPECT_EQ(e6[i], out[i]);
+    }
+    
     
 }
