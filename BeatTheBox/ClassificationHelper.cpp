@@ -23,5 +23,6 @@ double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
     double sum = DSP::sum(audio, audioLength);
     double r= s/sum;
     
+    // TODO the java version tests for NaN?
     return r==-INFINITY?0:r;
 }
