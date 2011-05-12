@@ -38,11 +38,12 @@ TEST(DSPTests, line){
 
 TEST(DSPTests, zeroPad){
     double test[] = {1,2,3,4};
-    double length = 4;
+    int length = 4;
     double *actual;
     int actualLength = 0;
-
-    DSP::zeroPad(test, length, 3, actual, actualLength);
+    int winSize = 3;
+    
+    DSP::zeroPad(test, length, winSize, actual, actualLength);
     
     double expected[] = {1,2,3,4,0,0};
     int expectedLength = 6;
