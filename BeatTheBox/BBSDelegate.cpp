@@ -135,6 +135,7 @@ IClassification* BBSDelegate::getClassification(){
 void BBSDelegate::initSegment(double sr){
     _segment = new Segment(*this,sr);
     _segment->init();
+    _state=HALT;
 }
 
 void BBSDelegate::setLoopSize(int size){
