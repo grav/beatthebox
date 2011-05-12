@@ -23,5 +23,5 @@ double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
     double sum = DSP::sum(audio, audioLength);
     double r= s/sum;
     
-    return isnan(r)?0:r;
+    return r==-INFINITY?0:r;
 }
