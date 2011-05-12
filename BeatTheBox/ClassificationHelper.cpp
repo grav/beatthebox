@@ -26,3 +26,19 @@ double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
     // TODO the java version tests for NaN?
     return r==-INFINITY?0:r;
 }
+
+
+void ClassificationHelper::getStats(double *spectrums, int numSpectrums, int freqBins, int resultBins, 
+                                    double* (^f)(double *audio, int audioLength), 
+                                    double *&means, double *&variances){
+    
+    means = new double[resultBins];
+    variances = new double[resultBins];
+    
+    //TODO
+    // apply f on each of the numSpectrums spectrums
+    // update means and variances such that the result of means[i] is
+    // the mean of the i'th result bin of f applied to the spectrum
+}
+    
+    

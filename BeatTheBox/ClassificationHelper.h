@@ -12,6 +12,10 @@ public:
     
     static double spectralCentroid(double *audio, int audioLength);
     
-//    static void getStats(double *spectrums, int numSpectrums, int freqBins
+    static void getStats(double *spectrums, int numSpectrums, 
+                         int freqBins, int resultBins,
+                         double* (^f)(double *audio, int audioLength),
+                         double *&means, double *&variances);
+
 };
 
