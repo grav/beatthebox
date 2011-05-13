@@ -10,7 +10,7 @@
 #include <blitz/array.h>
 using namespace blitz;
 TEST(BlitzTest,SimpleExample){
-    Array<int,2> A(3,3), B(3,3), C(3,3), EXPECTED(3,3);
+    Array<int,2> A(3,3), B(3,3), C(3,3), EXPECTED(3,3), DIFF(3,3);
     A = 
     1, 0, 0,
     2, 2, 2,
@@ -28,9 +28,8 @@ TEST(BlitzTest,SimpleExample){
     2, 10, 2,
     10, 9, 9;
 
-    EXPECT_EQ(EXPECTED.data(), C.data());
+    DIFF = C-EXPECTED;
     
-    EXPECT_DOUBLE_EQ(EXPECTED(1,1),C(1,1));
-
+//    std::cout << DIFF;
     
 }
