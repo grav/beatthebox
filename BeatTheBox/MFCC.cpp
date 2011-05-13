@@ -52,7 +52,6 @@ void MFCC::generateTable(){
             _H[i*_M+j]=compH(i+1,j+1);
         }
     }
-    2+2;
 }
 
 double MFCC::phi(int f){
