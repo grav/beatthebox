@@ -8,8 +8,12 @@
 
 #pragma once
 
+#include "fftw3.h"
+
 class DSP{
 public:
+    
+    static double length(fftw_complex c);
     
     // TODO - enable generic types
     static double foldl(double* arr, int length, double init, double (^f)(double x, double y));

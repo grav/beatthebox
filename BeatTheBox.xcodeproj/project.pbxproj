@@ -10,9 +10,30 @@
 		AE55C36013647EE800AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C35F13647EE800AFFF8B /* main.cpp */; };
 		AE55C36F13647EF600AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C36E13647EF600AFFF8B /* main.cpp */; };
 		AE55C382136481ED00AFFF8B /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE55C381136481ED00AFFF8B /* gtest.framework */; };
+		AEB04BD5137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */; };
+		AEB04BD6137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */; };
+		AEB04BDC137C0A9E005F6ED2 /* MFCC.h in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BDA137C0A9E005F6ED2 /* MFCC.h */; };
+		AEB04BE0137C1601005F6ED2 /* MFCCTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */; };
+		AEB04BE1137C1601005F6ED2 /* MFCCTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */; };
+		AEB04BE3137C1767005F6ED2 /* MFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE2137C1767005F6ED2 /* MFCC.cpp */; };
+		AEB04BE4137C1767005F6ED2 /* MFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE2137C1767005F6ED2 /* MFCC.cpp */; };
+		AEB04BE7137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
+		AEB04BE8137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
+		AEB04BEE137C2DCA005F6ED2 /* ClassificationHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */; };
+		AEB04BEF137C2DCA005F6ED2 /* ClassificationHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */; };
+		AEB04BF1137D6216005F6ED2 /* libfftw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */; };
+		AEB04BF2137D6216005F6ED2 /* libfftw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */; };
+		AEB872AC137DA75A000903FA /* FFTW_Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AA137DA75A000903FA /* FFTW_Test.cpp */; };
+		AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
+		AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
+		AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
+		AED316A2137BEDBB002CD225 /* BlitzTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED316A0137BEDB9002CD225 /* BlitzTest.cpp */; };
+		AED316A5137BFC40002CD225 /* ArmadilloTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */; };
 		AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B60D1365915200FAD28F /* DSPTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B60B1365915200FAD28F /* DSPTest.cpp */; };
+		AEDF3F7B1371F285005C5623 /* BBSDelegateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */; };
+		AEDF3F7C1371F285005C5623 /* BBSDelegateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */; };
 		AEFFB6591366E9F7002CCE9A /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
 		AEFFB65A1366E9F7002CCE9A /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
 		AEFFB6611366FE1C002CCE9A /* SegmentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */; };
@@ -55,9 +76,25 @@
 		AE55C36E13647EF600AFFF8B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AE55C37013647EF600AFFF8B /* UnitTests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UnitTests.1; sourceTree = "<group>"; };
 		AE55C381136481ED00AFFF8B /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = Frameworks/gtest.framework; sourceTree = SOURCE_ROOT; };
+		AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libarmadillo.1.2.0.dylib; path = "../../../Downloads/armadillo-1.2.0/libarmadillo.1.2.0.dylib"; sourceTree = "<group>"; };
+		AEB04BDA137C0A9E005F6ED2 /* MFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCC.h; sourceTree = "<group>"; };
+		AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MFCCTest.cpp; sourceTree = "<group>"; };
+		AEB04BE2137C1767005F6ED2 /* MFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MFCC.cpp; sourceTree = "<group>"; };
+		AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassificationHelper.cpp; sourceTree = "<group>"; };
+		AEB04BE6137C2724005F6ED2 /* ClassificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationHelper.h; sourceTree = "<group>"; };
+		AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassificationHelperTest.cpp; sourceTree = "<group>"; };
+		AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3.dylib; path = ../../../../../opt/local/lib/libfftw3.dylib; sourceTree = "<group>"; };
+		AEB872AA137DA75A000903FA /* FFTW_Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FFTW_Test.cpp; sourceTree = "<group>"; };
+		AEB872AE137DA850000903FA /* SoundHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelper.cpp; sourceTree = "<group>"; };
+		AEB872AF137DA850000903FA /* SoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundHelper.h; sourceTree = "<group>"; };
+		AED3169B1379AF0F002CD225 /* libsndfile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.dylib; path = ../../../../../opt/local/lib/libsndfile.dylib; sourceTree = "<group>"; };
+		AED3169F1379B1C9002CD225 /* sndfile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sndfile.hh; path = ../../../../../opt/local/include/sndfile.hh; sourceTree = "<group>"; };
+		AED316A0137BEDB9002CD225 /* BlitzTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlitzTest.cpp; sourceTree = "<group>"; };
+		AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArmadilloTest.cpp; sourceTree = "<group>"; };
 		AED7B5FC13658A7600FAD28F /* DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSP.cpp; sourceTree = "<group>"; };
 		AED7B5FD13658A7600FAD28F /* DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSP.h; sourceTree = "<group>"; };
 		AED7B60B1365915200FAD28F /* DSPTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSPTest.cpp; sourceTree = "<group>"; };
+		AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BBSDelegateTest.cpp; sourceTree = "<group>"; };
 		AEFFB6571366E9F7002CCE9A /* Segment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segment.cpp; sourceTree = "<group>"; };
 		AEFFB6581366E9F7002CCE9A /* Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
 		AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentTest.cpp; sourceTree = "<group>"; };
@@ -77,6 +114,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEB04BD5137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */,
+				AEB04BF1137D6216005F6ED2 /* libfftw3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +124,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE55C382136481ED00AFFF8B /* gtest.framework in Frameworks */,
+				AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */,
+				AEB04BD6137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */,
+				AEB04BF2137D6216005F6ED2 /* libfftw3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +170,12 @@
 				AEFFB66E13675950002CCE9A /* constants.h */,
 				AEFFB66F13675974002CCE9A /* Classification.cpp */,
 				AEFFB67013675974002CCE9A /* Classification.h */,
+				AEB04BDA137C0A9E005F6ED2 /* MFCC.h */,
+				AEB04BE2137C1767005F6ED2 /* MFCC.cpp */,
+				AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */,
+				AEB04BE6137C2724005F6ED2 /* ClassificationHelper.h */,
+				AEB872AE137DA850000903FA /* SoundHelper.cpp */,
+				AEB872AF137DA850000903FA /* SoundHelper.h */,
 			);
 			path = BeatTheBox;
 			sourceTree = "<group>";
@@ -135,10 +183,17 @@
 		AE55C36D13647EF600AFFF8B /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				AED3169F1379B1C9002CD225 /* sndfile.hh */,
 				AE55C36E13647EF600AFFF8B /* main.cpp */,
 				AE55C37013647EF600AFFF8B /* UnitTests.1 */,
 				AED7B60B1365915200FAD28F /* DSPTest.cpp */,
 				AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */,
+				AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */,
+				AED316A0137BEDB9002CD225 /* BlitzTest.cpp */,
+				AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */,
+				AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */,
+				AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */,
+				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -146,6 +201,9 @@
 		AE55C37413647F2400AFFF8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */,
+				AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */,
+				AED3169B1379AF0F002CD225 /* libsndfile.dylib */,
 				AE55C381136481ED00AFFF8B /* gtest.framework */,
 			);
 			name = Frameworks;
@@ -224,6 +282,13 @@
 				AEFFB66813675171002CCE9A /* BBSDelegate.cpp in Sources */,
 				AEFFB66C1367589C002CCE9A /* SegmentOwner.cpp in Sources */,
 				AEFFB67113675975002CCE9A /* Classification.cpp in Sources */,
+				AEDF3F7B1371F285005C5623 /* BBSDelegateTest.cpp in Sources */,
+				AEB04BDC137C0A9E005F6ED2 /* MFCC.h in Sources */,
+				AEB04BE0137C1601005F6ED2 /* MFCCTest.cpp in Sources */,
+				AEB04BE3137C1767005F6ED2 /* MFCC.cpp in Sources */,
+				AEB04BE7137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */,
+				AEB04BEE137C2DCA005F6ED2 /* ClassificationHelperTest.cpp in Sources */,
+				AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +305,15 @@
 				AEFFB66913675171002CCE9A /* BBSDelegate.cpp in Sources */,
 				AEFFB66D1367589C002CCE9A /* SegmentOwner.cpp in Sources */,
 				AEFFB67213675975002CCE9A /* Classification.cpp in Sources */,
+				AEDF3F7C1371F285005C5623 /* BBSDelegateTest.cpp in Sources */,
+				AED316A2137BEDBB002CD225 /* BlitzTest.cpp in Sources */,
+				AED316A5137BFC40002CD225 /* ArmadilloTest.cpp in Sources */,
+				AEB04BE1137C1601005F6ED2 /* MFCCTest.cpp in Sources */,
+				AEB04BE4137C1767005F6ED2 /* MFCC.cpp in Sources */,
+				AEB04BE8137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */,
+				AEB04BEF137C2DCA005F6ED2 /* ClassificationHelperTest.cpp in Sources */,
+				AEB872AC137DA75A000903FA /* FFTW_Test.cpp in Sources */,
+				AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +328,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -269,7 +343,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -285,6 +359,11 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/armadillo-1.2.0\"",
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -296,6 +375,11 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/armadillo-1.2.0\"",
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -312,7 +396,17 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+					"\"$(SRCROOT)/../../Downloads/armadillo-1.2.0\"",
+				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -329,7 +423,17 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+					"\"$(SRCROOT)/../../Downloads/armadillo-1.2.0\"",
+				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

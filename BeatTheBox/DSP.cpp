@@ -11,6 +11,10 @@
 #include <math.h>
 #include <float.h>
 
+double DSP::length(fftw_complex c){
+    return sqrt(pow(c[0],2)+pow(c[1],2));
+}
+
 double DSP::foldl(double* arr, int length, double init, double (^f)(double x, double y)){
     double result = init;
     for(int i=0;i<length;i++){

@@ -12,10 +12,6 @@
 #include "fftw3.h"
 #include <assert.h>
 
-#define N 10
-double length(fftw_complex c){    
-    return sqrt(pow(c[0],2)+pow(c[1],2));
-}
 
 void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int winSize, 
                                           double *&spectrogram, int &frames){
@@ -36,7 +32,7 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
         fftw_plan p;
         
 //        in = (double*) fftw_malloc(sizeof(double)*N);
-        out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*N);
+        out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*winSize);
         p = fftw_plan_dft_r2c_1d(winSize, in, out, FFTW_ESTIMATE);
         
         fftw_execute(p);
@@ -44,7 +40,7 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
         // copy from out to spectrogram
         for(int bin=0;bin<winSize;bin++){
             int frame= i/winSize;
-            spectrogram[frame*winSize+bin]=length(out[bin]);
+            spectrogram[frame*winSize+bin]=DSP::length(out[bin])/winSize;
         }
         
         fftw_destroy_plan(p);
