@@ -32,13 +32,28 @@ void ClassificationHelper::getStats(double *spectrums, int numSpectrums, int fre
                                     double* (^f)(double *audio, int audioLength), 
                                     double *&means, double *&variances){
     
+    double results[numSpectrums*resultBins];
+    for(int spec=0;spec<numSpectrums;spec++){
+        double *result = f(&spectrums[spec*freqBins],freqBins);
+        for(int bin=0;bin<resultBins;bin++){
+            results[spec*resultBins+bin] = result[bin];
+        }
+    }
+    
     means = new double[resultBins];
     variances = new double[resultBins];
-    
-    //TODO
-    // apply f on each of the numSpectrums spectrums
-    // update means and variances such that the result of means[i] is
-    // the mean of the i'th result bin of f applied to the spectrum
+    for(int bin = 0; bin<resultBins;bin++){
+        double sum=0;
+        for(int spec = 0; spec< numSpectrums;spec++){
+            sum+=results[spec*resultBins+bin];
+        }
+        means[bin]=sum/resultBins;
+        double varSum = 0;
+        for(int spec = 0; spec< numSpectrums;spec++){
+            varSum += pow(results[spec*resultBins+bin]-means[bin],2);
+        }
+        variances[bin] = varSum/(resultBins-1); // unbiased estimate
+    }
 }
     
     
