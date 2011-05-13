@@ -55,6 +55,11 @@ double* DSP::hamming(int m){
     return map(line(m), m, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
 }
 
+double* DSP::hamming(double *in, int length){
+    double *hamWin = hamming(length);
+    return mapWithIndex(in, length, ^(double x, int i){return x*hamWin[i];});
+}
+
 void DSP::zeroPad(double* arr, int length, int winSize, double *&resultArr, int &resultLength){
     int rest = length % winSize;
     if(rest == 0){

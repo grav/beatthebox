@@ -25,17 +25,21 @@ TEST(ClassificationHelperTest,Spectrogram){
         0.87661, 0.10419, 0.17629, 0.74675};
     int inLength = 16;
     int winSize = 4;
+    int bins = winSize/2+1;
     double *spectrogram;
     int frames;
     ClassificationHelper::getSpectrogram(in, inLength, winSize, spectrogram, frames);
+    
     double expected[] = {
         0.90154, 0.47746, 0.04826,
         0.80685, 0.42707, 0.13316,
         1.22375, 0.83092, 0.34787,
         0.34584, 0.06874, 0.06590};
     EXPECT_EQ(4, frames);
-    for(int i=0;i<16;i++){
-        printf("%f ",spectrogram[i]);
+    int outLength = ((inLength/winSize)/2 + 1) * frames;
+    EXPECT_EQ(12,outLength);
+    for(int i=0;i<bins*frames;i++){
+        EXPECT_TRUE(abs(expected[i]-spectrogram[i])<0.01);
     }
     
 }

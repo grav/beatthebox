@@ -22,25 +22,28 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
     DSP::zeroPad(audio, audioLength, winSize, padded, paddedLength);
     
     frames = paddedLength/winSize;
+    int bins = winSize/2+1;
+    
     assert(winSize*frames==paddedLength);
 
-    spectrogram = new double[frames*winSize];
+    spectrogram = new double[frames*bins];
     
     for(int i = 0; i<paddedLength; i+=winSize){
-        double *in = DSP::copyRange(audio, i, winSize);
+        double *in = DSP::hamming(DSP::copyRange(audio, i, winSize), winSize);
         fftw_complex *out;
         fftw_plan p;
         
-//        in = (double*) fftw_malloc(sizeof(double)*N);
+
         out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*winSize);
         p = fftw_plan_dft_r2c_1d(winSize, in, out, FFTW_ESTIMATE);
         
         fftw_execute(p);
         
         // copy from out to spectrogram
-        for(int bin=0;bin<winSize;bin++){
-            int frame= i/winSize;
-            spectrogram[frame*winSize+bin]=DSP::length(out[bin])/winSize;
+        for(int bin=0;bin<bins;bin++){
+            int frame = i/bins;
+            // TODO - normalize?
+            spectrogram[frame*bins+bin]=DSP::length(out[bin]);
         }
         
         fftw_destroy_plan(p);
