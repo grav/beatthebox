@@ -26,10 +26,8 @@ void printAsMatlab(fftw_complex *arr, int length){
 
 TEST(FFTWTest, Test){
     double in[] = {1,2,3,4,5,6,7,8,9,0};
-//    SoundHelper::loadMono("/Users/grav/repositories/uni/feature/martin/human6.wav", in, inLength);
     fftw_complex *out; 
     fftw_plan p; 
-//    in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N); 
     out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N); 
     p = fftw_plan_dft_r2c_1d(N, in, out, FFTW_ESTIMATE);
     fftw_execute(p); 
@@ -39,7 +37,6 @@ TEST(FFTWTest, Test){
         amp[i] = DSP::length(out[i]);
     }
     
-//    printAsMatlab(out,N2);
     fftw_destroy_plan(p); fftw_free(out);
     
     double expected[] = {45.0000,16.1803,8.5065,6.1803,5.2573,5.0000};
