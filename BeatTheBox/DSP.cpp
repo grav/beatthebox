@@ -28,7 +28,7 @@ double* DSP::mapWithIndex(double *arr, int length, double (^f)(double x, int i))
     for(int i=0; i<length;i++){
         result[i] = f(arr[i], i); // apply f on i'th element of arr
     }
-    return result;    
+    return result;  
 }
 
 double* DSP::map(double* arr, int length,double (^f)(double x)){
@@ -58,6 +58,7 @@ double* DSP::hamming(int m){
 double* DSP::hamming(double *in, int length){
     double *hamWin = hamming(length);
     return mapWithIndex(in, length, ^(double x, int i){return x*hamWin[i];});
+    // todo - delete hamWin in some way!
 }
 
 void DSP::zeroPad(double* arr, int length, int winSize, double *&resultArr, int &resultLength){
