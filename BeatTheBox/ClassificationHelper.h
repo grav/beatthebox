@@ -8,6 +8,9 @@
 
 class ClassificationHelper{
 public:
+    static void getSpectrogram(double *audio, int audioLength, int winSize, 
+                               double *&spectrogram, int &frames);
+    
     static void getFeatures(double *audio, int audioLength, double *&means, double *&vars);
     
     static double spectralCentroid(double *audio, int audioLength);

@@ -9,6 +9,51 @@
 #include "ClassificationHelper.h"
 #include "DSP.h"
 #include <math.h>
+#include "fftw3.h"
+#include <assert.h>
+
+#define N 10
+double length(fftw_complex c){    
+    return sqrt(pow(c[0],2)+pow(c[1],2));
+}
+
+void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int winSize, 
+                                          double *&spectrogram, int &frames){
+
+    double *padded;
+    int paddedLength;
+    
+    DSP::zeroPad(audio, audioLength, winSize, padded, paddedLength);
+    
+    frames = paddedLength/winSize;
+    assert(winSize*frames==paddedLength);
+
+    spectrogram = new double[frames*winSize];
+    
+    for(int i = 0; i<paddedLength; i+=winSize){
+        double *in = DSP::copyRange(audio, i, winSize);
+        fftw_complex *out;
+        fftw_plan p;
+        
+//        in = (double*) fftw_malloc(sizeof(double)*N);
+        out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*N);
+        p = fftw_plan_dft_r2c_1d(winSize, in, out, FFTW_ESTIMATE);
+        
+        fftw_execute(p);
+        
+        // copy from out to spectrogram
+        for(int bin=0;bin<winSize;bin++){
+            int frame= i/winSize;
+            spectrogram[frame*winSize+bin]=length(out[bin]);
+        }
+        
+        fftw_destroy_plan(p);
+//        fftw_free(in); 
+        fftw_free(out);
+        
+    }
+    
+}
 
 void ClassificationHelper::getFeatures(double *audio, int audioLength, double *&means, double *&vars){
     
@@ -26,7 +71,6 @@ double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
     // TODO the java version tests for NaN?
     return r==-INFINITY?0:r;
 }
-
 
 void ClassificationHelper::getStats(double *spectrums, int numSpectrums, int freqBins, int resultBins, 
                                     double* (^f)(double *audio, int audioLength), 
@@ -55,5 +99,4 @@ void ClassificationHelper::getStats(double *spectrums, int numSpectrums, int fre
         variances[bin] = varSum/(resultBins-1); // unbiased estimate
     }
 }
-    
     
