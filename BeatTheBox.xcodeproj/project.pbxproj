@@ -26,6 +26,7 @@
 		AEB872AC137DA75A000903FA /* FFTW_Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AA137DA75A000903FA /* FFTW_Test.cpp */; };
 		AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
 		AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
+		AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */; };
 		AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
 		AED316A2137BEDBB002CD225 /* BlitzTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED316A0137BEDB9002CD225 /* BlitzTest.cpp */; };
 		AED316A5137BFC40002CD225 /* ArmadilloTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */; };
@@ -87,6 +88,7 @@
 		AEB872AA137DA75A000903FA /* FFTW_Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FFTW_Test.cpp; sourceTree = "<group>"; };
 		AEB872AE137DA850000903FA /* SoundHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelper.cpp; sourceTree = "<group>"; };
 		AEB872AF137DA850000903FA /* SoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundHelper.h; sourceTree = "<group>"; };
+		AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelperTest.cpp; sourceTree = "<group>"; };
 		AED3169B1379AF0F002CD225 /* libsndfile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.dylib; path = ../../../../../opt/local/lib/libsndfile.dylib; sourceTree = "<group>"; };
 		AED3169F1379B1C9002CD225 /* sndfile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sndfile.hh; path = ../../../../../opt/local/include/sndfile.hh; sourceTree = "<group>"; };
 		AED316A0137BEDB9002CD225 /* BlitzTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlitzTest.cpp; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */,
 				AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */,
 				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
+				AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				AEB04BEF137C2DCA005F6ED2 /* ClassificationHelperTest.cpp in Sources */,
 				AEB872AC137DA75A000903FA /* FFTW_Test.cpp in Sources */,
 				AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */,
+				AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +400,7 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
@@ -423,7 +427,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
