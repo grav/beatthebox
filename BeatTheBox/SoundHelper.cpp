@@ -11,6 +11,7 @@
 void SoundHelper::loadMono(std::string fileName, double *&samples, sf_count_t &numSamples){
     SndfileHandle handle(fileName); // alloc on stack
     numSamples = handle.frames()*handle.channels();
+    assert(numSamples>0);
     samples = new double[numSamples];
     sf_count_t read = handle.read(samples,numSamples);
     assert(read==numSamples);
