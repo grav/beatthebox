@@ -7,9 +7,12 @@
 //
 #include "constants.h"
 #include <map.h>
+#include <vector.h>
 
 class ClassificationHelper{
 public:
+    static void getSpectrum(double *input, int winSize, double *spectrum, int &bins);
+    
     static std::map<std::string,InstrumentClass>* getMap(std::string flatFile);
     
     static void getSpectrogram(double *audio, int audioLength, int winSize, 
@@ -24,5 +27,7 @@ public:
                          double* (^f)(double *audio, int audioLength),
                          double *&means, double *&variances);
 
+    static std::map<vector<double>, InstrumentClass>* getFeatureMap(std::string flatFile);
+    
 };
 

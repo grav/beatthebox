@@ -13,8 +13,37 @@
 #include <iostream.h>
 #include "ClassificationHelper.h"
 #include "MFCC.h"
+#include "SoundHelper.h"
 
 using namespace std;
+
+map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string flatFile){
+    map<vector<double>,InstrumentClass> *result = new map<vector<double>,InstrumentClass>;
+    
+    map<string,InstrumentClass> *m = getMap(flatFile);
+    map<string,InstrumentClass>::iterator it;
+    // load file
+    // calculate features
+    // insert into map
+    int i=0;
+    for(it = m->begin() ; it != m->end(); it++){
+        printf("%d\n",i);
+        i++;
+        double *samples; sf_count_t numSamples;
+        double *means; double *vars;
+        vector<double> key;
+        string filename="/Users/grav/repositories/uni/feature/"+(*it).first;
+        cout << filename << endl;
+        SoundHelper::loadMono(filename,samples,numSamples);
+        getFeatures(samples, (int)numSamples, means, vars);
+        key.assign(means, means+NUM_MELS);
+        key.insert(key.end(), vars,vars+NUM_MELS);
+        assert(key.size()==NUM_MELS*2);
+        (*result)[key]=(*it).second;
+    }
+    
+    return result;
+}
 
 map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
     
@@ -113,8 +142,8 @@ void ClassificationHelper::getFeatures(double *audio, int audioLength, double *&
     int frames;
     getSpectrogram(audio, audioLength, winSize, spectrogram, frames);
 
-    getStats(spectrogram, frames, winSize, NUM_MELS, ^double *(double *audio, int audioLength) {
-        return MFCC::getMFCCs(audio, audioLength);
+    getStats(spectrogram, frames, winSize, NUM_MELS, ^(double *a, int l) {
+        return MFCC::getMFCCs(a,l);
     }, means, vars);
 }
 
