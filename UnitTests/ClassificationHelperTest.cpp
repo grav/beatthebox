@@ -69,7 +69,4 @@ TEST(ClassificationHelper,GetStats){
     EXPECT_EQ(0,vars[0]);
     EXPECT_EQ(ClassificationHelper::spectralCentroid(DSP::copyRange(testArr,0,numBins),numBins),
               means[0]);
-    
-
-
 }
