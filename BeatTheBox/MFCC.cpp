@@ -19,7 +19,7 @@ void MFCC::init(int freqs,int mels, double fs,int minF,int maxF){
 }
 
 void MFCC::init(int spectrumLength) {
-    init(spectrumLength, 13, 44100, 20, 22050);
+    init(spectrumLength, NUM_MELS, 44100, 20, 22050);
 }
 
 double MFCC::amplitude(int freq, int mel){

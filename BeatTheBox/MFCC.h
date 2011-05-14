@@ -9,6 +9,8 @@
 
 #include <assert.h>
 #include <math.h>
+#define NUM_MELS 13
+
 
 class MFCC {
 public:
