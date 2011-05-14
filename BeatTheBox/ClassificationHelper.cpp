@@ -107,7 +107,10 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
 }
 
 void ClassificationHelper::getFeatures(double *audio, int audioLength, double *&means, double *&vars){
-    
+    int winSize = 256; // TODO make constant somewhere
+    double *spectrogram;
+    int frames;
+    getSpectrogram(audio, audioLength, winSize, spectrogram, frames);
 }
 
 double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
@@ -142,12 +145,12 @@ void ClassificationHelper::getStats(double *spectrums, int numSpectrums, int fre
         for(int spec = 0; spec< numSpectrums;spec++){
             sum+=results[spec*resultBins+bin];
         }
-        means[bin]=sum/resultBins;
+        means[bin]=sum/numSpectrums;
         double varSum = 0;
         for(int spec = 0; spec< numSpectrums;spec++){
             varSum += pow(results[spec*resultBins+bin]-means[bin],2);
         }
-        variances[bin] = varSum/(resultBins-1); // unbiased estimate
+        variances[bin] = varSum/(numSpectrums-1); // unbiased estimate
     }
 }
     

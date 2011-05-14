@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "ClassificationHelper.h"
-
+#include "DSP.h"
 
 TEST(ClassificationHelperTest,SpectralCentroid){
     double test[] = {1,2,3};
@@ -52,4 +52,24 @@ TEST(ClassificationHelper,GetMap){
     EXPECT_EQ(798,pClasses->size());
     EXPECT_EQ(BD, (*pClasses)["martin/segments/human4_04.wav"]);
     EXPECT_EQ(SD,(*pClasses)["session2/segments/mikkel_16_02.wav"]);
+}
+
+TEST(ClassificationHelper,GetStats){
+    double testArr[] = {1,2,3,1,2,3,1,2,3};
+    int numBins = 3;
+    double *means; double *vars;
+    
+    ClassificationHelper::getStats(testArr, 3, 3, 1, 
+       ^(double *audio, int audioLength) {
+           double *r = new double[1];
+           r[0] = ClassificationHelper::spectralCentroid(audio, audioLength);
+           return r;
+       }, means, vars);
+    
+    EXPECT_EQ(0,vars[0]);
+    EXPECT_EQ(ClassificationHelper::spectralCentroid(DSP::copyRange(testArr,0,numBins),numBins),
+              means[0]);
+    
+
+
 }
