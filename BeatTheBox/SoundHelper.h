@@ -7,7 +7,6 @@
 //
 
 #include "sndfile.hh"
-#include <iostream.h>
 
 
 class SoundHelper{

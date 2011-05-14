@@ -5,9 +5,13 @@
 //  Created by Mikkel Gravgaard on 12/05/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+#include "constants.h"
+#include <map.h>
 
 class ClassificationHelper{
 public:
+    static std::map<std::string,InstrumentClass>* getMap(std::string flatFile);
+    
     static void getSpectrogram(double *audio, int audioLength, int winSize, 
                                double *&spectrogram, int &frames);
     

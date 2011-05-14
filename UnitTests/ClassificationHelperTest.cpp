@@ -9,6 +9,7 @@
 #include "gtest/gtest.h"
 #include "ClassificationHelper.h"
 
+
 TEST(ClassificationHelperTest,SpectralCentroid){
     double test[] = {1,2,3};
     EXPECT_EQ(14.0/6.0, ClassificationHelper::spectralCentroid(test,3));
@@ -42,4 +43,13 @@ TEST(ClassificationHelperTest,Spectrogram){
         EXPECT_TRUE(abs(expected[i]-spectrogram[i])<0.01);
     }
     
+}
+
+TEST(ClassificationHelper,GetMap){
+    map<std::string,InstrumentClass> *pClasses;
+    pClasses = ClassificationHelper::getMap("/Users/grav/Desktop/flat.data");
+    
+    EXPECT_EQ(798,pClasses->size());
+    EXPECT_EQ(BD, (*pClasses)["martin/segments/human4_04.wav"]);
+    EXPECT_EQ(SD,(*pClasses)["session2/segments/mikkel_16_02.wav"]);
 }

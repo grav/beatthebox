@@ -6,11 +6,63 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "ClassificationHelper.h"
+#include <assert.h>
 #include "DSP.h"
 #include <math.h>
 #include "fftw3.h"
-#include <assert.h>
+#include <iostream.h>
+#include "ClassificationHelper.h"
+
+using namespace std;
+
+map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
+    
+    map<string,InstrumentClass> *pClasses = new map<string, InstrumentClass>;
+    
+    FILE *pFile;
+    long lSize;
+    char *buffer;
+    size_t result;
+    
+    pFile=fopen(flatFile.c_str(), "rb");
+    if (pFile==NULL) {fputs ("File error",stderr); exit (1);}
+    
+    // obtain file size:
+    fseek (pFile , 0 , SEEK_END);
+    lSize = ftell (pFile);
+    rewind (pFile);
+    
+    buffer = (char*) malloc (sizeof(char)*lSize);
+    if (buffer == NULL) {fputs ("Memory error",stderr); exit (2);}
+    
+    result = fread (buffer,1,lSize,pFile);
+    if (result != lSize) {fputs ("Reading error",stderr); exit (3);}
+    
+    /* the whole file is now loaded in the memory buffer. */
+    
+    long i=0; // buffer pointer
+    int j=0; // fileName pointer
+    char fileName[1024];
+    while(i<lSize){
+        fileName[j]=buffer[i];
+        j++;
+        if(buffer[i]==0){ // null termination
+            // get instrument class
+            i++;
+            InstrumentClass k = InstrumentClass((int)buffer[i]);
+            string s = fileName;
+            (*pClasses)[s]=k;
+            j=0; // reset fileName pointer
+        }
+        i++;
+    }
+    
+    // terminate
+    fclose (pFile);
+    free (buffer);
+    return pClasses;
+}
+
 
 
 void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int winSize, 
