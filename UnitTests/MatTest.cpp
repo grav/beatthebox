@@ -8,9 +8,16 @@
 
 #include "gtest/gtest.h"
 #include <stdio.h>
+#include <string.h>
+#include "constants.h"
+#include <map.h>
+
+using namespace std;
 
 TEST(MatlabTest,Read){
 
+    map<string,InstrumentClass> classes;
+    
     FILE *pFile;
     long lSize;
     char *buffer;
@@ -41,8 +48,10 @@ TEST(MatlabTest,Read){
         if(buffer[i]==0){ // null termination
             // get instrument class
             i++;
-            int klass = (int)buffer[i];
-            printf("%s: %d\n",fileName,klass);
+            InstrumentClass k = InstrumentClass((int)buffer[i]);
+            string s = fileName;
+            classes[s]=k;
+//            printf("%s: %d\n",fileName,klass);
             j=0; // reset fileName pointer
         }
         i++;
@@ -51,4 +60,8 @@ TEST(MatlabTest,Read){
     // terminate
     fclose (pFile);
     free (buffer);
+    
+    EXPECT_EQ(798,classes.size());
+    EXPECT_EQ(BD, classes["martin/segments/human4_04.wav"]);
+    EXPECT_EQ(SD,classes["session2/segments/mikkel_16_02.wav"]);
 }
