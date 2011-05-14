@@ -12,6 +12,7 @@
 #include "fftw3.h"
 #include <iostream.h>
 #include "ClassificationHelper.h"
+#include "MFCC.h"
 
 using namespace std;
 
@@ -111,6 +112,10 @@ void ClassificationHelper::getFeatures(double *audio, int audioLength, double *&
     double *spectrogram;
     int frames;
     getSpectrogram(audio, audioLength, winSize, spectrogram, frames);
+
+    getStats(spectrogram, frames, winSize, NUM_MELS, ^double *(double *audio, int audioLength) {
+        return MFCC::getMFCCs(audio, audioLength);
+    }, means, vars);
 }
 
 double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
