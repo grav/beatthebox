@@ -9,7 +9,7 @@
 #include "MFCC.h"
 #include <stdio.h>
 
-double* MFCC::_H;
+double* MFCC::_H = NULL;
 int MFCC::_N,MFCC::_M, MFCC::_f_min, MFCC::_f_max;
 double MFCC::_deltaPhi, MFCC::_fs;
 
@@ -26,7 +26,7 @@ double MFCC::amplitude(int freq, int mel){
     return _H[freq*_M+mel];
 }
 double* MFCC::getMFCCs(double* spectrum, int spectrumLength){
-    if(!_H){
+    if(!_H==NULL){
         init(spectrumLength);
     }
     assert(spectrumLength==_N);
