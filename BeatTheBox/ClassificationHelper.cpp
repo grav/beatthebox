@@ -122,8 +122,8 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
         fftw_execute(p);
         
         // copy from out to spectrogram
+        int frame = i/winSize;
         for(int bin=0;bin<bins;bin++){
-            int frame = i/bins;
             // TODO - normalize?
             spectrogram[frame*bins+bin]=DSP::length(out[bin]);
         }
