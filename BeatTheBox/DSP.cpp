@@ -10,6 +10,7 @@
 #include <iostream>
 #include <math.h>
 #include <float.h>
+#include <assert.h>
 
 double DSP::length(fftw_complex c){
     return sqrt(pow(c[0],2)+pow(c[1],2));
@@ -125,10 +126,16 @@ int DSP::firstLowPoint(double *arr, int length){
 
 }
 
+
 void DSP::printMatlabArray(double *arr, int length){
     std::cout << "[";
     for(int i=0;i<length;i++){
         std::cout << arr[i] << " ";
     }
     std::cout << "]";
+}
+
+double *DSP::noise(int length){
+    double *r = new double[length];
+    return map(r, length, ^(double x){return ((double)rand()/(double)RAND_MAX);});
 }

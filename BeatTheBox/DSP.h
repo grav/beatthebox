@@ -9,6 +9,7 @@
 #pragma once
 
 #include "fftw3.h"
+#include "sndfile.hh"
 
 class DSP{
 public:
@@ -49,5 +50,7 @@ public:
     static int firstLowPoint(double *arr, int length);
     
     static void printMatlabArray(double *arr, int length);
+    
+    static double* noise(int length);
     
 };
