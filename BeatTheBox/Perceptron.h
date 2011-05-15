@@ -10,13 +10,14 @@
 #include <map.h>
 #include <iostream.h>
 #include "constants.h"
-using Eigen::MatrixXd;
+#include <vector.h>
+
 using namespace std;
 
 class Perceptron{
 public:
-    MatrixXd* train(map<string,InstrumentClass> *m, InstrumentClass *classes, int numClasses);
+    vector<double>** train(map<vector<double>,InstrumentClass> *m, InstrumentClass *classes, int numClasses);
     
-    MatrixXd* w(InstrumentClass a, InstrumentClass b, map<string,InstrumentClass> *m);
+    vector<double>*  w(InstrumentClass a, InstrumentClass b, map<vector<double>,InstrumentClass> *m);
     
 };

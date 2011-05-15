@@ -70,6 +70,3 @@ TEST(ClassificationHelper,GetStats){
               means[0]);
 }
 
-TEST(ClassificationHelper,GetFeatureMap){
-    ClassificationHelper::getFeatureMap("/Users/grav/Desktop/flat.data");
-}
