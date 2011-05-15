@@ -10,8 +10,6 @@
 		AE55C36013647EE800AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C35F13647EE800AFFF8B /* main.cpp */; };
 		AE55C36F13647EF600AFFF8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE55C36E13647EF600AFFF8B /* main.cpp */; };
 		AE55C382136481ED00AFFF8B /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE55C381136481ED00AFFF8B /* gtest.framework */; };
-		AEB04BD5137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */; };
-		AEB04BD6137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */; };
 		AEB04BDC137C0A9E005F6ED2 /* MFCC.h in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BDA137C0A9E005F6ED2 /* MFCC.h */; };
 		AEB04BE0137C1601005F6ED2 /* MFCCTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */; };
 		AEB04BE1137C1601005F6ED2 /* MFCCTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */; };
@@ -28,8 +26,6 @@
 		AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
 		AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */; };
 		AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
-		AED316A2137BEDBB002CD225 /* BlitzTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED316A0137BEDB9002CD225 /* BlitzTest.cpp */; };
-		AED316A5137BFC40002CD225 /* ArmadilloTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */; };
 		AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B60D1365915200FAD28F /* DSPTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B60B1365915200FAD28F /* DSPTest.cpp */; };
@@ -77,7 +73,6 @@
 		AE55C36E13647EF600AFFF8B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AE55C37013647EF600AFFF8B /* UnitTests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UnitTests.1; sourceTree = "<group>"; };
 		AE55C381136481ED00AFFF8B /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = Frameworks/gtest.framework; sourceTree = SOURCE_ROOT; };
-		AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libarmadillo.1.2.0.dylib; path = "../../../Downloads/armadillo-1.2.0/libarmadillo.1.2.0.dylib"; sourceTree = "<group>"; };
 		AEB04BDA137C0A9E005F6ED2 /* MFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCC.h; sourceTree = "<group>"; };
 		AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MFCCTest.cpp; sourceTree = "<group>"; };
 		AEB04BE2137C1767005F6ED2 /* MFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MFCC.cpp; sourceTree = "<group>"; };
@@ -91,8 +86,6 @@
 		AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelperTest.cpp; sourceTree = "<group>"; };
 		AED3169B1379AF0F002CD225 /* libsndfile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.dylib; path = ../../../../../opt/local/lib/libsndfile.dylib; sourceTree = "<group>"; };
 		AED3169F1379B1C9002CD225 /* sndfile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sndfile.hh; path = ../../../../../opt/local/include/sndfile.hh; sourceTree = "<group>"; };
-		AED316A0137BEDB9002CD225 /* BlitzTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlitzTest.cpp; sourceTree = "<group>"; };
-		AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArmadilloTest.cpp; sourceTree = "<group>"; };
 		AED7B5FC13658A7600FAD28F /* DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSP.cpp; sourceTree = "<group>"; };
 		AED7B5FD13658A7600FAD28F /* DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSP.h; sourceTree = "<group>"; };
 		AED7B60B1365915200FAD28F /* DSPTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSPTest.cpp; sourceTree = "<group>"; };
@@ -116,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEB04BD5137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */,
 				AEB04BF1137D6216005F6ED2 /* libfftw3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,7 +119,6 @@
 			files = (
 				AE55C382136481ED00AFFF8B /* gtest.framework in Frameworks */,
 				AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */,
-				AEB04BD6137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib in Frameworks */,
 				AEB04BF2137D6216005F6ED2 /* libfftw3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,8 +182,6 @@
 				AED7B60B1365915200FAD28F /* DSPTest.cpp */,
 				AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */,
 				AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */,
-				AED316A0137BEDB9002CD225 /* BlitzTest.cpp */,
-				AED316A3137BFC3F002CD225 /* ArmadilloTest.cpp */,
 				AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */,
 				AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */,
 				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
@@ -205,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */,
-				AEB04BD4137BFE89005F6ED2 /* libarmadillo.1.2.0.dylib */,
 				AED3169B1379AF0F002CD225 /* libsndfile.dylib */,
 				AE55C381136481ED00AFFF8B /* gtest.framework */,
 			);
@@ -309,8 +297,6 @@
 				AEFFB66D1367589C002CCE9A /* SegmentOwner.cpp in Sources */,
 				AEFFB67213675975002CCE9A /* Classification.cpp in Sources */,
 				AEDF3F7C1371F285005C5623 /* BBSDelegateTest.cpp in Sources */,
-				AED316A2137BEDBB002CD225 /* BlitzTest.cpp in Sources */,
-				AED316A5137BFC40002CD225 /* ArmadilloTest.cpp in Sources */,
 				AEB04BE1137C1601005F6ED2 /* MFCCTest.cpp in Sources */,
 				AEB04BE4137C1767005F6ED2 /* MFCC.cpp in Sources */,
 				AEB04BE8137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */,
