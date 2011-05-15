@@ -10,7 +10,6 @@
 #include "DSP.h"
 #include <math.h>
 #include "fftw3.h"
-#include <iostream.h>
 #include "ClassificationHelper.h"
 #include "MFCC.h"
 #include "SoundHelper.h"
@@ -25,15 +24,11 @@ map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string 
     // load file
     // calculate features
     // insert into map
-    int i=0;
     for(it = m->begin() ; it != m->end(); it++){
-        printf("%d\n",i);
-        i++;
         double *samples; sf_count_t numSamples;
         double *means; double *vars;
         vector<double> key;
         string filename="/Users/grav/repositories/uni/feature/"+(*it).first;
-        cout << filename << endl;
         SoundHelper::loadMono(filename,samples,numSamples);
         getFeatures(samples, (int)numSamples, means, vars);
         key.assign(means, means+NUM_MELS);
