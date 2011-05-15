@@ -26,7 +26,6 @@ double l2norm(vector<double>* v){
 }
 
 vector<double>* add(vector<double>* a, vector<double>* b){
-    // todo - stub
     assert(a->size()==b->size());
     vector<double> *r = new vector<double>;
     for(int i=0;i<a->size();i++){
@@ -36,7 +35,6 @@ vector<double>* add(vector<double>* a, vector<double>* b){
 }
 
 vector<double>* times(vector<double> *a, double c){
-    // todo - stub
     vector<double> *r = new vector<double>;
     for(int i=0;i<a->size();i++){
         r->push_back((*a)[i]*c);
