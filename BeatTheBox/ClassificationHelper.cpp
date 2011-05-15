@@ -96,7 +96,7 @@ map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
 
 
 void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int winSize, 
-                                          double *&spectrogram, int &frames){
+                                          double *&spectrogram, int &frames, int &bins){
 
     double *padded;
     int paddedLength;
@@ -104,7 +104,7 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
     DSP::zeroPad(audio, audioLength, winSize, padded, paddedLength);
     
     frames = paddedLength/winSize;
-    int bins = winSize/2+1;
+    bins = winSize/2+1;
     
     assert(winSize*frames==paddedLength);
 
@@ -139,10 +139,10 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
 void ClassificationHelper::getFeatures(double *audio, int audioLength, double *&means, double *&vars){
     int winSize = 256; // TODO make constant somewhere
     double *spectrogram;
-    int frames;
-    getSpectrogram(audio, audioLength, winSize, spectrogram, frames);
+    int frames; int bins;
+    getSpectrogram(audio, audioLength, winSize, spectrogram, frames, bins);
 
-    getStats(spectrogram, frames, winSize, NUM_MELS, ^(double *a, int l) {
+    getStats(spectrogram, frames, bins, NUM_MELS, ^(double *a, int l) {
         return MFCC::getMFCCs(a,l);
     }, means, vars);
 }

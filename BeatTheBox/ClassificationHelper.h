@@ -16,7 +16,7 @@ public:
     static std::map<std::string,InstrumentClass>* getMap(std::string flatFile);
     
     static void getSpectrogram(double *audio, int audioLength, int winSize, 
-                               double *&spectrogram, int &frames);
+                               double *&spectrogram, int &frames, int &bins);
     
     static void getFeatures(double *audio, int audioLength, double *&means, double *&vars);
     

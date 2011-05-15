@@ -26,10 +26,9 @@ TEST(ClassificationHelperTest,Spectrogram){
         0.87661, 0.10419, 0.17629, 0.74675};
     int inLength = 16;
     int winSize = 4;
-    int bins = winSize/2+1;
     double *spectrogram;
-    int frames;
-    ClassificationHelper::getSpectrogram(in, inLength, winSize, spectrogram, frames);
+    int frames; int bins;
+    ClassificationHelper::getSpectrogram(in, inLength, winSize, spectrogram, frames, bins);
     
     double expected[] = {
         0.90154, 0.47746, 0.04826,
@@ -69,4 +68,8 @@ TEST(ClassificationHelper,GetStats){
     EXPECT_EQ(0,vars[0]);
     EXPECT_EQ(ClassificationHelper::spectralCentroid(DSP::copyRange(testArr,0,numBins),numBins),
               means[0]);
+}
+
+TEST(ClassificationHelper,GetFeatureMap){
+    ClassificationHelper::getFeatureMap("/Users/grav/Desktop/flat.data");
 }
