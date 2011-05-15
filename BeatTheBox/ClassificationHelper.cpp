@@ -128,9 +128,9 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
             spectrogram[frame*bins+bin]=DSP::length(out[bin]);
         }
         
-        fftw_destroy_plan(p);
-//        fftw_free(in); 
+        delete in;
         fftw_free(out);
+        fftw_destroy_plan(p);
         
     }
     
