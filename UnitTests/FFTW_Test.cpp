@@ -47,3 +47,41 @@ TEST(FFTWTest, Test){
     
     
 }
+
+void foo(int n, double *&spectrogram, int &length){
+    int winSize=256;
+    int bins = winSize/2+1;
+    length = bins*n;
+    spectrogram = new double[length];
+    
+    for(int i=0;i<n;i++){
+        double *in = DSP::noise(winSize);
+        
+        fftw_complex *out;
+        fftw_plan p;
+        
+        out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*winSize);
+        p = fftw_plan_dft_r2c_1d(winSize, in, out, FFTW_ESTIMATE);
+        
+        fftw_execute(p);
+        
+        
+        
+        // copy from out to spectrogram
+        for(int bin=0;bin<bins;bin++){
+            int frame = i/bins;
+            spectrogram[frame*bins+bin]=DSP::length(out[bin]);
+        }
+        
+        fftw_destroy_plan(p);
+        fftw_free(out);
+    }
+
+}
+
+TEST(FFTWTest, free){
+    int n = 100000;
+    double *spec;
+    int length;
+    foo(0, spec, length);
+}
