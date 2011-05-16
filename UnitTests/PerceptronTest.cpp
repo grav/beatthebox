@@ -10,13 +10,19 @@
 #include "Perceptron.h"
 #include <map.h>
 #include "ClassificationHelper.h"
+#include "LinearModel.h"
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
-TEST(PerceptronTest,TestIt){
+TEST(DISABLED_PerceptronTest,TestIt){
     InstrumentClass classes[] = {BD,SD,HH};
     Perceptron *perceptron = new Perceptron();
 
+    int numClasses = 3;
+    
     perceptron->train(ClassificationHelper::getFeatureMap("/Users/grav/Desktop/flat.data"),
-                     classes, 3);
+                                  classes, numClasses);
+
 
 }
