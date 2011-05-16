@@ -7,3 +7,39 @@
 //
 
 #include "LinearClassification.h"
+#include "ClassificationHelper.h"
+#include "LinearAlgebra.h"
+#include "LinearModel.h"
+
+void LinearClassification::init(char* path){
+    LinearModel m;
+    m.load(path);
+    _ws=m._ws;
+    _classes=m._classes;
+    _numClasses=m._numClasses;
+}
+
+InstrumentClass LinearClassification::query(double *segment, int segmentLength){
+    vector<double> *features = ClassificationHelper::getFeatures(segment, segmentLength);
+    vector<double> *x = linalg::extendWithOne(*features);
+    return ddag(x);
+}
+
+InstrumentClass LinearClassification::ddag(std::vector<double> *x){
+    int a = _numClasses-1;
+    int b = 0;
+    while(a!=b){
+        vector<double> *w = _ws[a*_numClasses+b];
+        if(linalg::dot(x, w)>0){
+            b++;
+        } else{
+            a--;
+        }
+        // now a==b
+    }
+    return _classes[a];
+}
+
+Classification LinearClassification::type(){
+    return LINEAR;
+}
