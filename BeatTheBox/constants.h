@@ -8,6 +8,8 @@
 
 #pragma once
 
+#define PATH_PREFIX "/Users/grav/repositories/uni/feature/"
+
 enum InstrumentClass{
     BD = 2,
     SD = 3,
