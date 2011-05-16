@@ -15,7 +15,6 @@
 #include "LinearAlgebra.h"
 
 #define ITERATIONS 1000000
-
 using namespace std;
 using namespace linalg;
 
@@ -23,7 +22,12 @@ vector<double>** Perceptron::train(map<vector<double>, InstrumentClass> *m, Inst
     vector<double>** ws = new vector<double>*[numClasses*numClasses];
     for(int a=0; a<numClasses;a++){
         for(int b=0; b<numClasses;b++){
-            if(a!=b) ws[a*numClasses+b] = w(classes[a],classes[b],m);
+            int i = a*numClasses+b;
+            if(a!=b) {
+                ws[i] = w(classes[a],classes[b],m);
+            } else {
+                ws[i] = NULL;
+            }
         }
     }
     return ws; 
