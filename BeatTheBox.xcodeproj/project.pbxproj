@@ -30,6 +30,12 @@
 		AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF213807D3900718764 /* PerceptronTest.cpp */; };
 		AEC43BF71381436100718764 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
+		AEC43BFB1381490700718764 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
+		AEC43BFC1381490700718764 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
+		AEC43BFF138153E500718764 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
+		AEC43C00138153E500718764 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
+		AEC43C0213815B7900718764 /* LinearClassificationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43C0113815B7700718764 /* LinearClassificationTest.cpp */; };
+		AEC43C051381624D00718764 /* LinearModelTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43C041381622800718764 /* LinearModelTest.cpp */; };
 		AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
 		AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
@@ -94,6 +100,12 @@
 		AEC43BF213807D3900718764 /* PerceptronTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronTest.cpp; sourceTree = "<group>"; };
 		AEC43BF51381435D00718764 /* LinearAlgebra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearAlgebra.cpp; sourceTree = "<group>"; };
 		AEC43BF61381435F00718764 /* LinearAlgebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearAlgebra.h; sourceTree = "<group>"; };
+		AEC43BF91381490300718764 /* LinearClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearClassification.cpp; sourceTree = "<group>"; };
+		AEC43BFA1381490500718764 /* LinearClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearClassification.h; sourceTree = "<group>"; };
+		AEC43BFD138153D400718764 /* LinearModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearModel.cpp; sourceTree = "<group>"; };
+		AEC43BFE138153DD00718764 /* LinearModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearModel.h; sourceTree = "<group>"; };
+		AEC43C0113815B7700718764 /* LinearClassificationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearClassificationTest.cpp; sourceTree = "<group>"; };
+		AEC43C041381622800718764 /* LinearModelTest.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = LinearModelTest.cpp; sourceTree = "<group>"; };
 		AED3169B1379AF0F002CD225 /* libsndfile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.dylib; path = ../../../../../opt/local/lib/libsndfile.dylib; sourceTree = "<group>"; };
 		AED3169F1379B1C9002CD225 /* sndfile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sndfile.hh; path = ../../../../../opt/local/include/sndfile.hh; sourceTree = "<group>"; };
 		AED7B5FC13658A7600FAD28F /* DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSP.cpp; sourceTree = "<group>"; };
@@ -158,8 +170,6 @@
 		AE55C35E13647EE800AFFF8B /* BeatTheBox */ = {
 			isa = PBXGroup;
 			children = (
-				AEC43BEE137FF85900718764 /* Perceptron.cpp */,
-				AEC43BEF137FF85900718764 /* Perceptron.h */,
 				AE55C35F13647EE800AFFF8B /* main.cpp */,
 				AE55C36113647EE800AFFF8B /* BeatTheBox.1 */,
 				AED7B5FC13658A7600FAD28F /* DSP.cpp */,
@@ -183,6 +193,12 @@
 				AEB872AF137DA850000903FA /* SoundHelper.h */,
 				AEC43BF51381435D00718764 /* LinearAlgebra.cpp */,
 				AEC43BF61381435F00718764 /* LinearAlgebra.h */,
+				AEC43BF91381490300718764 /* LinearClassification.cpp */,
+				AEC43BFA1381490500718764 /* LinearClassification.h */,
+				AEC43BFD138153D400718764 /* LinearModel.cpp */,
+				AEC43BFE138153DD00718764 /* LinearModel.h */,
+				AEC43BEE137FF85900718764 /* Perceptron.cpp */,
+				AEC43BEF137FF85900718764 /* Perceptron.h */,
 			);
 			path = BeatTheBox;
 			sourceTree = "<group>";
@@ -201,6 +217,8 @@
 				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
 				AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */,
 				AEC43BF213807D3900718764 /* PerceptronTest.cpp */,
+				AEC43C0113815B7700718764 /* LinearClassificationTest.cpp */,
+				AEC43C041381622800718764 /* LinearModelTest.cpp */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -297,6 +315,8 @@
 				AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */,
 				AEC43BF0137FF85900718764 /* Perceptron.cpp in Sources */,
 				AEC43BF71381436100718764 /* LinearAlgebra.cpp in Sources */,
+				AEC43BFB1381490700718764 /* LinearClassification.cpp in Sources */,
+				AEC43BFF138153E500718764 /* LinearModel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +344,10 @@
 				AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */,
 				AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */,
 				AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */,
+				AEC43BFC1381490700718764 /* LinearClassification.cpp in Sources */,
+				AEC43C00138153E500718764 /* LinearModel.cpp in Sources */,
+				AEC43C0213815B7900718764 /* LinearClassificationTest.cpp in Sources */,
+				AEC43C051381624D00718764 /* LinearModelTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
