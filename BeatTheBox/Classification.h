@@ -17,8 +17,8 @@ public:
 };
 
 class ClassificationMock : public IClassification{
-    virtual void init(char* path){}
-    virtual InstrumentClass query(double* segment, int length) { return InstrumentClass(NN);};
+    void init(char* path){}
+    InstrumentClass query(double* segment, int length) { return InstrumentClass(NN);};
     Classification type(){
         return MOCK;
     }
