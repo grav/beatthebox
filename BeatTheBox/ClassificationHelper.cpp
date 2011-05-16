@@ -24,7 +24,10 @@ map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string 
     // load file
     // calculate features
     // insert into map
+    int num = 0;
     for(it = m->begin() ; it != m->end(); it++){
+        num++;
+        cout << "Calculating features for sample " << num << " of " << m->size() << endl;
         double *samples; sf_count_t numSamples;
         double *means; double *vars;
         vector<double> key;
