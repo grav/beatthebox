@@ -25,6 +25,12 @@
 		AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
 		AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
 		AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */; };
+		AEC43BED137FD8BE00718764 /* EigenTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEC137FD8BE00718764 /* EigenTest.cpp */; };
+		AEC43BF0137FF85900718764 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
+		AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
+		AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF213807D3900718764 /* PerceptronTest.cpp */; };
+		AEC43BF71381436100718764 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
+		AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AED3169C1379AF0F002CD225 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
 		AED7B5FE13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
 		AED7B5FF13658A7600FAD28F /* DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7B5FC13658A7600FAD28F /* DSP.cpp */; };
@@ -84,6 +90,12 @@
 		AEB872AE137DA850000903FA /* SoundHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelper.cpp; sourceTree = "<group>"; };
 		AEB872AF137DA850000903FA /* SoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundHelper.h; sourceTree = "<group>"; };
 		AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelperTest.cpp; sourceTree = "<group>"; };
+		AEC43BEC137FD8BE00718764 /* EigenTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EigenTest.cpp; sourceTree = "<group>"; };
+		AEC43BEE137FF85900718764 /* Perceptron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perceptron.cpp; sourceTree = "<group>"; };
+		AEC43BEF137FF85900718764 /* Perceptron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perceptron.h; sourceTree = "<group>"; };
+		AEC43BF213807D3900718764 /* PerceptronTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronTest.cpp; sourceTree = "<group>"; };
+		AEC43BF51381435D00718764 /* LinearAlgebra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearAlgebra.cpp; sourceTree = "<group>"; };
+		AEC43BF61381435F00718764 /* LinearAlgebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearAlgebra.h; sourceTree = "<group>"; };
 		AED3169B1379AF0F002CD225 /* libsndfile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.dylib; path = ../../../../../opt/local/lib/libsndfile.dylib; sourceTree = "<group>"; };
 		AED3169F1379B1C9002CD225 /* sndfile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sndfile.hh; path = ../../../../../opt/local/include/sndfile.hh; sourceTree = "<group>"; };
 		AED7B5FC13658A7600FAD28F /* DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSP.cpp; sourceTree = "<group>"; };
@@ -148,6 +160,8 @@
 		AE55C35E13647EE800AFFF8B /* BeatTheBox */ = {
 			isa = PBXGroup;
 			children = (
+				AEC43BEE137FF85900718764 /* Perceptron.cpp */,
+				AEC43BEF137FF85900718764 /* Perceptron.h */,
 				AE55C35F13647EE800AFFF8B /* main.cpp */,
 				AE55C36113647EE800AFFF8B /* BeatTheBox.1 */,
 				AED7B5FC13658A7600FAD28F /* DSP.cpp */,
@@ -169,6 +183,8 @@
 				AEB04BE6137C2724005F6ED2 /* ClassificationHelper.h */,
 				AEB872AE137DA850000903FA /* SoundHelper.cpp */,
 				AEB872AF137DA850000903FA /* SoundHelper.h */,
+				AEC43BF51381435D00718764 /* LinearAlgebra.cpp */,
+				AEC43BF61381435F00718764 /* LinearAlgebra.h */,
 			);
 			path = BeatTheBox;
 			sourceTree = "<group>";
@@ -182,10 +198,12 @@
 				AED7B60B1365915200FAD28F /* DSPTest.cpp */,
 				AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */,
 				AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */,
+				AEC43BEC137FD8BE00718764 /* EigenTest.cpp */,
 				AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */,
 				AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */,
 				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
 				AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */,
+				AEC43BF213807D3900718764 /* PerceptronTest.cpp */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -280,6 +298,8 @@
 				AEB04BE7137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */,
 				AEB04BEE137C2DCA005F6ED2 /* ClassificationHelperTest.cpp in Sources */,
 				AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */,
+				AEC43BF0137FF85900718764 /* Perceptron.cpp in Sources */,
+				AEC43BF71381436100718764 /* LinearAlgebra.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +324,10 @@
 				AEB872AC137DA75A000903FA /* FFTW_Test.cpp in Sources */,
 				AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */,
 				AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */,
+				AEC43BED137FD8BE00718764 /* EigenTest.cpp in Sources */,
+				AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */,
+				AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */,
+				AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +414,7 @@
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
+					/usr/local/include/eigen3,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -417,6 +442,7 @@
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
+					/usr/local/include/eigen3,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
