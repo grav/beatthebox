@@ -6,7 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <Eigen/Dense>
 #include <map.h>
 #include <iostream.h>
 #include "constants.h"

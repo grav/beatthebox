@@ -25,7 +25,6 @@
 		AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
 		AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
 		AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */; };
-		AEC43BED137FD8BE00718764 /* EigenTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEC137FD8BE00718764 /* EigenTest.cpp */; };
 		AEC43BF0137FF85900718764 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
 		AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
 		AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF213807D3900718764 /* PerceptronTest.cpp */; };
@@ -90,7 +89,6 @@
 		AEB872AE137DA850000903FA /* SoundHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelper.cpp; sourceTree = "<group>"; };
 		AEB872AF137DA850000903FA /* SoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundHelper.h; sourceTree = "<group>"; };
 		AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHelperTest.cpp; sourceTree = "<group>"; };
-		AEC43BEC137FD8BE00718764 /* EigenTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EigenTest.cpp; sourceTree = "<group>"; };
 		AEC43BEE137FF85900718764 /* Perceptron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perceptron.cpp; sourceTree = "<group>"; };
 		AEC43BEF137FF85900718764 /* Perceptron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perceptron.h; sourceTree = "<group>"; };
 		AEC43BF213807D3900718764 /* PerceptronTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronTest.cpp; sourceTree = "<group>"; };
@@ -198,7 +196,6 @@
 				AED7B60B1365915200FAD28F /* DSPTest.cpp */,
 				AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */,
 				AEDF3F791371F285005C5623 /* BBSDelegateTest.cpp */,
-				AEC43BEC137FD8BE00718764 /* EigenTest.cpp */,
 				AEB04BDE137C1601005F6ED2 /* MFCCTest.cpp */,
 				AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */,
 				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
@@ -324,7 +321,6 @@
 				AEB872AC137DA75A000903FA /* FFTW_Test.cpp in Sources */,
 				AEB872B1137DA850000903FA /* SoundHelper.cpp in Sources */,
 				AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */,
-				AEC43BED137FD8BE00718764 /* EigenTest.cpp in Sources */,
 				AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */,
 				AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */,
 				AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */,
@@ -411,11 +407,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
-					/usr/local/include/eigen3,
-				);
+				HEADER_SEARCH_PATHS = /opt/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
@@ -439,11 +431,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					"/Users/grav/Downloads/armadillo-1.2.0/include/**",
-					/usr/local/include/eigen3,
-				);
+				HEADER_SEARCH_PATHS = /opt/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
