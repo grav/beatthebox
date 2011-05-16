@@ -29,15 +29,12 @@ map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string 
         num++;
         cout << "Calculating features for sample " << num << " of " << m->size() << endl;
         double *samples; sf_count_t numSamples;
-        double *means; double *vars;
-        vector<double> key;
+        vector<double> *key;
         string filename="/Users/grav/repositories/uni/feature/"+(*it).first;
         SoundHelper::loadMono(filename,samples,numSamples);
-        getFeatures(samples, (int)numSamples, means, vars);
-        key.assign(means, means+NUM_MELS);
-        key.insert(key.end(), vars,vars+NUM_MELS);
-        assert(key.size()==NUM_MELS*2);
-        (*result)[key]=(*it).second;
+        key = getFeatures(samples, (int)numSamples);
+        assert(key->size()==NUM_MELS*2);
+        (*result)[*key]=(*it).second;
     }
     
     return result;
@@ -134,15 +131,19 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
     
 }
 
-void ClassificationHelper::getFeatures(double *audio, int audioLength, double *&means, double *&vars){
+vector<double> *ClassificationHelper::getFeatures(double *audio, int audioLength){
     int winSize = 256; // TODO make constant somewhere
-    double *spectrogram;
+    double *spectrogram, *means, *vars;
     int frames; int bins;
     getSpectrogram(audio, audioLength, winSize, spectrogram, frames, bins);
 
     getStats(spectrogram, frames, bins, NUM_MELS, ^(double *a, int l) {
         return MFCC::getMFCCs(a,l);
     }, means, vars);
+    vector<double> *r = new vector<double>;
+    r->assign(means, means+NUM_MELS);
+    r->insert(r->end(), vars,vars+NUM_MELS);
+    return r;
 }
 
 double ClassificationHelper::spectralCentroid(double *audio, int audioLength){

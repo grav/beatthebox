@@ -16,7 +16,7 @@ public:
     static void getSpectrogram(double *audio, int audioLength, int winSize, 
                                double *&spectrogram, int &frames, int &bins);
     
-    static void getFeatures(double *audio, int audioLength, double *&means, double *&vars);
+    static vector<double> *getFeatures(double *audio, int audioLength);
     
     static double spectralCentroid(double *audio, int audioLength);
     
