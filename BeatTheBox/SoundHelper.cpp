@@ -16,3 +16,11 @@ void SoundHelper::loadMono(std::string fileName, double *&samples, sf_count_t &n
     sf_count_t read = handle.read(samples,numSamples);
     assert(read==numSamples);
 }
+
+void SoundHelper::saveMono(std::string fileName, double *samples, int numSamples){
+    const int format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
+    SndfileHandle handle(fileName,SFM_WRITE,format,1,44100);
+    sf_count_t framesWritten = handle.writef(samples, numSamples);
+    assert(handle);
+    assert(framesWritten==numSamples);
+}

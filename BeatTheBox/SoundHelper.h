@@ -12,4 +12,5 @@
 class SoundHelper{
 public:
     static void loadMono(std::string fileName, double *&samples,sf_count_t &numSamples);
+    static void saveMono(std::string fileName, double *samples, int numSamples);
 };
