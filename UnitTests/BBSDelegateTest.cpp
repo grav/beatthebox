@@ -112,7 +112,7 @@ TEST(BBSDelegateTest, InsertSamples){
     
 }
 
-TEST(DISABLED_BBSDelegateTest, WholeSample){
+TEST(BBSDelegateTest, WholeSample){
     std::string fileName = "/Users/grav/repositories/uni/feature/session2/mikkel_02.wav";
 
     double *soundFile; sf_count_t soundFileLength;
