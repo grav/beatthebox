@@ -10,6 +10,7 @@
 #include "SegmentOwner.h"
 #include "DSP.h"
 #include <assert.h>
+#include "SoundHelper.h"
 #define SECONDS 10
 
 Segment::Segment(ISegmentOwner& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
@@ -35,14 +36,14 @@ int Segment::getSegmentStopDelta(){
 int Segment::getStart(double *arr, int length, int onset, int winSize){
     double *ee;
     int eeLength = 0;
-    DSP::energyEnvelope(arr, length, winSize, ee, eeLength);
-    return onset+winSize*DSP::firstLowPoint(DSP::reverse(ee,eeLength), eeLength);
+    DSP::energyEnvelope(arr, onset, winSize, ee, eeLength);
+    return onset-winSize*DSP::firstLowPoint(DSP::reverse(ee,eeLength), eeLength);
 }
 
 int Segment::getStop(double *arr, int length, int onset, int winSize){
     double *ee;
     int eeLength = 0;
-    DSP::energyEnvelope(arr, length, winSize, ee, eeLength);
+    DSP::energyEnvelope(arr+onset, length-onset, winSize, ee, eeLength);
     return onset+winSize*DSP::firstLowPoint(ee, eeLength);    
 }
 
@@ -51,6 +52,7 @@ void Segment::findSegment(double *signal, int length, int onset, double *&result
     int winSize = 300;
     int start = getStart(signal, length, onset, winSize);
     int stop = getStop(signal, length, onset,winSize);
+    SoundHelper::saveMono("/Users/grav/Desktop/debug.wav", signal, length);
     assert(start<=onset); assert(stop>onset);
     if(start==onset && stop==onset){
         // crude hack: seems our onset detection went wrong ...
