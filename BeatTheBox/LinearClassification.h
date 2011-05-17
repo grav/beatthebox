@@ -9,13 +9,14 @@
 #include "Classification.h"
 #include <vector.h>
 #include "constants.h"
+#include <iostream>
 
 class LinearClassification : public IClassification{
 public:
     
     vector<double>* *_ws;
     int _numClasses;
-    void init(char* path);
+    void init(std::string path);
     InstrumentClass *_classes;
     InstrumentClass query(double *segment, int segmentLength);
     InstrumentClass ddag(std::vector<double> *x);

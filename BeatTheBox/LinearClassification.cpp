@@ -11,7 +11,9 @@
 #include "LinearAlgebra.h"
 #include "LinearModel.h"
 
-void LinearClassification::init(char* path){
+void LinearClassification::init(std::string path){
+
+    // todo - simply make linearmodel member
     LinearModel m;
     m.load(path);
     _ws=m._ws;
