@@ -125,7 +125,7 @@ void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
 
 void BBSDelegate::setClassification(IClassification *c){
     //TODO - remove old
-    _classification = new ClassificationMock();
+    _classification = c;
 }
 
 IClassification* BBSDelegate::getClassification(){
