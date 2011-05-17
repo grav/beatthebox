@@ -38,7 +38,7 @@ namespace linalg{
         assert(a->size()==b->size());
         double r = 0;
         for(int i=0;i<a->size();i++){
-            r+= (*a)[i]+(*b)[i];
+            r+= (*a)[i]*(*b)[i];
         }
         return r;
     }
