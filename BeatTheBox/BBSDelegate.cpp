@@ -36,12 +36,7 @@ void BBSDelegate::receiveSegment(double *arr, int length, int onset){
     
     if(_runSynchronized){
         // Single-threaded
-        if(mockClassification()){
-            // for testing
-            setClass(_lastOnsetIndex, _classification->query(seg, segLength));
-        } else {
-            // TODO: use async without multithreading
-        }
+        setClass(_lastOnsetIndex, _classification->query(seg, segLength));
     } else {
         //TODO: multithreading
     }
