@@ -218,8 +218,8 @@
 				AEB04BEC137C2DC9005F6ED2 /* ClassificationHelperTest.cpp */,
 				AEB872AA137DA75A000903FA /* FFTW_Test.cpp */,
 				AEB872B5137DDAC3000903FA /* SoundHelperTest.cpp */,
-				AEC43BF213807D3900718764 /* PerceptronTest.cpp */,
 				AEC43C0113815B7700718764 /* LinearClassificationTest.cpp */,
+				AEC43BF213807D3900718764 /* PerceptronTest.cpp */,
 				AEC43C041381622800718764 /* LinearModelTest.cpp */,
 				AE1BD7051382713000DE2877 /* LinearAlgebraTests.cpp */,
 			);
