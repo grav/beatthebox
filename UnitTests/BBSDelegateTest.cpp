@@ -12,9 +12,12 @@
 #include "Classification.h"
 #include "sndfile.hh"
 #include <iostream.h>
+#include "LinearClassification.h"
+#include "SoundHelper.h"
+#include "DSP.h"
 
 #define LOOP_SIZE 9
-#define BUFFER_SIZE 4
+#define AUDIO_BUFFER_SIZE 4
 
 // util function
 double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes){
@@ -53,19 +56,19 @@ TEST(BBSDelegateTest, InsertSamples){
 
     double b[] = {2,4,6,8};
     double o[] = {0,0,1,0};
-    double *out = new double[BUFFER_SIZE];
-    double *sim = new double[BUFFER_SIZE];
-    delegate->handleDSP(b, o, out, sim, BUFFER_SIZE, mock);
+    double *out = new double[AUDIO_BUFFER_SIZE];
+    double *sim = new double[AUDIO_BUFFER_SIZE];
+    delegate->handleDSP(b, o, out, sim, AUDIO_BUFFER_SIZE, mock);
     EXPECT_EQ(RECORD, delegate->_state);
     EXPECT_EQ(2, delegate->_lastOnsetIndex);
     
     double b2[] = {10,12,14,16};
     double o2[] = {0,1,0,0};
-    delegate->handleDSP(b2, o2, out, sim, BUFFER_SIZE, mock);
+    delegate->handleDSP(b2, o2, out, sim, AUDIO_BUFFER_SIZE, mock);
     EXPECT_EQ(5, delegate->_lastOnsetIndex);
 
     double b3[] = {18,20,22,24};
-    delegate->handleDSP(b3, zeros, out, sim, BUFFER_SIZE, mock);
+    delegate->handleDSP(b3, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     
     EXPECT_EQ(PLAYBACK, delegate->_state);
 
@@ -76,56 +79,53 @@ TEST(BBSDelegateTest, InsertSamples){
     }
     
     double e2[] = {1,0,0,-1};
-    for(int i=0;i<BUFFER_SIZE;i++){
+    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_DOUBLE_EQ(e2[i], out[i]);
     }
     
-    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     EXPECT_EQ(PLAYBACK, delegate->_state);
     
     double e3[] = {0,0,-1,0};
-    for(int i=0;i<BUFFER_SIZE;i++){
+    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e3[i], out[i]);
     }
     
-    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     double e4[] = {0,0,0,0};
-    for(int i=0;i<BUFFER_SIZE;i++){
+    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e4[i], out[i]);
     }
     
-    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     double e5[] = {-1,0,0,-1};
-    for(int i=0;i<BUFFER_SIZE;i++){
+    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e5[i], out[i]);
     }
     
-    delegate->handleDSP(zeros, zeros, out, sim, BUFFER_SIZE, mock);
+    delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     double e6[] = {0,0,0,0};
-    for(int i=0;i<BUFFER_SIZE;i++){
+    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e6[i], out[i]);
     }
     
     
 }
 
-TEST(BBSDelegateTest, WholeSample){
+TEST(DISABLED_BBSDelegateTest, WholeSample){
     std::string fileName = "/Users/grav/repositories/uni/feature/session2/mikkel_02.wav";
 
+    double *soundFile; sf_count_t soundFileLength;
+    SoundHelper::loadMono(fileName, soundFile,soundFileLength);
+    
     SndfileHandle handle(fileName); // alloc on stack
     sf_count_t numSamples = handle.frames()*handle.channels();
     EXPECT_EQ(122880,numSamples);
     
-    sf_count_t paddedLength = numSamples + BUFFER_SIZE-(numSamples % BUFFER_SIZE);
-    
-    double samples[paddedLength];
-    for(sf_count_t i=0;i<paddedLength;i++){
-        samples[i]=0;
-    }
-    sf_count_t read = handle.read(samples,numSamples);
-    EXPECT_EQ(numSamples,read);
-    
-    int indexes[] = {
+    double *paddedFile; int paddedLength;
+    DSP::zeroPad(soundFile, (int)soundFileLength, AUDIO_BUFFER_SIZE, paddedFile, paddedLength);
+
+    int onsets[] = {
         3850,
         19635,
         33880,
@@ -139,11 +139,52 @@ TEST(BBSDelegateTest, WholeSample){
     
     int numIndexes = 9;
     
-    double *onsetSignal = makeOnsetsSignal((int)paddedLength, indexes, numIndexes);
+    double *onsetSignal = makeOnsetsSignal((int)paddedLength, onsets, numIndexes);
     
     IHostController *mock = new HostControllerMock();
     BBSDelegate *delegate = new BBSDelegate();
     delegate->_runSynchronized=true;
+    delegate->initSegment(44100);
+
+    IClassification *lin = new LinearClassification();
+    lin->init("/Users/grav/Desktop/linearmodel.data");
+    delegate->setClassification(lin);
+    delegate->startRecord();
+    EXPECT_EQ(RECORD, delegate->_state);
+    delegate->setLoopSize(paddedLength);
+    for(int i=0;i<paddedLength;i+=AUDIO_BUFFER_SIZE){
+        double out[AUDIO_BUFFER_SIZE];
+        double similar[AUDIO_BUFFER_SIZE];
+        delegate->handleDSP(DSP::copyRange(paddedFile, i, AUDIO_BUFFER_SIZE), 
+                            DSP::copyRange(onsetSignal, i, AUDIO_BUFFER_SIZE), 
+                            out, 
+                            similar, AUDIO_BUFFER_SIZE, mock);
+    }
     
+    std::vector<InstrumentClass> classes;
+    std::vector<int> indexes;
+    for(int i=0;i<paddedLength;i++){
+        if(delegate->_onsetTrack[i]!=0){
+            classes.push_back((InstrumentClass)(delegate->_onsetTrack[i]));
+            indexes.push_back(i);
+        }
+    }
+    EXPECT_EQ(9, classes.size());
+    InstrumentClass correctClasses[] = {
+        BD,
+        HH,
+        SD,
+        HH,
+        BD,
+        BD,
+        BD,
+        SD,
+        HH
+    };
+    for(int i=0;i<classes.size();i++){
+        EXPECT_EQ(correctClasses[i], classes[i]);
+    }
 }
+
+
 
