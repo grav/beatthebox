@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Recognizer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>UnitTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>AE3B331F13902825007BEDE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AE3B332B13902965007BEDE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AE55C35A13647EE800AFFF8B</key>
 		<dict>
 			<key>primary</key>

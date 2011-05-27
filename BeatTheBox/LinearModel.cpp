@@ -63,7 +63,7 @@ void LinearModel::load(std::string filename){
         for(int b=0; b<_numClasses;b++){
             int index = a*_numClasses+b;
             if(a!=b){
-                std::cout << "reading " << index << std::endl;
+                std::cout << "Reading models ... " << index << std::endl;
                 std::vector<double> *v = new std::vector<double>;
                 double arr[nFeatures];
                 fread(arr, sizeof(double), nFeatures, pFile);
