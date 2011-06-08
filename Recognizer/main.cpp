@@ -23,8 +23,7 @@ int main (int argc, const char * argv[])
     sf_count_t numSamples;
     SoundHelper::loadMono(argv[1], samples, numSamples);
     LinearClassification c;
-    char *path = (char*)"/Users/grav/Desktop/linearmodel.data"; 
-    c.init(path);
+    c.init(LINEAR_MODEL_PATH);
     InstrumentClass klass = c.query(samples, (int)numSamples);
     cout << "Class: " << klass << endl;
     return 0;

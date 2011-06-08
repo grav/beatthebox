@@ -113,7 +113,7 @@ TEST(BBSDelegateTest, InsertSamples){
 }
 
 TEST(BBSDelegateTest, WholeSample){
-    std::string fileName = "/Users/grav/repositories/uni/feature/session2/mikkel_02.wav";
+    std::string fileName = PATH_PREFIX+(std::string)"session2/mikkel_02.wav";
 
     double *soundFile; sf_count_t soundFileLength;
     SoundHelper::loadMono(fileName, soundFile,soundFileLength);
@@ -147,7 +147,7 @@ TEST(BBSDelegateTest, WholeSample){
     delegate->initSegment(44100);
 
     IClassification *lin = new LinearClassification();
-    lin->init("/Users/grav/Desktop/linearmodel.data");
+    lin->init(LINEAR_MODEL_PATH);
     delegate->setClassification(lin);
     delegate->startRecord();
     EXPECT_EQ(RECORD, delegate->_state);

@@ -8,6 +8,9 @@
 
 #include "SoundHelper.h"
 #include <assert.h>
+
+void makeMono(double *samples, sf_count_t &numSamples);
+
 void SoundHelper::loadMono(std::string fileName, double *&samples, sf_count_t &numSamples){
     SndfileHandle handle(fileName); // alloc on stack
     numSamples = handle.frames()*handle.channels();

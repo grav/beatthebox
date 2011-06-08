@@ -19,7 +19,7 @@ TEST(Segment,GetStart){
     int segmentLength = 19635;
     int onset = 3850;
     int winSize = 300;
-    SoundHelper::loadMono("/Users/grav/repositories/uni/feature/session2/mikkel_02.wav", sample, length);
+    SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", sample, length);
     int start = Segment::getStart(sample, segmentLength, onset, winSize);
     EXPECT_EQ(2350,start);
 }
@@ -29,7 +29,7 @@ TEST(Segment,GetStop){
     int segmentLength = 19635;
     int onset = 3850;
     int winSize = 300;
-    SoundHelper::loadMono("/Users/grav/repositories/uni/feature/session2/mikkel_02.wav", sample, length);
+    SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", sample, length);
     int stop = Segment::getStop(sample, segmentLength, onset, winSize);
     EXPECT_EQ(14350,stop);
 }

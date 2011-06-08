@@ -10,8 +10,9 @@
 #include "SoundHelper.h"
 #include <iostream.h>
 #include "DSP.h"
+#include "constants.h"
 TEST(SoundHelperTest,LoadMono){
-    std::string fileName = "/Users/grav/repositories/uni/feature/session2/mikkel_02.wav";
+    std::string fileName = PATH_PREFIX+(std::string)"session2/mikkel_02.wav";
     
     sf_count_t numSamples;
     double *samples;

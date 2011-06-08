@@ -10,6 +10,9 @@
 
 #define PATH_PREFIX "/Users/grav/repositories/uni/feature/"
 
+#define LINEAR_MODEL_PATH "/Users/grav/Desktop/linearmodel.data"
+#define FLAT_FILE_PATH "/Users/grav/Desktop/flat.data"
+
 enum InstrumentClass{
     BD = 2,
     SD = 3,

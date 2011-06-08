@@ -10,14 +10,14 @@ TEST(DISABLED_LinearModel, LoadSave){
     Perceptron *perceptron = new Perceptron();
     
     LinearModel *m = new LinearModel();
-    m->_ws = perceptron->train(ClassificationHelper::getFeatureMap("/Users/grav/Desktop/flat.data"),
+    m->_ws = perceptron->train(ClassificationHelper::getFeatureMap(FLAT_FILE_PATH),
                               classes, numClasses);
     m->_classes = classes;
     m->_numClasses = numClasses;
-    m->save("/Users/grav/Desktop/linearmodel.data");
+    m->save(LINEAR_MODEL_PATH);
 
     LinearModel *m2 = new LinearModel();
-    m2->load("/Users/grav/Desktop/linearmodel.data");
+    m2->load(LINEAR_MODEL_PATH);
     EXPECT_EQ(m2->_numClasses, m->_numClasses);
     EXPECT_EQ(NULL,m2->_ws[0]);
     std::vector<double> *v1 = m->_ws[1];

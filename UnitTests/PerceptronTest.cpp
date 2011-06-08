@@ -21,7 +21,7 @@ TEST(DISABLED_PerceptronTest,TestIt){
 
     int numClasses = 3;
     
-    perceptron->train(ClassificationHelper::getFeatureMap("/Users/grav/Desktop/flat.data"),
+    perceptron->train(ClassificationHelper::getFeatureMap(FLAT_FILE_PATH),
                                   classes, numClasses);
 
 

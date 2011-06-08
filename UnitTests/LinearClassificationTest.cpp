@@ -7,11 +7,10 @@
 
 TEST(LinearClassification,HitRate){
     LinearClassification linClas;
-    char *path = (char*)"/Users/grav/Desktop/linearmodel.data"; 
-    linClas.init(path);
+    linClas.init(LINEAR_MODEL_PATH);
     int hits=0;
     int testSize=0;
-    map<std::string, InstrumentClass> *m = ClassificationHelper::getMap("/Users/grav/Desktop/flat.data");
+    map<std::string, InstrumentClass> *m = ClassificationHelper::getMap(FLAT_FILE_PATH);
     map<std::string,InstrumentClass>::iterator it;
     int i=0;
     for(it=m->begin();it!=m->end();it++){

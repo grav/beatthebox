@@ -30,7 +30,7 @@ map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string 
         cout << "Calculating features for sample " << num << " of " << m->size() << endl;
         double *samples; sf_count_t numSamples;
         vector<double> *key;
-        string filename="/Users/grav/repositories/uni/feature/"+(*it).first;
+        string filename=PATH_PREFIX+(*it).first;
         SoundHelper::loadMono(filename,samples,numSamples);
         key = getFeatures(samples, (int)numSamples);
         assert(key->size()==NUM_MELS*2);
