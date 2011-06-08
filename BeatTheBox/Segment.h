@@ -10,6 +10,8 @@
 
 #include "HostController.h"
 
+#define SEGMENT_WINSIZE 300
+
 class ISegmentOwner; // forward-declaration
 
 class Segment{

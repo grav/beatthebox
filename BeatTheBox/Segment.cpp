@@ -48,9 +48,8 @@ int Segment::getStop(double *arr, int length, int onset, int winSize){
 
 void Segment::findSegment(double *signal, int length, int onset, double *&result, int &resultLength){
     // TODO: make constant somewhere
-    int winSize = 300;
-    int start = getStart(signal, length, onset, winSize);
-    int stop = getStop(signal, length, onset,winSize);
+    int start = getStart(signal, length, onset, SEGMENT_WINSIZE);
+    int stop = getStop(signal, length, onset,SEGMENT_WINSIZE);
     SoundHelper::saveMono("/Users/grav/Desktop/debug.wav", signal, length);
     assert(start<=onset); assert(stop>onset);
     if(start==onset && stop==onset){
@@ -58,8 +57,8 @@ void Segment::findSegment(double *signal, int length, int onset, double *&result
         // set onset to initial part of signal and 
         // try again!
         onset = 10;
-        start = start = getStart(signal, length, onset, winSize);
-        stop = stop = getStop(signal, length, onset,winSize);
+        start = start = getStart(signal, length, onset, SEGMENT_WINSIZE);
+        stop = stop = getStop(signal, length, onset,SEGMENT_WINSIZE);
     }
     _startDelta = onset-start;
     _stopDelta = onset-stop;
