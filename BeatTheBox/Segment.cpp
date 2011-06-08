@@ -16,7 +16,6 @@
 Segment::Segment(ISegmentOwner& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
     _signalLength = (int)(SECONDS * sr);
     _signal = new double[_signalLength];
-//    _owner = owner;
     init();
 }
 
