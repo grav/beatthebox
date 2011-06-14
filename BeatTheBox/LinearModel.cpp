@@ -9,6 +9,10 @@
 #include "LinearModel.h"
 #include <stdio.h>
 
+LinearModel::LinearModel(std::string path){
+    load(path);
+}
+
 LinearModel::~LinearModel(){
     delete[] _ws;
     delete[] _classes;

@@ -11,14 +11,13 @@
 #include "LinearAlgebra.h"
 #include "LinearModel.h"
 
-LinearClassification::~LinearClassification(){
-    delete _model;
+LinearClassification::LinearClassification(std::string path){
+    _model = new LinearModel(path);
+    
 }
 
-void LinearClassification::init(std::string path){
-
-    _model = new LinearModel();
-    _model->load(path);
+LinearClassification::~LinearClassification(){
+    delete _model;
 }
 
 InstrumentClass LinearClassification::query(std::vector<double> *segment){

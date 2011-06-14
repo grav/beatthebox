@@ -6,8 +6,7 @@
 #include "constants.h"
 
 TEST(DISABLED_LinearClassification,HitRate){
-    LinearClassification linClas;
-    linClas.init(LINEAR_MODEL_PATH);
+    LinearClassification linClas(LINEAR_MODEL_PATH);
     int hits=0;
     int testSize=0;
     map<std::string, InstrumentClass> *m = ClassificationHelper::getMap(FLAT_FILE_PATH);

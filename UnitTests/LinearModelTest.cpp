@@ -9,8 +9,7 @@ TEST(LinearModel, Load){
     int numClasses = 3;
     int numFeatures = 27;
 
-    LinearModel *m2 = new LinearModel();
-    m2->load(LINEAR_MODEL_PATH);
+    LinearModel *m2 = new LinearModel(LINEAR_MODEL_PATH);
     EXPECT_EQ(numClasses, m2->_numClasses);
     EXPECT_EQ(NULL,m2->_ws[0]);
     std::vector<double> *v2 = m2->_ws[1];

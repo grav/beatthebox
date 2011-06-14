@@ -14,10 +14,9 @@
 
 class LinearClassification : public IClassification{
 public:
-    
+    LinearClassification(std::string path);
     ~LinearClassification();
     
-    void init(std::string path);
     InstrumentClass query(std::vector<double> *segment);
     InstrumentClass ddag(std::vector<double> *x);
     Classification type();
