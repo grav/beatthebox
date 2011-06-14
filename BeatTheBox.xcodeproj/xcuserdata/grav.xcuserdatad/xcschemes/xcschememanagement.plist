@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MemTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Recognizer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -58,6 +63,11 @@
 			<true/>
 		</dict>
 		<key>AEF9204713A750EF0008C9B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AEF9208913A776550008C9B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

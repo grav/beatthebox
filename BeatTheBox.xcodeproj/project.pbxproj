@@ -60,6 +60,16 @@
 		AEF9205B13A7562D0008C9B5 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
 		AEF9205C13A756390008C9B5 /* MFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE2137C1767005F6ED2 /* MFCC.cpp */; };
 		AEF9205D13A7567C0008C9B5 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
+		AEF9208E13A776570008C9B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF9208D13A776570008C9B5 /* main.cpp */; };
+		AEF9209413A776860008C9B5 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
+		AEF9209513A7768D0008C9B5 /* Classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66F13675974002CCE9A /* Classification.cpp */; };
+		AEF9209613A776940008C9B5 /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
+		AEF9209713A776960008C9B5 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
+		AEF9209813A776990008C9B5 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
+		AEF9209913A7769C0008C9B5 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
+		AEF9209A13A777090008C9B5 /* libfftw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */; };
+		AEF9209B13A7770B0008C9B5 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
+		AEF9209C13A777440008C9B5 /* MFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE2137C1767005F6ED2 /* MFCC.cpp */; };
 		AEFFB6591366E9F7002CCE9A /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
 		AEFFB65A1366E9F7002CCE9A /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
 		AEFFB6611366FE1C002CCE9A /* SegmentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */; };
@@ -102,6 +112,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		AEF9204613A750EF0008C9B5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		AEF9208813A776550008C9B5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -155,6 +174,9 @@
 		AEF9204813A750EF0008C9B5 /* Train */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Train; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF9204B13A750EF0008C9B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AEF9204D13A750F00008C9B5 /* Train.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Train.1; sourceTree = "<group>"; };
+		AEF9208A13A776550008C9B5 /* MemTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MemTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF9208D13A776570008C9B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AEF9208F13A776570008C9B5 /* MemTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MemTest.1; sourceTree = "<group>"; };
 		AEFFB6571366E9F7002CCE9A /* Segment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segment.cpp; sourceTree = "<group>"; };
 		AEFFB6581366E9F7002CCE9A /* Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
 		AEFFB65F1366FE1C002CCE9A /* SegmentTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentTest.cpp; sourceTree = "<group>"; };
@@ -207,6 +229,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AEF9208713A776550008C9B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEF9209B13A7770B0008C9B5 /* libsndfile.dylib in Frameworks */,
+				AEF9209A13A777090008C9B5 /* libfftw3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -224,6 +255,7 @@
 			children = (
 				AE3B332213902825007BEDE9 /* Recognizer */,
 				AEF9204A13A750EF0008C9B5 /* Train */,
+				AEF9208C13A776550008C9B5 /* MemTest */,
 				AE55C37413647F2400AFFF8B /* Frameworks */,
 				AE55C35E13647EE800AFFF8B /* BeatTheBox */,
 				AE55C36D13647EF600AFFF8B /* UnitTests */,
@@ -238,6 +270,7 @@
 				AE55C36B13647EF600AFFF8B /* UnitTests */,
 				AE3B335113902A31007BEDE9 /* Recognizer */,
 				AEF9204813A750EF0008C9B5 /* Train */,
+				AEF9208A13A776550008C9B5 /* MemTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +352,15 @@
 			path = Train;
 			sourceTree = "<group>";
 		};
+		AEF9208C13A776550008C9B5 /* MemTest */ = {
+			isa = PBXGroup;
+			children = (
+				AEF9208D13A776570008C9B5 /* main.cpp */,
+				AEF9208F13A776570008C9B5 /* MemTest.1 */,
+			);
+			path = MemTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -390,6 +432,23 @@
 			productReference = AEF9204813A750EF0008C9B5 /* Train */;
 			productType = "com.apple.product-type.tool";
 		};
+		AEF9208913A776550008C9B5 /* MemTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEF9209213A776570008C9B5 /* Build configuration list for PBXNativeTarget "MemTest" */;
+			buildPhases = (
+				AEF9208613A776550008C9B5 /* Sources */,
+				AEF9208713A776550008C9B5 /* Frameworks */,
+				AEF9208813A776550008C9B5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MemTest;
+			productName = MemTest;
+			productReference = AEF9208A13A776550008C9B5 /* MemTest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -411,6 +470,7 @@
 				AE55C36A13647EF600AFFF8B /* UnitTests */,
 				AE3B332B13902965007BEDE9 /* Recognizer */,
 				AEF9204713A750EF0008C9B5 /* Train */,
+				AEF9208913A776550008C9B5 /* MemTest */,
 			);
 		};
 /* End PBXProject section */
@@ -496,6 +556,21 @@
 				AEF9205613A752C80008C9B5 /* LinearClassification.cpp in Sources */,
 				AEF9205513A752BB0008C9B5 /* LinearAlgebra.cpp in Sources */,
 				AEF9204C13A750EF0008C9B5 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEF9208613A776550008C9B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEF9209C13A777440008C9B5 /* MFCC.cpp in Sources */,
+				AEF9209913A7769C0008C9B5 /* LinearModel.cpp in Sources */,
+				AEF9209813A776990008C9B5 /* LinearClassification.cpp in Sources */,
+				AEF9209713A776960008C9B5 /* LinearAlgebra.cpp in Sources */,
+				AEF9209613A776940008C9B5 /* SoundHelper.cpp in Sources */,
+				AEF9209513A7768D0008C9B5 /* Classification.cpp in Sources */,
+				AEF9209413A776860008C9B5 /* ClassificationHelper.cpp in Sources */,
+				AEF9208E13A776570008C9B5 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +759,40 @@
 			};
 			name = Release;
 		};
+		AEF9209013A776570008C9B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AEF9209113A776570008C9B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -728,6 +837,15 @@
 			buildConfigurations = (
 				AEF9204F13A750F00008C9B5 /* Debug */,
 				AEF9205013A750F00008C9B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEF9209213A776570008C9B5 /* Build configuration list for PBXNativeTarget "MemTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEF9209013A776570008C9B5 /* Debug */,
+				AEF9209113A776570008C9B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
