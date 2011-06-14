@@ -36,7 +36,6 @@ void BBSDelegate::receiveSegment(vector<double> *arr, int onset){
     
     if(_runSynchronized){
         // Single-threaded
-        SoundHelper::debug(seg);
         setClass(_lastOnsetIndex, _classification->query(seg));
     } else {
         //TODO: multithreading
