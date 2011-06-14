@@ -11,14 +11,14 @@
 #include "LinearAlgebra.h"
 #include "LinearModel.h"
 
+LinearClassification::~LinearClassification(){
+    delete _model;
+}
+
 void LinearClassification::init(std::string path){
 
-    // todo - simply make linearmodel member
-    LinearModel m;
-    m.load(path);
-    _ws=m._ws;
-    _classes=m._classes;
-    _numClasses=m._numClasses;
+    _model = new LinearModel();
+    _model->load(path);
 }
 
 InstrumentClass LinearClassification::query(std::vector<double> *segment){
@@ -28,10 +28,10 @@ InstrumentClass LinearClassification::query(std::vector<double> *segment){
 }
 
 InstrumentClass LinearClassification::ddag(std::vector<double> *x){
-    int a = _numClasses-1;
+    int a = _model->_numClasses-1;
     int b = 0;
     while(a!=b){
-        vector<double> *w = _ws[a*_numClasses+b];
+        vector<double> *w = _model->getW(a,b);
         if(linalg::dot(x, w)>0){
             b++;
         } else{
@@ -39,7 +39,7 @@ InstrumentClass LinearClassification::ddag(std::vector<double> *x){
         }
         // now a==b
     }
-    return _classes[a];
+    return _model->_classes[a];
 }
 
 Classification LinearClassification::type(){

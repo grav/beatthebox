@@ -9,6 +9,15 @@
 #include "LinearModel.h"
 #include <stdio.h>
 
+LinearModel::~LinearModel(){
+    delete[] _ws;
+    delete[] _classes;
+}
+
+std::vector<double> *LinearModel::getW(int a, int b){
+    return _ws[a*_numClasses+b];
+}
+
 void LinearModel::save(std::string filename){
     FILE *pFile;
     

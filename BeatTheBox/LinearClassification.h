@@ -10,16 +10,17 @@
 #include <vector.h>
 #include "constants.h"
 #include <iostream>
+#include "LinearModel.h"
 
 class LinearClassification : public IClassification{
 public:
     
-    vector<double>* *_ws;
-    int _numClasses;
+    ~LinearClassification();
+    
     void init(std::string path);
-    InstrumentClass *_classes;
     InstrumentClass query(std::vector<double> *segment);
     InstrumentClass ddag(std::vector<double> *x);
     Classification type();
+    LinearModel *_model;
 
 };
