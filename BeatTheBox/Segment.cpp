@@ -56,13 +56,12 @@ void Segment::findSegment(vector<double> *signal, int onset, vector<double> *&re
         // set onset to initial part of signal and 
         // try again!
         onset = 10;
-        start = start = getStart(signal, onset, SEGMENT_WINSIZE);
-        stop = stop = getStop(signal, onset,SEGMENT_WINSIZE);
+        start = getStart(signal, onset, SEGMENT_WINSIZE);
+        stop = getStop(signal, onset,SEGMENT_WINSIZE);
     }
     _startDelta = onset-start;
     _stopDelta = onset-stop;
-    int resultLength = stop+1-start;
-    result = new vector<double>(signal->begin()+start,signal->begin()+start+resultLength);
+    result = new vector<double>(signal->begin()+start,signal->begin()+stop+1);
 }
 
 void Segment::pushSample(double s, bool isOnset){
