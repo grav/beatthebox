@@ -14,7 +14,8 @@
 
 class BBSDelegate : public ISegmentOwner {
 public:
-    
+    BBSDelegate();
+    ~BBSDelegate();
     /* inherited from ISegmentOwner */
     void receiveSegment(std::vector<double>* arr, int onset);
     void setClass(int index, InstrumentClass klass);

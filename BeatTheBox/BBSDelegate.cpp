@@ -21,6 +21,14 @@ int min(int a, int b){
     return a<b?a:b;
 }
 
+BBSDelegate::BBSDelegate(){
+    _classification = NULL;
+}
+
+BBSDelegate::~BBSDelegate(){
+    delete _classification;
+}
+
 bool BBSDelegate::mockClassification(){
     return _classification->type()==MOCK;
 }
@@ -119,7 +127,7 @@ void BBSDelegate::updateSimilarTrack(int index, double *drum, int length){
 }
 
 void BBSDelegate::setClassification(IClassification *c){
-    //TODO - remove old
+    delete _classification;
     _classification = c;
 }
 
