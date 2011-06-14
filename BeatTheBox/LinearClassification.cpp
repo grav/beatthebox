@@ -21,8 +21,8 @@ void LinearClassification::init(std::string path){
     _numClasses=m._numClasses;
 }
 
-InstrumentClass LinearClassification::query(double *segment, int segmentLength){
-    vector<double> *features = ClassificationHelper::getFeatures(segment, segmentLength);
+InstrumentClass LinearClassification::query(std::vector<double> *segment){
+    vector<double> *features = ClassificationHelper::getFeatures(segment);
     vector<double> *x = linalg::extendWithOne(*features);
     return ddag(x);
 }

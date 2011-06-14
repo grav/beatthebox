@@ -4,28 +4,20 @@
 #include "ClassificationHelper.h"
 
 
-TEST(DISABLED_LinearModel, LoadSave){
-    InstrumentClass classes[] = {BD,SD,HH};
+TEST(LinearModel, Load){
+//    InstrumentClass classes[] = {BD,SD,HH};
     int numClasses = 3;
-    Perceptron *perceptron = new Perceptron();
-    
-    LinearModel *m = new LinearModel();
-    m->_ws = perceptron->train(ClassificationHelper::getFeatureMap(FLAT_FILE_PATH),
-                              classes, numClasses);
-    m->_classes = classes;
-    m->_numClasses = numClasses;
-    m->save(LINEAR_MODEL_PATH);
+    int numFeatures = 27;
 
     LinearModel *m2 = new LinearModel();
     m2->load(LINEAR_MODEL_PATH);
-    EXPECT_EQ(m2->_numClasses, m->_numClasses);
+    EXPECT_EQ(numClasses, m2->_numClasses);
     EXPECT_EQ(NULL,m2->_ws[0]);
-    std::vector<double> *v1 = m->_ws[1];
     std::vector<double> *v2 = m2->_ws[1];
-    EXPECT_EQ(v1->size(), v2->size());
-    for(int i=0; i<v1->size(); i++){
-        EXPECT_EQ((*v1)[i], (*v2)[i]);
-    }
+    EXPECT_EQ(numFeatures, v2->size());
+//    for(int i=0; i<v1->size(); i++){
+//        EXPECT_EQ((*v1)[i], (*v2)[i]);
+//    }
     
     
 }

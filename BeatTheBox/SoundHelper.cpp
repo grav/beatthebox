@@ -6,24 +6,30 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#include "sndfile.hh"
 #include "SoundHelper.h"
 #include <assert.h>
 
 void makeMono(double *samples, sf_count_t &numSamples);
 
-void SoundHelper::loadMono(std::string fileName, double *&samples, sf_count_t &numSamples){
+void SoundHelper::loadMono(std::string fileName, std::vector<double> *&samples){
     SndfileHandle handle(fileName); // alloc on stack
-    numSamples = handle.frames()*handle.channels();
+    sf_count_t numSamples = handle.frames()*handle.channels();
     assert(numSamples>0);
-    samples = new double[numSamples];
-    sf_count_t read = handle.read(samples,numSamples);
+    double *samplesArr = new double[numSamples];
+    sf_count_t read = handle.read(samplesArr,numSamples);
+    samples = new std::vector<double>(samplesArr,samplesArr+numSamples);
     assert(read==numSamples);
 }
 
-void SoundHelper::saveMono(std::string fileName, double *samples, int numSamples){
+void SoundHelper::saveMono(std::string fileName, std::vector<double> *samples){
     const int format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
     SndfileHandle handle(fileName,SFM_WRITE,format,1,44100);
-    sf_count_t framesWritten = handle.writef(samples, numSamples);
+    sf_count_t framesWritten = handle.writef(&(samples->front()), samples->size());
     assert(handle);
-    assert(framesWritten==numSamples);
+    assert(framesWritten==samples->size());
+}
+
+void SoundHelper::debug(std::vector<double> *signal){
+    SoundHelper::saveMono("/Users/grav/Desktop/debug.wav",signal);
 }

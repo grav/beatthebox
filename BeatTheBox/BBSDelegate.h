@@ -8,6 +8,7 @@
 #pragma once
 
 #include "SegmentOwner.h"
+#include <vector>
 
 #define MAX_BUFFER_SIZE 44100 * 20;
 
@@ -15,7 +16,7 @@ class BBSDelegate : public ISegmentOwner {
 public:
     
     /* inherited from ISegmentOwner */
-    void receiveSegment(double* arr, int length, int onset);
+    void receiveSegment(std::vector<double>* arr, int onset);
     void setClass(int index, InstrumentClass klass);
     IClassification* getClassification();
     void updateSimilarTrack(int index, double* read, int length);

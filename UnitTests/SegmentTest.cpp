@@ -15,20 +15,22 @@
 #define SAMPLE_RATE 44100
 
 TEST(Segment,GetStart){
-    double *sample; sf_count_t length;
+    vector<double> *sample;
     int segmentLength = 19635;
     int onset = 3850;
-    SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", sample, length);
-    int start = Segment::getStart(sample, segmentLength, onset, SEGMENT_WINSIZE);
+    SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", sample);
+    vector<double> v(sample->begin(),sample->begin()+segmentLength);
+    int start = Segment::getStart(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(2350,start);
 }
 
 TEST(Segment,GetStop){
-    double *sample; sf_count_t length;
+    vector<double> *sample;
     int segmentLength = 19635;
     int onset = 3850;
-    SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", sample, length);
-    int stop = Segment::getStop(sample, segmentLength, onset, SEGMENT_WINSIZE);
+    SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", sample);
+    vector<double> v(sample->begin(),sample->begin()+segmentLength);
+    int stop = Segment::getStop(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(14350,stop);
 }
 
@@ -53,8 +55,8 @@ TEST(SegmentTest, InsertSamples){
 
     double expected[] = {1, 2, 3, 4, 7, 9, 25, 3, 2, 4, 6};
     
-    for(int i=0;i<so._segmentLength;i++){
-        EXPECT_EQ(expected[i], so._segment[i]);
+    for(int i=0;i<so._segment->size();i++){
+        EXPECT_EQ(expected[i], (*(so._segment))[i]);
     }
     EXPECT_EQ(6,so._onset);
     EXPECT_EQ(5,s._onset);
@@ -63,7 +65,7 @@ TEST(SegmentTest, InsertSamples){
 
     double expected2[] = {25,3,2,4,6,8,0,0,0,0,0,0,0};
     int expectedLength2 = 13;
-    double *actual = DSP::copyRange(s._signal,0,expectedLength2);
+    double *actual = DSP::copyRange(&(s._signal->front()),0,expectedLength2);
     for(int i=0;i<expectedLength2;i++){
         EXPECT_EQ(expected2[i], actual[i]);
     }
@@ -79,7 +81,7 @@ TEST(SegmentTest, InsertSamples){
     double expected3[] = {25, 3, 2, 4, 6, 8, 10, 12, 14, 16, 18};
     double expectedLength3 = 11;
     for(int i=0;i<expectedLength3;i++){
-        EXPECT_EQ(expected3[i], so._segment[i]);
+        EXPECT_EQ(expected3[i], (*(so._segment))[i]);
     }
 }
 

@@ -12,10 +12,10 @@
 
 TEST(ClassificationHelperTest,SpectralCentroid){
     double test[] = {1,2,3};
-    EXPECT_EQ(14.0/6.0, ClassificationHelper::spectralCentroid(test,3));
+    EXPECT_EQ(14.0/6.0, ClassificationHelper::spectralCentroid(new vector<double>(test,test+3)));
     
     double test2[] = {1,-1,0};
-    EXPECT_EQ(0,ClassificationHelper::spectralCentroid(test2,3));
+    EXPECT_EQ(0,ClassificationHelper::spectralCentroid(new vector<double>(test2,test2+3)));
 }
 
 TEST(ClassificationHelperTest,Spectrogram){
@@ -28,7 +28,7 @@ TEST(ClassificationHelperTest,Spectrogram){
     int winSize = 4;
     double *spectrogram;
     int frames; int bins;
-    ClassificationHelper::getSpectrogram(in, inLength, winSize, spectrogram, frames, bins);
+    ClassificationHelper::getSpectrogram(new vector<double>(in, in+inLength), winSize, spectrogram, frames, bins);
     
     double expected[] = {
         0.90154, 0.47746, 0.04826,
@@ -38,8 +38,9 @@ TEST(ClassificationHelperTest,Spectrogram){
     EXPECT_EQ(4, frames);
     int outLength = ((inLength/winSize)/2 + 1) * frames;
     EXPECT_EQ(12,outLength);
+    int precision = 10000;
     for(int i=0;i<bins*frames;i++){
-        EXPECT_TRUE(abs(expected[i]-spectrogram[i])<0.01);
+        EXPECT_EQ((int)(expected[i]*precision),(int)(spectrogram[i]*precision));
     }
     
 }
@@ -61,12 +62,12 @@ TEST(ClassificationHelper,GetStats){
     ClassificationHelper::getStats(testArr, 3, 3, 1, 
        ^(double *audio, int audioLength) {
            double *r = new double[1];
-           r[0] = ClassificationHelper::spectralCentroid(audio, audioLength);
+           r[0] = ClassificationHelper::spectralCentroid(new vector<double>(audio, audio+audioLength));
            return r;
        }, means, vars);
     
     EXPECT_EQ(0,vars[0]);
-    EXPECT_EQ(ClassificationHelper::spectralCentroid(DSP::copyRange(testArr,0,numBins),numBins),
+    EXPECT_EQ(ClassificationHelper::spectralCentroid(new vector<double>(testArr,testArr+numBins)),
               means[0]);
 }
 

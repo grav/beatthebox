@@ -14,6 +14,9 @@
 #include <math.h>
 #include <float.h>
 #include <assert.h>
+#include <vector>
+
+using namespace std;
 
 class DSP{
 public:
@@ -22,115 +25,125 @@ public:
         return sqrt(pow(c[0],2)+pow(c[1],2));
     }
     
-    static double foldl(double* arr, int length, double init, double (^f)(double x, double y)){
+    static double foldl(vector<double> *arr, double init, double (^f)(double x, double y)){
         double result = init;
-        for(int i=0;i<length;i++){
-            result = f(result,arr[i]);
+        for(int i=0;i<arr->size();i++){
+            result = f(result,(*arr)[i]);
         }
         return result;
 
     }
     
-    static double* mapWithIndex(double* arr, int length, double (^f)(double x, int i)){
-        double *result = new double[length];
-        for(int i=0; i<length;i++){
-            result[i] = f(arr[i], i); // apply f on i'th element of arr
+    static vector<double>* mapWithIndex(vector<double>* arr, double (^f)(double x, int i)){
+        vector<double> *result = new vector<double>(arr->size());
+        for(int i=0; i<arr->size();i++){
+            (*result)[i] = f((*arr)[i], i); // apply f on i'th element of arr
         }
         return result;  
 
     }
                               
-    static double* map(double* arr, int length, double (^f)(double x)){
-        return mapWithIndex(arr, length, ^(double x, int i){return f(x);});
+    static vector<double>* map(vector<double>* arr, double (^f)(double x)){
+        return mapWithIndex(arr, ^(double x, int i){return f(x);});
     }
 
-    static double* line(double from, double to, int length){
-        return mapWithIndex(new double[length], length, ^(double v, int i){return (to-from)/length * i+from;});
+    static vector<double>* line(double from, double to, int length){
+        return mapWithIndex(new vector<double>(length), ^(double v, int i){return (to-from)/length * i+from;});
     }
     
-    static double* line(int length){
-        return line(0, length, length);
+    static vector<double>* line(int length){
+        return line(0, (double)length,length);
     }
     
-    static double sum(double* arr, int length){
-        return foldl(arr, length, 0, ^(double x, double y){return x+y;});
+    static double sum(vector<double>* arr){
+        return foldl(arr, 0, ^(double x, double y){return x+y;});
     }
      
-    static double rms(double* arr, int length){
-        return sqrt(sum(map(arr, length, ^(double x){return pow(x, 2);}),length)/length);
+    static double rms(vector<double>* arr){
+        return sqrt(sum(map(arr, ^(double x){return pow(x, 2);}))/arr->size());
     }
     
-    static double* hamming(int m){
-        return map(line(m), m, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
+    static vector<double>* hamming(int m){
+        return map(line(m), ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
     }
     
-    static double* hamming(double *in, int length){
-        double *hamWin = hamming(length);
-        // todo - delete hamWin in some way!
-        return mapWithIndex(in, length, ^(double x, int i){return x*hamWin[i];});
+    static vector<double>* hamming(vector<double> *in){
+        vector<double> *hamWin = hamming((int)in->size());
+        vector<double> *result = mapWithIndex(in, ^(double x, int i){return x*(*hamWin)[i];});
+        delete hamWin;
+        return result;
     }
     
-    static void zeroPad(double* arr, int length, int winSize, double *&resultArr, int &resultLength){
-        int rest = length % winSize;
+    static void zeroPad(vector<double>* arr, int winSize, vector<double> *&resultArr){
+        int rest = (int)(arr->size() % winSize);
+        int resultLength;
         if(rest == 0){
-            resultLength = length;
+            resultLength = (int)arr->size();
         } else {        
-            resultLength = length+(winSize-rest);
+            resultLength = (int)arr->size()+(winSize-rest);
         }
-        resultArr = mapWithIndex(arr, resultLength, ^(double v, int i){return i<length?v:0;});
-
+        resultArr = new vector<double>(resultLength,0);
+        for(int i=0;i<arr->size();i++){
+            (*resultArr)[i] = (*arr)[i];
+        }
     }
     
-    static void energyEnvelope(double* arr, int length, int winSize, double *&resultArr, int &resultLength){
-        double *paddedArr;
-        int paddedLength;    
-        zeroPad(arr, length, winSize, paddedArr, paddedLength);
-        resultLength = paddedLength/winSize;
-        
-        resultArr = new double[resultLength];
+    static void energyEnvelope(vector<double>* arr, int winSize, vector<double> *&resultArr){
+        vector<double> *paddedArr;
+        zeroPad(arr, winSize, paddedArr);
+        int resultLength = (int)(paddedArr->size()/winSize);
+
+        resultArr = new vector<double>(resultLength);
         for(int i=0;i<resultLength;i++){        
-            resultArr[i]=rms(copyRange(paddedArr, i*winSize, winSize),winSize);
+            vector<double> v(paddedArr->begin()+(i*winSize), 
+                             paddedArr->begin()+((i+1)*winSize));
+            
+            (*resultArr)[i]=rms(&v);
         }		
 
     }
     
     static double* copyRange(double* arr, int start, int length){
         // TODO: since the body of the closure refers directly to arr, it isn't a real mapping?
-        return mapWithIndex(arr, length, ^(double x, int i){return arr[start+i];});
+        double *result = new double[length];
+        for(int i=0;i<length;i++){
+            result[i]=arr[start+i];
+        }
+        return result;
 
     }
 
-    static double max(double* arr, int length){
-        return foldl(arr, length, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
+    static double max(vector<double>* arr){
+        return foldl(arr, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
     }
     
-    static double* reverse(double* arr, int length){
-        return mapWithIndex(arr, length, ^(double v, int i){return arr[length-1-i];});
+    static vector<double>* reverse(vector<double>* arr){
+        return mapWithIndex(arr, ^(double v, int i){return (*arr)[arr->size()-1-i];});
     }
     
-    static int attackTime(double *arr, int length, int k){
+    static int attackTime(vector<double> *arr, int k){
         //TODO - make winSize constants somewhere
         int winSize = 256;
-        double *env;
+        vector<double> *env;
         int envLength;
-        energyEnvelope(arr, length, winSize, env, envLength);
-        double max = DSP::max(env,envLength);
+        energyEnvelope(arr, winSize, env);
+        double max = DSP::max(env);
         for(int i=0;i<envLength;i++){
-            if(env[i]>k*max) return i*winSize;
+            if((*env)[i]>k*max) return i*winSize;
         }
         return INT_MAX;
 
     }
     
-    static int firstLowPoint(double *arr, int length){
+    static int firstLowPoint(vector<double> *arr){
         double t = 0.05; // threshold
-        double max = DSP::max(arr,length);
+        double max = DSP::max(arr);
         int minIndex = 0; 
-        for(int i=0;i<length;i++){
-            if(arr[i]<t*max){
+        for(int i=0;i<arr->size();i++){
+            if((*arr)[i]<t*max){
                 return i;
             }
-            if(arr[i]<arr[minIndex]){
+            if((*arr)[i]<(*arr)[minIndex]){
                 minIndex=i;
             }
         }
@@ -147,9 +160,9 @@ public:
 
     }
     
-    static double* noise(int length){
-        double *r = new double[length];
-        return map(r, length, ^(double x){return ((double)rand()/(double)RAND_MAX);});
+    static vector<double>* noise(int length){
+        vector<double> *r = new vector<double>(length);        
+        return map(r, ^(double x){return ((double)rand()/(double)RAND_MAX);});
     }
     
 };

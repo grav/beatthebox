@@ -34,7 +34,7 @@ TEST(BBSDelegateTest, mockClassification){
     EXPECT_TRUE(delegate->mockClassification());
 }
 
-TEST(BBSDelegateTest, InsertSamples){
+TEST(DISABLED_BBSDelegateTest, InsertSamples){
     IHostController *mock = new HostControllerMock();
     BBSDelegate *delegate = new BBSDelegate();
     delegate->_runSynchronized=true;
@@ -115,15 +115,15 @@ TEST(BBSDelegateTest, InsertSamples){
 TEST(BBSDelegateTest, WholeSample){
     std::string fileName = PATH_PREFIX+(std::string)"session2/mikkel_02.wav";
 
-    double *soundFile; sf_count_t soundFileLength;
-    SoundHelper::loadMono(fileName, soundFile,soundFileLength);
+    vector<double> *soundFile; 
+    SoundHelper::loadMono(fileName, soundFile);
     
     SndfileHandle handle(fileName); // alloc on stack
     sf_count_t numSamples = handle.frames()*handle.channels();
     EXPECT_EQ(122880,numSamples);
     
-    double *paddedFile; int paddedLength;
-    DSP::zeroPad(soundFile, (int)soundFileLength, AUDIO_BUFFER_SIZE, paddedFile, paddedLength);
+    vector<double> *paddedFile;
+    DSP::zeroPad(soundFile, AUDIO_BUFFER_SIZE, paddedFile);
 
     int onsets[] = {
         3850,
@@ -139,7 +139,7 @@ TEST(BBSDelegateTest, WholeSample){
     
     int numIndexes = 9;
     
-    double *onsetSignal = makeOnsetsSignal((int)paddedLength, onsets, numIndexes);
+    double *onsetSignal = makeOnsetsSignal((int)(paddedFile->size()), onsets, numIndexes);
     
     IHostController *mock = new HostControllerMock();
     BBSDelegate *delegate = new BBSDelegate();
@@ -151,11 +151,12 @@ TEST(BBSDelegateTest, WholeSample){
     delegate->setClassification(lin);
     delegate->startRecord();
     EXPECT_EQ(RECORD, delegate->_state);
-    delegate->setLoopSize(paddedLength);
-    for(int i=0;i<paddedLength;i+=AUDIO_BUFFER_SIZE){
+    delegate->setLoopSize((int)(paddedFile->size()));
+    for(int i=0;i<paddedFile->size();i+=AUDIO_BUFFER_SIZE){
+//        std::cout << i << endl;
         double out[AUDIO_BUFFER_SIZE];
         double similar[AUDIO_BUFFER_SIZE];
-        delegate->handleDSP(DSP::copyRange(paddedFile, i, AUDIO_BUFFER_SIZE), 
+        delegate->handleDSP(DSP::copyRange(&(paddedFile->front()), i, AUDIO_BUFFER_SIZE), 
                             DSP::copyRange(onsetSignal, i, AUDIO_BUFFER_SIZE), 
                             out, 
                             similar, AUDIO_BUFFER_SIZE, mock);
@@ -163,7 +164,7 @@ TEST(BBSDelegateTest, WholeSample){
     
     std::vector<InstrumentClass> classes;
     std::vector<int> indexes;
-    for(int i=0;i<paddedLength;i++){
+    for(int i=0;i<paddedFile->size();i++){
         if(delegate->_onsetTrack[i]!=0){
             classes.push_back((InstrumentClass)(delegate->_onsetTrack[i]));
             indexes.push_back(i);

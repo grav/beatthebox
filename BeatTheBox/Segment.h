@@ -9,6 +9,7 @@
 #pragma once
 
 #include "HostController.h"
+#include <vector>
 
 #define SEGMENT_WINSIZE 300
 
@@ -24,16 +25,16 @@ public:
     int getSegmentStartDelta();
     int getSegmentStopDelta();
 
-    void findSegment(double* signal, int length, int onset, double *&result, int &resultLength);
+    void findSegment(std::vector<double>* signal, int onset, std::vector<double> *&result);
     
-    static int getStart(double* arr, int length, int onset, int winSize);
-    static int getStop(double* arr, int length, int onset, int winSize);
+    static int getStart(std::vector<double>* arr, int onset, int winSize);
+    static int getStop(std::vector<double>* arr, int onset, int winSize);
     
     void pushSample(double s, bool isOnset);
     
     
                         
-    double* _signal;
+    std::vector<double>* _signal;
     int _signalLength;
 	// current position in the signal
     int _signalPos;

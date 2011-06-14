@@ -10,7 +10,7 @@
 #include "SoundHelper.h"
 #include "LinearClassification.h"
 #include <assert.h>
-
+#include <vector>
 
 using namespace std;
 
@@ -19,12 +19,11 @@ int main (int argc, const char * argv[])
     assert(argc==2);
     // insert code here...
     std::cout << argv[1] << std::endl;
-    double *samples;
-    sf_count_t numSamples;
-    SoundHelper::loadMono(argv[1], samples, numSamples);
+    std::vector<double> *samples;
+    SoundHelper::loadMono(argv[1], samples);
     LinearClassification c;
     c.init(LINEAR_MODEL_PATH);
-    InstrumentClass klass = c.query(samples, (int)numSamples);
+    InstrumentClass klass = c.query(samples);
     cout << "Class: " << klass << endl;
     return 0;
 }

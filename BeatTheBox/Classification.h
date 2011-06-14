@@ -9,17 +9,18 @@
 
 #include "constants.h"
 #include <iostream>
+#include <vector>
 
 class IClassification{
 public:
     virtual void init(std::string path) = 0;
-    virtual InstrumentClass query(double* segment, int length) = 0;
+    virtual InstrumentClass query(std::vector<double>* segment) = 0;
     virtual Classification type() = 0;
 };
 
 class ClassificationMock : public IClassification{
     void init(std::string path){}
-    InstrumentClass query(double* segment, int length) { return InstrumentClass(NN);};
+    InstrumentClass query(std::vector<double>* segment) { return InstrumentClass(NN);};
     Classification type(){
         return MOCK;
     }

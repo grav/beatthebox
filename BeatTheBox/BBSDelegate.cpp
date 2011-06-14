@@ -12,6 +12,7 @@
 #include <typeinfo>
 #include <assert.h>
 #include "Segment.h"
+#include "SoundHelper.h"
 
 #define BUFFER_SIZE 44100 * 20
 
@@ -24,19 +25,19 @@ bool BBSDelegate::mockClassification(){
     return _classification->type()==MOCK;
 }
 
-void BBSDelegate::receiveSegment(double *arr, int length, int onset){
-    double *seg;
-    int segLength;
+void BBSDelegate::receiveSegment(vector<double> *arr, int onset){
+    vector<double> *seg;
     if(mockClassification()){
         seg = arr;
-        segLength = length;
     } else {
-        _segment->findSegment(arr, length, onset, seg, segLength);
+        _segment->findSegment(arr, onset, seg);
+
     }
     
     if(_runSynchronized){
         // Single-threaded
-        setClass(_lastOnsetIndex, _classification->query(seg, segLength));
+        SoundHelper::debug(seg);
+        setClass(_lastOnsetIndex, _classification->query(seg));
     } else {
         //TODO: multithreading
     }

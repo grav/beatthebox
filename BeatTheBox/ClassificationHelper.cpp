@@ -28,11 +28,11 @@ map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string 
     for(it = m->begin() ; it != m->end(); it++){
         num++;
         cout << "Calculating features for sample " << num << " of " << m->size() << endl;
-        double *samples; sf_count_t numSamples;
+        vector<double> *samples;
         vector<double> *key;
         string filename=PATH_PREFIX+(*it).first;
-        SoundHelper::loadMono(filename,samples,numSamples);
-        key = getFeatures(samples, (int)numSamples);
+        SoundHelper::loadMono(filename,samples);
+        key = getFeatures(samples);
         assert(key->size()==NUM_MELS*2);
         (*result)[*key]=(*it).second;
     }
@@ -90,29 +90,29 @@ map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
 
 
 
-void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int winSize, 
+void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize, 
                                           double *&spectrogram, int &frames, int &bins){
 
-    double *padded;
-    int paddedLength;
+    vector<double> *padded;
     
-    DSP::zeroPad(audio, audioLength, winSize, padded, paddedLength);
+    DSP::zeroPad(audio, winSize, padded);
     
-    frames = paddedLength/winSize;
+    frames = (int)(padded->size())/winSize;
     bins = winSize/2+1;
     
-    assert(winSize*frames==paddedLength);
+    assert(winSize*frames==padded->size());
 
     spectrogram = new double[frames*bins];
     
-    for(int i = 0; i<paddedLength; i+=winSize){
-        double *in = DSP::hamming(DSP::copyRange(audio, i, winSize), winSize);
+    for(int i = 0; i<padded->size(); i+=winSize){
+        vector<double> v(audio->begin()+i,audio->begin()+i+winSize);
+        vector<double> *in = DSP::hamming(&v);
         fftw_complex *out;
         fftw_plan p;
         
 
         out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*winSize);
-        p = fftw_plan_dft_r2c_1d(winSize, in, out, FFTW_ESTIMATE);
+        p = fftw_plan_dft_r2c_1d(winSize, &(in->front()), out, FFTW_ESTIMATE);
         
         fftw_execute(p);
         
@@ -131,11 +131,11 @@ void ClassificationHelper::getSpectrogram(double *audio, int audioLength, int wi
     
 }
 
-vector<double> *ClassificationHelper::getFeatures(double *audio, int audioLength){
+vector<double> *ClassificationHelper::getFeatures(vector<double> *audio){
     int winSize = 256; // TODO make constant somewhere
     double *spectrogram, *means, *vars;
     int frames; int bins;
-    getSpectrogram(audio, audioLength, winSize, spectrogram, frames, bins);
+    getSpectrogram(audio, winSize, spectrogram, frames, bins);
 
     getStats(spectrogram, frames, bins, NUM_MELS, ^(double *a, int l) {
         return MFCC::getMFCCs(a,l);
@@ -146,13 +146,13 @@ vector<double> *ClassificationHelper::getFeatures(double *audio, int audioLength
     return r;
 }
 
-double ClassificationHelper::spectralCentroid(double *audio, int audioLength){
-    double *sArr =  DSP::mapWithIndex(audio, audioLength, ^double(double x, int i) {
+double ClassificationHelper::spectralCentroid(vector<double> *audio){
+    vector<double> *sArr =  DSP::mapWithIndex(audio, ^double(double x, int i) {
         return (i+1)*x;
     });
-    double s = DSP::sum(sArr, audioLength);
+    double s = DSP::sum(sArr);
     
-    double sum = DSP::sum(audio, audioLength);
+    double sum = DSP::sum(audio);
     double r= s/sum;
     
     // TODO the java version tests for NaN?

@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Train.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>UnitTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +43,21 @@
 			<true/>
 		</dict>
 		<key>AE55C36A13647EF600AFFF8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AEF9202C13A74F660008C9B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AEF9203A13A74FCE0008C9B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AEF9204713A750EF0008C9B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

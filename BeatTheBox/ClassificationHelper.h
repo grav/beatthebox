@@ -13,12 +13,12 @@ class ClassificationHelper{
 public:
     static std::map<std::string,InstrumentClass>* getMap(std::string flatFile);
     
-    static void getSpectrogram(double *audio, int audioLength, int winSize, 
+    static void getSpectrogram(vector<double> *audio, int winSize, 
                                double *&spectrogram, int &frames, int &bins);
     
-    static vector<double> *getFeatures(double *audio, int audioLength);
+    static vector<double> *getFeatures(vector<double> *audio);
     
-    static double spectralCentroid(double *audio, int audioLength);
+    static double spectralCentroid(vector<double> *audio);
     
     static void getStats(double *spectrums, int numSpectrums, 
                          int freqBins, int resultBins,

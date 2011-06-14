@@ -13,43 +13,42 @@ TEST(FPTests, foldr){
     double arr[] = {0.4, 0.5, 0.2, 1.3, 0.8};
     int length = 5;
     int init = 1;
-    double result = DSP::foldl(arr, length, init, ^(double x, double y){return x+y;});
-    EXPECT_DOUBLE_EQ(4.2, result);
+    double result = DSP::foldl(new vector<double>(arr, arr+length), init, ^(double x, double y){return x+y;});
+    EXPECT_EQ(4.2, result);
 }
 
 TEST(FPTests, map){
     double arr[] = {10,20,30,40,50,60};
     int length = 5;
-    double *result = DSP::map(arr, length, ^(double x){return x/2;});
+    vector<double> *result = DSP::map(new vector<double>(arr, arr+length), ^(double x){return x/2;});
     double expected[] = {5,10,15,20,25,30};
-    EXPECT_DOUBLE_EQ(expected[0], result[0]);
-    EXPECT_DOUBLE_EQ(expected[4], result[4]);
+    EXPECT_EQ(expected[0], (*result)[0]);
+    EXPECT_EQ(expected[4], (*result)[4]);
 }
 
 TEST(DSPTests, line){
     double expected[] = {0,1,2,3,4,5};
     int length = 6;
-    double *actual = DSP::line(length);
+    vector<double> *actual = DSP::line(length);
     for(int i = 0;i<length;i++){
-        EXPECT_DOUBLE_EQ(expected[i], actual[i]);
+        EXPECT_EQ(expected[i], (*actual)[i]);
     }
 }
 
 TEST(DSPTests, zeroPad){
     double test[] = {1,2,3,4};
     int length = 4;
-    double *actual;
-    int actualLength = 0;
+    vector<double> *actual;
     int winSize = 3;
     
-    DSP::zeroPad(test, length, winSize, actual, actualLength);
+    DSP::zeroPad(new vector<double>(test, test+length), winSize, actual);
     
     double expected[] = {1,2,3,4,0,0};
     int expectedLength = 6;
-    EXPECT_EQ(expectedLength,actualLength);
+    EXPECT_EQ(expectedLength,actual->size());
 
     for(int i=0;i<expectedLength;i++){
-        EXPECT_EQ(expected[i], actual[i]);
+        EXPECT_EQ(expected[i], (*actual)[i]);
     }
     
 }
@@ -80,14 +79,14 @@ TEST(DSPTests,energyEnvelope){
     
     int winSize = 4;
     
-    int actualLength; double *actual;
-    DSP::energyEnvelope(x, xLength, winSize, actual, actualLength);
+    vector<double> *actual;
+    DSP::energyEnvelope(new vector<double>(x, x+xLength), winSize, actual);
 
-    EXPECT_EQ(eLength,actualLength);
+    EXPECT_EQ(eLength,actual->size());
     
     int precision = 10000;
     for(int i=0;i<eLength;i++){
-        EXPECT_DOUBLE_EQ((int)(e[i]*precision), (int)(actual[i]*precision));
+        EXPECT_EQ((int)(e[i]*precision), (int)((*actual)[i]*precision));
     }
     
 }
@@ -95,35 +94,47 @@ TEST(DSPTests,energyEnvelope){
 TEST(DSPTests,max){
     double arr[] = {2,3,0.23,4,1,23.98,0.03,11,0};
     int l = 9;
-    EXPECT_EQ(23.98, DSP::max(arr,l));
+    EXPECT_EQ(23.98, DSP::max(new vector<double>(arr,arr+l)));
 }
 
 TEST(DSPTests, reverse_even){
     double arr[] = {2,3};
     double exp[] = {3,2};
     int length = 2;
-    double *result = DSP::reverse(arr,length);
+    vector<double> *result = DSP::reverse(new vector<double>(arr,arr+length));
     for(int i=0;i<length;i++){
-        EXPECT_DOUBLE_EQ(exp[i], result[i]);
+        EXPECT_EQ(exp[i], (*result)[i]);
     }
+}
+
+TEST(DSPTests,hamming){
+    double arr[] = {1,2,3};
+    int length = 3;
+    vector<double> *win = DSP::hamming(new vector<double>(arr,arr+length));
+    double expected[] = {0.0800,2.0000,0.2400};
+    int precision = 1000;
+    for(int i=0;i<length;i++){
+        EXPECT_EQ((int)(expected[i]*precision), (int)((*win)[i]*precision));
+    }
+
 }
 
 TEST(DSPTests, reverse_uneven){
     double arr[] = {2,3,1};
     double exp[] = {1,3,2};
     int length = 3;
-    double *result = DSP::reverse(arr,length);
+    vector<double> *result = DSP::reverse(new vector<double>(arr,arr+length));
     for(int i=0;i<length;i++){
-        EXPECT_DOUBLE_EQ(exp[i], result[i]);
+        EXPECT_EQ(exp[i], (*result)[i]);
     }
 }
 
 TEST(DSPTests, firstLowPoint){
     double x[] = {78,34,3,67,0,8};
     int length = 6;
-    EXPECT_DOUBLE_EQ(2, DSP::firstLowPoint(x, length));
+    EXPECT_EQ(2, DSP::firstLowPoint(new vector<double>(x, x+length)));
     
     double y[] = {3,4,4,5,4,3,4,5,2,4};
     length = 10;
-    EXPECT_DOUBLE_EQ(8, DSP::firstLowPoint(y, length));
+    EXPECT_DOUBLE_EQ(8, DSP::firstLowPoint(new vector<double>(y, y+length)));
 }

@@ -18,7 +18,7 @@ public:
     int _numClasses;
     void init(std::string path);
     InstrumentClass *_classes;
-    InstrumentClass query(double *segment, int segmentLength);
+    InstrumentClass query(std::vector<double> *segment);
     InstrumentClass ddag(std::vector<double> *x);
     Classification type();
 

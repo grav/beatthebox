@@ -14,10 +14,9 @@
 TEST(SoundHelperTest,LoadMono){
     std::string fileName = PATH_PREFIX+(std::string)"session2/mikkel_02.wav";
     
-    sf_count_t numSamples;
-    double *samples;
-    SoundHelper::loadMono(fileName,samples,numSamples);
-    EXPECT_EQ(122880,numSamples);
+    vector<double> *samples;
+    SoundHelper::loadMono(fileName,samples);
+    EXPECT_EQ(122880,samples->size());
 
     
 }
@@ -25,7 +24,7 @@ TEST(SoundHelperTest,LoadMono){
 TEST(SoundHelperTest,SaveMono){
     std::string fileName = "/Users/grav/Desktop/test.wav";
     int length = 44100;
-    double *noise = DSP::noise(length);
-    double *noiseNorm = DSP::map(noise, length, ^(double x){return x*.1-1;});
-    SoundHelper::saveMono(fileName, noiseNorm, length);
+    vector<double> *noise = DSP::noise(length);
+    vector<double> *noiseNorm = DSP::map(noise, ^(double x){return x*.1-1;});
+    SoundHelper::saveMono(fileName, noiseNorm);
 }

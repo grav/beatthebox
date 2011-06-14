@@ -7,12 +7,10 @@
 //
 
 #include <iostream>
-#include "DSP.h"
 
 int main (int argc, const char * argv[])
 {
-    int length = 50;
-    DSP::printMatlabArray(DSP::hamming(length),length);
+    return 0;
     
 }
 

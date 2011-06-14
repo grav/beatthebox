@@ -6,11 +6,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "sndfile.hh"
-
+#include <vector>
 
 class SoundHelper{
 public:
-    static void loadMono(std::string fileName, double *&samples,sf_count_t &numSamples);
-    static void saveMono(std::string fileName, double *samples, int numSamples);
+    static void loadMono(std::string fileName, std::vector<double> *&samples);
+    static void saveMono(std::string fileName, std::vector<double> *samples);
+    static void debug(std::vector<double> *samples);
 };

@@ -9,11 +9,12 @@
 
 #include "Classification.h"
 #include "Segment.h"
+#include <vector>
 
 class ISegmentOwner{
 public:
     virtual ~ISegmentOwner(){}
-    virtual void receiveSegment(double* arr, int length, int onset) = 0;
+    virtual void receiveSegment(std::vector<double>* arr, int onset) = 0;
     virtual void setClass(int index, InstrumentClass klass) {};
     virtual IClassification* getClassification() {return new ClassificationMock();};
     virtual void updateSimilarTrack(int index, double* read, int length) {};
@@ -37,10 +38,9 @@ public:
         }
     }
     
-    void receiveSegment(double* arr, int length, int onset) {
+    void receiveSegment(std::vector<double>* arr, int onset) {
         //TODO: delete old segment?
         _segment = arr;
-        _segmentLength = length;
         _onset = onset;
     }
     
@@ -49,7 +49,6 @@ public:
     }
     Segment *_s;
     int _onset;
-    double* _segment;
-    int _segmentLength;
+    std::vector<double>* _segment;
     
 };

@@ -15,7 +15,7 @@
 
 Segment::Segment(ISegmentOwner& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
     _signalLength = (int)(SECONDS * sr);
-    _signal = new double[_signalLength];
+    _signal = new vector<double>(_signalLength);
     init();
 }
 
@@ -32,42 +32,41 @@ int Segment::getSegmentStopDelta(){
     return _stopDelta;
 }
 
-int Segment::getStart(double *arr, int length, int onset, int winSize){
-    double *ee;
-    int eeLength = 0;
-    DSP::energyEnvelope(arr, onset, winSize, ee, eeLength);
-    return onset-winSize*DSP::firstLowPoint(DSP::reverse(ee,eeLength), eeLength);
+int Segment::getStart(vector<double> *arr, int onset, int winSize){
+    vector<double> *ee;
+    vector<double> *v = new vector<double>(arr->begin(), arr->begin()+onset);
+    DSP::energyEnvelope(v, winSize, ee);
+    return onset-winSize*DSP::firstLowPoint(DSP::reverse(ee));
 }
 
-int Segment::getStop(double *arr, int length, int onset, int winSize){
-    double *ee;
-    int eeLength = 0;
-    DSP::energyEnvelope(arr+onset, length-onset, winSize, ee, eeLength);
-    return onset+winSize*DSP::firstLowPoint(ee, eeLength);    
+int Segment::getStop(vector<double> *arr, int onset, int winSize){
+    vector<double> *ee;
+    vector<double> *v = new vector<double>(arr->begin()+onset, arr->end());
+    DSP::energyEnvelope(v, winSize, ee);
+    return onset+winSize*DSP::firstLowPoint(ee);    
 }
 
-void Segment::findSegment(double *signal, int length, int onset, double *&result, int &resultLength){
+void Segment::findSegment(vector<double> *signal, int onset, vector<double> *&result){
     // TODO: make constant somewhere
-    int start = getStart(signal, length, onset, SEGMENT_WINSIZE);
-    int stop = getStop(signal, length, onset,SEGMENT_WINSIZE);
-    SoundHelper::saveMono("/Users/grav/Desktop/debug.wav", signal, length);
+    int start = getStart(signal, onset, SEGMENT_WINSIZE);
+    int stop = getStop(signal, onset,SEGMENT_WINSIZE);
     assert(start<=onset); assert(stop>onset);
     if(start==onset && stop==onset){
         // crude hack: seems our onset detection went wrong ...
         // set onset to initial part of signal and 
         // try again!
         onset = 10;
-        start = start = getStart(signal, length, onset, SEGMENT_WINSIZE);
-        stop = stop = getStop(signal, length, onset,SEGMENT_WINSIZE);
+        start = start = getStart(signal, onset, SEGMENT_WINSIZE);
+        stop = stop = getStop(signal, onset,SEGMENT_WINSIZE);
     }
     _startDelta = onset-start;
     _stopDelta = onset-stop;
-    resultLength = stop+1-start;
-    result = DSP::copyRange(signal, start, resultLength);
+    int resultLength = stop+1-start;
+    result = new vector<double>(signal->begin()+start,signal->begin()+start+resultLength);
 }
 
 void Segment::pushSample(double s, bool isOnset){
-    _signal[_signalPos] = s;
+    (*_signal)[_signalPos] = s;
     if (isOnset){
         if(!_onsetDetected){
             // special case: first time, an onset is detected
@@ -75,13 +74,15 @@ void Segment::pushSample(double s, bool isOnset){
             _onset = _signalPos;
         } else {
             int nextOnset = _signalPos;
-            _owner.receiveSegment(DSP::copyRange(_signal, 0, nextOnset), nextOnset, _onset);
+            // todo - maybe allocate on heap?
+            vector<double> *v = new vector<double>(_signal->begin(),_signal->begin()+nextOnset);
+            _owner.receiveSegment(v,_onset);
             for(int j=_onset;j<=nextOnset;j++){
-                _signal[j-_onset]=_signal[j];
+                (*_signal)[j-_onset]=(*_signal)[j];
             }
             // zero the rest
             for(int i=nextOnset-_onset+1;i<=nextOnset;i++){
-                _signal[i]=0;
+                (*_signal)[i]=0;
             }
             _signalPos = nextOnset-_onset;
             _onset = _signalPos;
