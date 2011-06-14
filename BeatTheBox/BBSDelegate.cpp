@@ -128,6 +128,7 @@ IClassification* BBSDelegate::getClassification(){
 }
 
 void BBSDelegate::initSegment(double sr){
+    // todo - delete old segment
     _segment = new Segment(*this,sr);
     _segment->init();
     _state=HALT;
