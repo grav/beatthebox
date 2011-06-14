@@ -29,12 +29,12 @@ double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes){
 }
 
 TEST(BBSDelegateTest, mockClassification){
-    BBSDelegate *delegate = new BBSDelegate();
-    delegate->setClassification(new ClassificationMock());
-    EXPECT_TRUE(delegate->mockClassification());
+    BBSDelegate delegate;
+    delegate.setClassification(new ClassificationMock());
+    EXPECT_TRUE(delegate.mockClassification());
 }
 
-TEST(DISABLED_BBSDelegateTest, InsertSamples){
+TEST(BBSDelegateTest, InsertSamples){
     IHostController *mock = new HostControllerMock();
     BBSDelegate *delegate = new BBSDelegate();
     delegate->_runSynchronized=true;
