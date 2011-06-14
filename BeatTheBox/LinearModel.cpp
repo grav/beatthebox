@@ -9,6 +9,9 @@
 #include "LinearModel.h"
 #include <stdio.h>
 
+LinearModel::LinearModel(){
+}
+
 LinearModel::LinearModel(std::string path){
     load(path);
 }

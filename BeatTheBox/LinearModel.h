@@ -12,6 +12,7 @@
 #include "constants.h"
 class LinearModel{
 public:
+    LinearModel();
     LinearModel(std::string path);
     ~LinearModel();
     
