@@ -21,8 +21,7 @@ int main (int argc, const char * argv[])
     std::cout << argv[1] << std::endl;
     std::vector<double> *samples;
     SoundHelper::loadMono(argv[1], samples);
-    LinearClassification c;
-    c.init(LINEAR_MODEL_PATH);
+    LinearClassification c(LINEAR_MODEL_PATH);
     InstrumentClass klass = c.query(samples);
     cout << "Class: " << klass << endl;
     return 0;
