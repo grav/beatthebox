@@ -20,6 +20,7 @@ void SoundHelper::loadMono(std::string fileName, std::vector<double> *&samples){
     sf_count_t read = handle.read(samplesArr,numSamples);
     samples = new std::vector<double>(samplesArr,samplesArr+numSamples);
     assert(read==numSamples);
+    delete[] samplesArr;
 }
 
 void SoundHelper::saveMono(std::string fileName, std::vector<double> *samples){

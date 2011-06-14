@@ -23,7 +23,10 @@ LinearClassification::~LinearClassification(){
 InstrumentClass LinearClassification::query(std::vector<double> *segment){
     vector<double> *features = ClassificationHelper::getFeatures(segment);
     vector<double> *x = linalg::extendWithOne(*features);
-    return ddag(x);
+    InstrumentClass result = ddag(x);
+    delete features; 
+    delete x;
+    return result;
 }
 
 InstrumentClass LinearClassification::ddag(std::vector<double> *x){

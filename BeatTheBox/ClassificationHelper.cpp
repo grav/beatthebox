@@ -128,6 +128,7 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
         fftw_destroy_plan(p);
         
     }
+    delete padded;
     
 }
 
@@ -143,6 +144,7 @@ vector<double> *ClassificationHelper::getFeatures(vector<double> *audio){
     vector<double> *r = new vector<double>;
     r->assign(means, means+NUM_MELS);
     r->insert(r->end(), vars,vars+NUM_MELS);
+    delete[] spectrogram; delete[] means; delete[] vars;
     return r;
 }
 
@@ -169,6 +171,7 @@ void ClassificationHelper::getStats(double *spectrums, int numSpectrums, int fre
         for(int bin=0;bin<resultBins;bin++){
             results[spec*resultBins+bin] = result[bin];
         }
+        delete[] result;
     }
     
     means = new double[resultBins];
