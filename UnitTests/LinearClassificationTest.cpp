@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "LinearClassification.h"
-#include <map.h>
+#include <map>
+#include <vector>
 #include "ClassificationHelper.h"
 #include "SoundHelper.h"
 #include "constants.h"
