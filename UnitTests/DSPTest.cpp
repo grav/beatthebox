@@ -20,18 +20,20 @@ TEST(FPTests, foldr){
 TEST(FPTests, map){
     double arr[] = {10,20,30,40,50,60};
     int length = 5;
-    vector<double> *result = DSP::map(new vector<double>(arr, arr+length), ^(double x){return x/2;});
+    vector<double> result; 
+    DSP::map(new vector<double>(arr, arr+length), ^(double x){return x/2;},&result);
     double expected[] = {5,10,15,20,25,30};
-    EXPECT_EQ(expected[0], (*result)[0]);
-    EXPECT_EQ(expected[4], (*result)[4]);
+    EXPECT_EQ(expected[0], result[0]);
+    EXPECT_EQ(expected[4], result[4]);
 }
 
 TEST(DSPTests, line){
     double expected[] = {0,1,2,3,4,5};
     int length = 6;
-    vector<double> *actual = DSP::line(length);
+    vector<double> actual;
+    DSP::line(length,&actual);
     for(int i = 0;i<length;i++){
-        EXPECT_EQ(expected[i], (*actual)[i]);
+        EXPECT_EQ(expected[i], actual[i]);
     }
 }
 
@@ -101,20 +103,22 @@ TEST(DSPTests, reverse_even){
     double arr[] = {2,3};
     double exp[] = {3,2};
     int length = 2;
-    vector<double> *result = DSP::reverse(new vector<double>(arr,arr+length));
+    vector<double> result; 
+    DSP::reverse(new vector<double>(arr,arr+length),&result);
     for(int i=0;i<length;i++){
-        EXPECT_EQ(exp[i], (*result)[i]);
+        EXPECT_EQ(exp[i], result[i]);
     }
 }
 
 TEST(DSPTests,hamming){
     double arr[] = {1,2,3};
     int length = 3;
-    vector<double> *win = DSP::hamming(new vector<double>(arr,arr+length));
+    vector<double> win;
+    DSP::hamming(new vector<double>(arr,arr+length),&win);
     double expected[] = {0.0800,2.0000,0.2400};
     int precision = 1000;
     for(int i=0;i<length;i++){
-        EXPECT_EQ((int)(expected[i]*precision), (int)((*win)[i]*precision));
+        EXPECT_EQ((int)(expected[i]*precision), (int)(win[i]*precision));
     }
 
 }
@@ -123,9 +127,10 @@ TEST(DSPTests, reverse_uneven){
     double arr[] = {2,3,1};
     double exp[] = {1,3,2};
     int length = 3;
-    vector<double> *result = DSP::reverse(new vector<double>(arr,arr+length));
+    vector<double> result;
+    DSP::reverse(new vector<double>(arr,arr+length),&result);
     for(int i=0;i<length;i++){
-        EXPECT_EQ(exp[i], (*result)[i]);
+        EXPECT_EQ(exp[i], result[i]);
     }
 }
 

@@ -28,25 +28,23 @@ public:
 
     }
     
-    static vector<double>* mapWithIndex(vector<double>* arr, double (^f)(double x, int i)){
-        vector<double> *result = new vector<double>(arr->size());
+    static void mapWithIndex(vector<double>* arr, double (^f)(double x, int i), vector<double>* result){
+        result->resize(arr->size());
         for(int i=0; i<arr->size();i++){
             (*result)[i] = f((*arr)[i], i); // apply f on i'th element of arr
         }
-        return result;  
-
     }
                               
-    static vector<double>* map(vector<double>* arr, double (^f)(double x)){
-        return mapWithIndex(arr, ^(double x, int i){return f(x);});
+    static void map(vector<double>* arr, double (^f)(double x), vector<double>* result){
+        mapWithIndex(arr, ^(double x, int i){return f(x);},result);
     }
 
-    static vector<double>* line(double from, double to, int length){
-        return mapWithIndex(new vector<double>(length), ^(double v, int i){return (to-from)/length * i+from;});
+    static void line(double from, double to, int length, vector<double>* result){
+        mapWithIndex(new vector<double>(length), ^(double v, int i){return (to-from)/length * i+from;},result);
     }
     
-    static vector<double>* line(int length){
-        return line(0, (double)length,length);
+    static void line(int length,vector<double>* result){
+        line(0, (double)length,length,result);
     }
     
     static double sum(vector<double>* arr){
@@ -54,18 +52,21 @@ public:
     }
      
     static double rms(vector<double>* arr){
-        return sqrt(sum(map(arr, ^(double x){return pow(x, 2);}))/arr->size());
+        vector<double> result;
+        map(arr, ^(double x){return pow(x, 2);},&result);
+        return sqrt(sum(&result)/arr->size());
     }
     
-    static vector<double>* hamming(int m){
-        return map(line(m), ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));});
+    static void hamming(int m,vector<double>* result){
+        vector<double> l;
+        line(m,&l);
+        map(&l, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));},result);
     }
     
-    static vector<double>* hamming(vector<double> *in){
-        vector<double> *hamWin = hamming((int)in->size());
-        vector<double> *result = mapWithIndex(in, ^(double x, int i){return x*(*hamWin)[i];});
-        delete hamWin;
-        return result;
+    static void hamming(vector<double> *in, vector<double> *result){
+        vector<double> hamWin;
+        hamming((int)in->size(),&hamWin);
+        mapWithIndex(in, ^(double x, int i){return x*hamWin[i];}, result);
     }
     
     static void zeroPad(vector<double>* arr, int winSize, vector<double> *resultArr){
@@ -111,8 +112,8 @@ public:
         return foldl(arr, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
     }
     
-    static vector<double>* reverse(vector<double>* arr){
-        return mapWithIndex(arr, ^(double v, int i){return (*arr)[arr->size()-1-i];});
+    static void reverse(vector<double>* arr, vector<double> *result){
+        mapWithIndex(arr, ^(double v, int i){return (*arr)[arr->size()-1-i];},result);
     }
     
     static int attackTime(vector<double> *arr, int k){
@@ -156,7 +157,7 @@ public:
     
     static void noise(int length, vector<double> *result){
         result->resize(length);
-        map(result, ^(double x){return ((double)rand()/(double)RAND_MAX);});
+        map(result, ^(double x){return ((double)rand()/(double)RAND_MAX);},result);
     }
     
 };

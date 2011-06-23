@@ -105,13 +105,14 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
     
     for(int i = 0; i<padded.size(); i+=winSize){
         vector<double> v(audio->begin()+i,audio->begin()+i+winSize);
-        vector<double> *in = DSP::hamming(&v);
+        vector<double> in;
+        DSP::hamming(&v,&in);
         fftw_complex *out;
         fftw_plan p;
         
 
         out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex)*winSize);
-        p = fftw_plan_dft_r2c_1d(winSize, &(in->front()), out, FFTW_ESTIMATE);
+        p = fftw_plan_dft_r2c_1d(winSize, &(in.front()), out, FFTW_ESTIMATE);
         
         fftw_execute(p);
         
@@ -122,7 +123,6 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
             spectrogram[frame*bins+bin]=length(out[bin]);
         }
         
-        delete in;
         fftw_free(out);
         fftw_destroy_plan(p);
         
@@ -147,10 +147,11 @@ vector<double> *ClassificationHelper::getFeatures(vector<double> *audio){
 }
 
 double ClassificationHelper::spectralCentroid(vector<double> *audio){
-    vector<double> *sArr =  DSP::mapWithIndex(audio, ^double(double x, int i) {
+    vector<double> sArr;
+    DSP::mapWithIndex(audio, ^double(double x, int i) {
         return (i+1)*x;
-    });
-    double s = DSP::sum(sArr);
+    },&sArr);
+    double s = DSP::sum(&sArr);
     
     double sum = DSP::sum(audio);
     double r= s/sum;

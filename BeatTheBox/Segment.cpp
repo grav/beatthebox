@@ -34,9 +34,11 @@ int Segment::getSegmentStopDelta(){
 
 int Segment::getStart(vector<double> *arr, int onset, int winSize){
     vector<double> *ee;
-    vector<double> *v = new vector<double>(arr->begin(), arr->begin()+onset);
-    DSP::energyEnvelope(v, winSize, ee);
-    return onset-winSize*DSP::firstLowPoint(DSP::reverse(ee));
+    vector<double> v;// = new vector<double>(arr->begin(), arr->begin()+onset);
+    DSP::energyEnvelope(&v, winSize, ee);
+    vector<double> reversed;
+    DSP::reverse(ee,&reversed);
+    return onset-winSize*DSP::firstLowPoint(&reversed);
 }
 
 int Segment::getStop(vector<double> *arr, int onset, int winSize){
