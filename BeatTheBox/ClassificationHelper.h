@@ -6,8 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 #include "constants.h"
-#include <map.h>
-#include <vector.h>
+#include <map>
+#include <vector>
+#include "fftw3.h"
+#include <math.h>
 
 class ClassificationHelper{
 public:
