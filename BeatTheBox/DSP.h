@@ -40,7 +40,9 @@ public:
     }
 
     static void line(double from, double to, int length, vector<double>* result){
-        mapWithIndex(new vector<double>(length), ^(double v, int i){return (to-from)/length * i+from;},result);
+        for(int i=0;i<length;i++){
+            (*result)[i]=(to-from)/length * i+from;
+        }
     }
     
     static void line(int length,vector<double>* result){
