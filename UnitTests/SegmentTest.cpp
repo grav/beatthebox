@@ -65,9 +65,8 @@ TEST(SegmentTest, InsertSamples){
 
     double expected2[] = {25,3,2,4,6,8,0,0,0,0,0,0,0};
     int expectedLength2 = 13;
-    double *actual = DSP::copyRange(&(s._signal->front()),0,expectedLength2);
     for(int i=0;i<expectedLength2;i++){
-        EXPECT_EQ(expected2[i], actual[i]);
+        EXPECT_EQ(expected2[i], (*(s._signal))[i]);
     }
     
     // test once again. at first, no new onset

@@ -156,8 +156,8 @@ TEST(BBSDelegateTest, WholeSample){
 //        std::cout << i << endl;
         double out[AUDIO_BUFFER_SIZE];
         double similar[AUDIO_BUFFER_SIZE];
-        delegate->handleDSP(DSP::copyRange(&(paddedFile.front()), i, AUDIO_BUFFER_SIZE), 
-                            DSP::copyRange(onsetSignal, i, AUDIO_BUFFER_SIZE), 
+        delegate->handleDSP(&(paddedFile.front())+i, 
+                            onsetSignal+i,
                             out, 
                             similar, AUDIO_BUFFER_SIZE, mock);
     }
