@@ -10,7 +10,7 @@
 #include "ClassificationHelper.h"
 #include "constants.h"
 #include "MFCC.h"
-#include <vector.h>
+#include <vector>
 #include "DSP.h"
 #include "LinearAlgebra.h"
 

@@ -7,7 +7,7 @@
 //
 
 #include "Classification.h"
-#include <vector.h>
+#include <vector>
 #include "constants.h"
 #include <iostream>
 #include "LinearModel.h"

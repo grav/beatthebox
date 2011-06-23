@@ -7,8 +7,8 @@
 //
 
 #include "LinearModel.h"
-#include <stdio.h>
-
+#include <string>
+#include <iostream>
 LinearModel::LinearModel(){
 }
 
