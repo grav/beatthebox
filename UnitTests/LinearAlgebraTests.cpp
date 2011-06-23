@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 #include "LinearAlgebra.h"
-#include <vector.h>
+#include <vector>
 
 using namespace linalg;
 using namespace std;
