@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "SoundHelper.h"
-#include <iostream.h>
+#include <iostream>
 #include "DSP.h"
 #include "constants.h"
 TEST(SoundHelperTest,LoadMono){
