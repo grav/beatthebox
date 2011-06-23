@@ -11,7 +11,7 @@
 #include "BBSDelegate.h"
 #include "Classification.h"
 #include "sndfile.hh"
-#include <iostream.h>
+#include <iostream>
 #include "LinearClassification.h"
 #include "SoundHelper.h"
 #include "DSP.h"
