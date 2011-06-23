@@ -83,12 +83,12 @@ public:
         }
     }
     
-    static void energyEnvelope(vector<double>* arr, int winSize, vector<double> *&resultArr){
+    static void energyEnvelope(vector<double>* arr, int winSize, vector<double> *resultArr){
         vector<double> paddedArr;
         zeroPad(arr, winSize, &paddedArr);
         int resultLength = (int)(paddedArr.size()/winSize);
 
-        resultArr = new vector<double>(resultLength);
+        resultArr->resize(resultLength);
         for(int i=0;i<resultLength;i++){        
             vector<double> v(paddedArr.begin()+(i*winSize), 
                              paddedArr.begin()+((i+1)*winSize));

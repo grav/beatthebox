@@ -81,14 +81,15 @@ TEST(DSPTests,energyEnvelope){
     
     int winSize = 4;
     
-    vector<double> *actual;
-    DSP::energyEnvelope(new vector<double>(x, x+xLength), winSize, actual);
+    vector<double> actual;
+    vector<double> in(x, x+xLength);
+    DSP::energyEnvelope(&in,winSize,&actual);
 
-    EXPECT_EQ(eLength,actual->size());
+    EXPECT_EQ(eLength,actual.size());
     
     int precision = 10000;
     for(int i=0;i<eLength;i++){
-        EXPECT_EQ((int)(e[i]*precision), (int)((*actual)[i]*precision));
+        EXPECT_EQ((int)(e[i]*precision), (int)(actual[i]*precision));
     }
     
 }
