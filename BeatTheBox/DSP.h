@@ -40,6 +40,7 @@ public:
     }
 
     static void line(double from, double to, int length, vector<double>* result){
+        result->resize(length);
         for(int i=0;i<length;i++){
             (*result)[i]=(to-from)/length * i+from;
         }
