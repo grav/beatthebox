@@ -18,6 +18,7 @@
 
 #define LOOP_SIZE 9
 #define AUDIO_BUFFER_SIZE 4
+double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes);
 
 // util function
 double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes){
@@ -122,8 +123,8 @@ TEST(BBSDelegateTest, WholeSample){
     sf_count_t numSamples = handle.frames()*handle.channels();
     EXPECT_EQ(122880,numSamples);
     
-    vector<double> *paddedFile;
-    DSP::zeroPad(soundFile, AUDIO_BUFFER_SIZE, paddedFile);
+    vector<double> paddedFile;
+    DSP::zeroPad(soundFile, AUDIO_BUFFER_SIZE, &paddedFile);
 
     int onsets[] = {
         3850,
@@ -139,7 +140,7 @@ TEST(BBSDelegateTest, WholeSample){
     
     int numIndexes = 9;
     
-    double *onsetSignal = makeOnsetsSignal((int)(paddedFile->size()), onsets, numIndexes);
+    double *onsetSignal = makeOnsetsSignal((int)(paddedFile.size()), onsets, numIndexes);
     
     IHostController *mock = new HostControllerMock();
     BBSDelegate *delegate = new BBSDelegate();
@@ -150,12 +151,12 @@ TEST(BBSDelegateTest, WholeSample){
     delegate->setClassification(lin);
     delegate->startRecord();
     EXPECT_EQ(RECORD, delegate->_state);
-    delegate->setLoopSize((int)(paddedFile->size()));
-    for(int i=0;i<paddedFile->size();i+=AUDIO_BUFFER_SIZE){
+    delegate->setLoopSize((int)(paddedFile.size()));
+    for(int i=0;i<paddedFile.size();i+=AUDIO_BUFFER_SIZE){
 //        std::cout << i << endl;
         double out[AUDIO_BUFFER_SIZE];
         double similar[AUDIO_BUFFER_SIZE];
-        delegate->handleDSP(DSP::copyRange(&(paddedFile->front()), i, AUDIO_BUFFER_SIZE), 
+        delegate->handleDSP(DSP::copyRange(&(paddedFile.front()), i, AUDIO_BUFFER_SIZE), 
                             DSP::copyRange(onsetSignal, i, AUDIO_BUFFER_SIZE), 
                             out, 
                             similar, AUDIO_BUFFER_SIZE, mock);
@@ -163,7 +164,7 @@ TEST(BBSDelegateTest, WholeSample){
     
     std::vector<InstrumentClass> classes;
     std::vector<int> indexes;
-    for(int i=0;i<paddedFile->size();i++){
+    for(int i=0;i<paddedFile.size();i++){
         if(delegate->_onsetTrack[i]!=0){
             classes.push_back((InstrumentClass)(delegate->_onsetTrack[i]));
             indexes.push_back(i);

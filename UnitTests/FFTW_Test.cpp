@@ -12,9 +12,11 @@
 #include <assert.h>
 #include "SoundHelper.h"
 #include "gtest/gtest.h"
+#include "ClassificationHelper.h"
 
 #define N 10
 #define N2 N / 2 + 1
+void printAsMatlab(fftw_complex *arr, int length);
 
 void printAsMatlab(fftw_complex *arr, int length){
     printf("[");
@@ -34,7 +36,7 @@ TEST(FFTWTest, Test){
     
     double amp[N2];
     for(int i=0;i<N2;i++){
-        amp[i] = DSP::length(out[i]);
+        amp[i] = ClassificationHelper::length(out[i]);
     }
     
     fftw_destroy_plan(p); fftw_free(out);

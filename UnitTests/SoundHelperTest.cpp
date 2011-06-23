@@ -24,7 +24,8 @@ TEST(SoundHelperTest,LoadMono){
 TEST(SoundHelperTest,SaveMono){
     std::string fileName = "/Users/grav/Desktop/test.wav";
     int length = 44100;
-    vector<double> *noise = DSP::noise(length);
-    vector<double> *noiseNorm = DSP::map(noise, ^(double x){return x*.1-1;});
+    vector<double> noise;
+    DSP::noise(length,&noise);
+    vector<double> *noiseNorm = DSP::map(&noise, ^(double x){return x*.1-1;});
     SoundHelper::saveMono(fileName, noiseNorm);
 }

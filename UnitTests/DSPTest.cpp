@@ -38,17 +38,17 @@ TEST(DSPTests, line){
 TEST(DSPTests, zeroPad){
     double test[] = {1,2,3,4};
     int length = 4;
-    vector<double> *actual;
+    vector<double> actual;
     int winSize = 3;
-    
-    DSP::zeroPad(new vector<double>(test, test+length), winSize, actual);
+    vector<double> v = vector<double>(test, test+length);
+    DSP::zeroPad(&v, winSize, &actual);
     
     double expected[] = {1,2,3,4,0,0};
     int expectedLength = 6;
-    EXPECT_EQ(expectedLength,actual->size());
+    EXPECT_EQ(expectedLength,actual.size());
 
     for(int i=0;i<expectedLength;i++){
-        EXPECT_EQ(expected[i], (*actual)[i]);
+        EXPECT_EQ(expected[i], actual[i]);
     }
     
 }

@@ -53,8 +53,9 @@ namespace linalg{
     }
 
     vector<double>* randomUnitVector(int length){
-        vector<double> *noise = DSP::noise(length);
-        vector<double> r(noise->begin(),noise->begin()+length);
+        vector<double> noise;
+        DSP::noise(length,&noise);
+        vector<double> r(noise.begin(),noise.begin()+length);
         vector<double> *rNorm = times(&r,1.0/l2norm(&r));
         return rNorm;
     }

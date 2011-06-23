@@ -10,8 +10,8 @@ TEST(DISABLED_LinearClassification,HitRate){
     LinearClassification linClas(LINEAR_MODEL_PATH);
     int hits=0;
     int testSize=0;
-    map<std::string, InstrumentClass> *m = ClassificationHelper::getMap(FLAT_FILE_PATH);
-    map<std::string,InstrumentClass>::iterator it;
+    std::map<std::string, InstrumentClass> *m = ClassificationHelper::getMap(FLAT_FILE_PATH);
+    std::map<std::string,InstrumentClass>::iterator it;
     int i=0;
     for(it=m->begin();it!=m->end();it++){
         i++;
@@ -19,7 +19,7 @@ TEST(DISABLED_LinearClassification,HitRate){
         InstrumentClass klass = (*it).second;
         if(true || klass){ // todo - only include classes contained in the model
             testSize++;
-            vector<double> *sample;
+            std::vector<double> *sample;
             std::string path = PATH_PREFIX + (*it).first;
             std::cout << "Reading " << path << std::endl;
             SoundHelper::loadMono(path, sample);

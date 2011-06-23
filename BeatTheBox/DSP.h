@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include "fftw3.h"
-#include "sndfile.hh"
 #include <iostream>
 #include <math.h>
 #include <float.h>
@@ -20,10 +18,6 @@ using namespace std;
 
 class DSP{
 public:
-    
-    static double length(fftw_complex c){
-        return sqrt(pow(c[0],2)+pow(c[1],2));
-    }
     
     static double foldl(vector<double> *arr, double init, double (^f)(double x, double y)){
         double result = init;
@@ -74,7 +68,7 @@ public:
         return result;
     }
     
-    static void zeroPad(vector<double>* arr, int winSize, vector<double> *&resultArr){
+    static void zeroPad(vector<double>* arr, int winSize, vector<double> *resultArr){
         int rest = (int)(arr->size() % winSize);
         int resultLength;
         if(rest == 0){
@@ -82,21 +76,21 @@ public:
         } else {        
             resultLength = (int)arr->size()+(winSize-rest);
         }
-        resultArr = new vector<double>(resultLength,0);
+        resultArr->resize(resultLength);
         for(int i=0;i<arr->size();i++){
             (*resultArr)[i] = (*arr)[i];
         }
     }
     
     static void energyEnvelope(vector<double>* arr, int winSize, vector<double> *&resultArr){
-        vector<double> *paddedArr;
-        zeroPad(arr, winSize, paddedArr);
-        int resultLength = (int)(paddedArr->size()/winSize);
+        vector<double> paddedArr;
+        zeroPad(arr, winSize, &paddedArr);
+        int resultLength = (int)(paddedArr.size()/winSize);
 
         resultArr = new vector<double>(resultLength);
         for(int i=0;i<resultLength;i++){        
-            vector<double> v(paddedArr->begin()+(i*winSize), 
-                             paddedArr->begin()+((i+1)*winSize));
+            vector<double> v(paddedArr.begin()+(i*winSize), 
+                             paddedArr.begin()+((i+1)*winSize));
             
             (*resultArr)[i]=rms(&v);
         }		
@@ -160,9 +154,9 @@ public:
 
     }
     
-    static vector<double>* noise(int length){
-        vector<double> *r = new vector<double>(length);        
-        return map(r, ^(double x){return ((double)rand()/(double)RAND_MAX);});
+    static void noise(int length, vector<double> *result){
+        result->resize(length);
+        map(result, ^(double x){return ((double)rand()/(double)RAND_MAX);});
     }
     
 };

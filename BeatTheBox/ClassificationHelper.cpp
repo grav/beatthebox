@@ -93,18 +93,17 @@ map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
 void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize, 
                                           double *&spectrogram, int &frames, int &bins){
 
-    vector<double> *padded;
+    vector<double> padded;
+    DSP::zeroPad(audio, winSize, &padded);
     
-    DSP::zeroPad(audio, winSize, padded);
-    
-    frames = (int)(padded->size())/winSize;
+    frames = (int)(padded.size())/winSize;
     bins = winSize/2+1;
     
-    assert(winSize*frames==padded->size());
+    assert(winSize*frames==padded.size());
 
     spectrogram = new double[frames*bins];
     
-    for(int i = 0; i<padded->size(); i+=winSize){
+    for(int i = 0; i<padded.size(); i+=winSize){
         vector<double> v(audio->begin()+i,audio->begin()+i+winSize);
         vector<double> *in = DSP::hamming(&v);
         fftw_complex *out;
@@ -120,7 +119,7 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
         int frame = i/winSize;
         for(int bin=0;bin<bins;bin++){
             // TODO - normalize?
-            spectrogram[frame*bins+bin]=DSP::length(out[bin]);
+            spectrogram[frame*bins+bin]=length(out[bin]);
         }
         
         delete in;
@@ -128,7 +127,6 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
         fftw_destroy_plan(p);
         
     }
-    delete padded;
     
 }
 
