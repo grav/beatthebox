@@ -12,6 +12,8 @@
 
 #define MAX_BUFFER_SIZE 44100 * 20;
 
+int min(int a, int b);
+
 class BBSDelegate : public ISegmentOwner {
 public:
     BBSDelegate();
