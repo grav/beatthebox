@@ -6,10 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <map.h>
-#include <iostream.h>
+#include <map>
+#include <iostream>
 #include "constants.h"
-#include <vector.h>
+#include <vector>
 
 using namespace std;
 

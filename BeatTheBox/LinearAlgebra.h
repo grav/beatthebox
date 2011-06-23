@@ -5,7 +5,7 @@
 //  Created by Mikkel Gravgaard on 16/05/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-#include <vector.h>
+#include <vector>
 #include <math.h>
 #include <assert.h>
 #include "DSP.h"

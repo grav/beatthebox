@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <vector.h>
+#include <vector>
 #include "constants.h"
 class LinearModel{
 public:

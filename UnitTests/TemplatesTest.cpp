@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include <vector.h>
+#include <vector>
 
 #define VEC vector<T>
 

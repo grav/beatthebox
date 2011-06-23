@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "Perceptron.h"
-#include <map.h>
+#include <map>
 #include "ClassificationHelper.h"
 #include "LinearModel.h"
 #include <stdlib.h>
