@@ -23,9 +23,14 @@ int main (int argc, const char * argv[])
     ClassificationHelper::getFeatureMap(FLAT_FILE_PATH,&featuresMap);
     m->_ws = perceptron->train(&featuresMap,
                                classes, numClasses);
-    m->_classes = classes;
+    m->_classes = new InstrumentClass[numClasses];
+    for(int i=0;i<numClasses;i++){
+        m->_classes[i]=classes[i];
+    }
     m->_numClasses = numClasses;
     m->save(LINEAR_MODEL_PATH);
+    delete m;
+    delete perceptron;
     return 0;
 }
 
