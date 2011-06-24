@@ -29,12 +29,12 @@ void ClassificationHelper::getFeatureMap(string flatFile, map<vector<double>,Ins
         num++;
         cout << "Calculating features for sample " << num << " of " << m.size() << endl;
         vector<double> *samples;
-        vector<double> *key;
         string filename=PATH_PREFIX+(*it).first;
         SoundHelper::loadMono(filename,samples);
-        key = getFeatures(samples);
-        assert(key->size()==NUM_MELS*2);
-        (*result)[*key]=(*it).second;
+        vector<double> key;
+        getFeatures(samples,&key);
+        assert(key.size()==NUM_MELS*2);
+        (*result)[key]=(*it).second;
     }
     
 }
@@ -126,7 +126,7 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
     
 }
 
-vector<double> *ClassificationHelper::getFeatures(vector<double> *audio){
+void ClassificationHelper::getFeatures(vector<double> *audio, vector<double> *r){
     int winSize = 256; // TODO make constant somewhere
     double *spectrogram, *means, *vars;
     int frames; int bins;
@@ -135,11 +135,9 @@ vector<double> *ClassificationHelper::getFeatures(vector<double> *audio){
     getStats(spectrogram, frames, bins, NUM_MELS, ^(double *a, int l) {
         return MFCC::getMFCCs(a,l);
     }, means, vars);
-    vector<double> *r = new vector<double>;
     r->assign(means, means+NUM_MELS);
     r->insert(r->end(), vars,vars+NUM_MELS);
     delete[] spectrogram; delete[] means; delete[] vars;
-    return r;
 }
 
 double ClassificationHelper::spectralCentroid(vector<double> *audio){

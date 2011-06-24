@@ -22,7 +22,7 @@ public:
     static void getSpectrogram(std::vector<double> *audio, int winSize, 
                                double *&spectrogram, int &frames, int &bins);
     
-    static std::vector<double> *getFeatures(std::vector<double> *audio);
+    static void getFeatures(std::vector<double> *audio, std::vector<double> *r);
     
     static double spectralCentroid(std::vector<double> *audio);
     
