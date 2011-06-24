@@ -80,7 +80,7 @@ public:
         } else {        
             resultLength = (int)arr->size()+(winSize-rest);
         }
-        resultArr->resize(resultLength);
+        resultArr->resize(resultLength,0);
         for(int i=0;i<arr->size();i++){
             (*resultArr)[i] = (*arr)[i];
         }
