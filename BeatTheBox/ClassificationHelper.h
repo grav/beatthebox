@@ -17,7 +17,7 @@ public:
         return sqrt(pow(c[0],2)+pow(c[1],2));
     }
 
-    static std::map<std::string,InstrumentClass>* getMap(std::string flatFile);
+    static void getMap(std::string flatFile,std::map<std::string,InstrumentClass> *pClasses);
     
     static void getSpectrogram(std::vector<double> *audio, int winSize, 
                                double *&spectrogram, int &frames, int &bins);

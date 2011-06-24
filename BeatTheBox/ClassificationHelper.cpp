@@ -18,15 +18,16 @@ using namespace std;
 
 void ClassificationHelper::getFeatureMap(string flatFile, map<vector<double>,InstrumentClass> *result){
     
-    map<string,InstrumentClass> *m = getMap(flatFile);
+    map<string,InstrumentClass> m;
+    getMap(flatFile,&m);
     map<string,InstrumentClass>::iterator it;
     // load file
     // calculate features
     // insert into map
     int num = 0;
-    for(it = m->begin() ; it != m->end(); it++){
+    for(it = m.begin() ; it != m.end(); it++){
         num++;
-        cout << "Calculating features for sample " << num << " of " << m->size() << endl;
+        cout << "Calculating features for sample " << num << " of " << m.size() << endl;
         vector<double> *samples;
         vector<double> *key;
         string filename=PATH_PREFIX+(*it).first;
@@ -38,9 +39,7 @@ void ClassificationHelper::getFeatureMap(string flatFile, map<vector<double>,Ins
     
 }
 
-map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
-    
-    map<string,InstrumentClass> *pClasses = new map<string, InstrumentClass>;
+void ClassificationHelper::getMap(string flatFile,map<string,InstrumentClass> *pClasses){
     
     FILE *pFile;
     long lSize;
@@ -83,7 +82,6 @@ map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){
     // terminate
     fclose (pFile);
     free (buffer);
-    return pClasses;
 }
 
 

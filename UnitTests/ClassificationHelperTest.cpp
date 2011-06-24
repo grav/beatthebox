@@ -46,12 +46,12 @@ TEST(ClassificationHelperTest,Spectrogram){
 }
 
 TEST(ClassificationHelper,GetMap){
-    map<std::string,InstrumentClass> *pClasses;
-    pClasses = ClassificationHelper::getMap(FLAT_FILE_PATH);
+    map<std::string,InstrumentClass> pClasses;
+    ClassificationHelper::getMap(FLAT_FILE_PATH,&pClasses);
     
-    EXPECT_EQ(798,pClasses->size());
-    EXPECT_EQ(BD, (*pClasses)["martin/segments/human4_04.wav"]);
-    EXPECT_EQ(SD,(*pClasses)["session2/segments/mikkel_16_02.wav"]);
+    EXPECT_EQ(798,pClasses.size());
+    EXPECT_EQ(BD, pClasses["martin/segments/human4_04.wav"]);
+    EXPECT_EQ(SD,pClasses["session2/segments/mikkel_16_02.wav"]);
 }
 
 TEST(ClassificationHelper,GetStats){

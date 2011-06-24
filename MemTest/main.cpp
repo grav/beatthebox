@@ -21,12 +21,13 @@ int main (int argc, const char * argv[])
     LinearClassification linClas(LINEAR_MODEL_PATH);
     int hits=0;
     int testSize=0;
-    map<string, InstrumentClass> *m = ClassificationHelper::getMap(FLAT_FILE_PATH);
+    map<string, InstrumentClass> m;
+    ClassificationHelper::getMap(FLAT_FILE_PATH,&m);
     map<string,InstrumentClass>::iterator it;
     int i=0;
     int N = 1;
     for(int k=0;k<N;k++){
-        for(it=m->begin();it!=m->end();it++){
+        for(it=m.begin();it!=m.end();it++){
             i++;
 //            cout << "Testing "<<i<<" of " << size <<endl;
             InstrumentClass klass = (*it).second;

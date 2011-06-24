@@ -10,12 +10,13 @@ TEST(DISABLED_LinearClassification,HitRate){
     LinearClassification linClas(LINEAR_MODEL_PATH);
     int hits=0;
     int testSize=0;
-    std::map<std::string, InstrumentClass> *m = ClassificationHelper::getMap(FLAT_FILE_PATH);
+    std::map<std::string, InstrumentClass> m; 
+    ClassificationHelper::getMap(FLAT_FILE_PATH,&m);
     std::map<std::string,InstrumentClass>::iterator it;
     int i=0;
-    for(it=m->begin();it!=m->end();it++){
+    for(it=m.begin();it!=m.end();it++){
         i++;
-        std::cout << "Testing "<<i<<"/"+m->size()<<std::endl;
+        std::cout << "Testing "<<i<<"/"+m.size()<<std::endl;
         InstrumentClass klass = (*it).second;
         if(true || klass){ // todo - only include classes contained in the model
             testSize++;
