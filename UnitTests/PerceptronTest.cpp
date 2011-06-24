@@ -20,9 +20,7 @@ TEST(DISABLED_PerceptronTest,TestIt){
     Perceptron *perceptron = new Perceptron();
 
     int numClasses = 3;
-    
-    perceptron->train(ClassificationHelper::getFeatureMap(FLAT_FILE_PATH),
-                                  classes, numClasses);
-
-
+    std::map<std::vector<double>,InstrumentClass> featuresMap;
+    ClassificationHelper::getFeatureMap(FLAT_FILE_PATH,&featuresMap);
+    perceptron->train(&featuresMap,classes, numClasses);
 }

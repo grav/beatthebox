@@ -16,8 +16,7 @@
 
 using namespace std;
 
-map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string flatFile){
-    map<vector<double>,InstrumentClass> *result = new map<vector<double>,InstrumentClass>;
+void ClassificationHelper::getFeatureMap(string flatFile, map<vector<double>,InstrumentClass> *result){
     
     map<string,InstrumentClass> *m = getMap(flatFile);
     map<string,InstrumentClass>::iterator it;
@@ -37,7 +36,6 @@ map<vector<double>,InstrumentClass> *ClassificationHelper::getFeatureMap(string 
         (*result)[*key]=(*it).second;
     }
     
-    return result;
 }
 
 map<string,InstrumentClass>* ClassificationHelper::getMap(string flatFile){

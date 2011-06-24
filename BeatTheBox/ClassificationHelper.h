@@ -31,7 +31,7 @@ public:
                          double* (^f)(double *audio, int audioLength),
                          double *&means, double *&variances);
 
-    static std::map<std::vector<double>, InstrumentClass>* getFeatureMap(std::string flatFile);
+    static void getFeatureMap(std::string flatFile, std::map<std::vector<double>,InstrumentClass> *result);
     
 };
 

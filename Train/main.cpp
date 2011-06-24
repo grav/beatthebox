@@ -19,7 +19,9 @@ int main (int argc, const char * argv[])
     Perceptron *perceptron = new Perceptron();
     
     LinearModel *m = new LinearModel();
-    m->_ws = perceptron->train(ClassificationHelper::getFeatureMap(FLAT_FILE_PATH),
+    map<vector<double>,InstrumentClass> featuresMap;
+    ClassificationHelper::getFeatureMap(FLAT_FILE_PATH,&featuresMap);
+    m->_ws = perceptron->train(&featuresMap,
                                classes, numClasses);
     m->_classes = classes;
     m->_numClasses = numClasses;

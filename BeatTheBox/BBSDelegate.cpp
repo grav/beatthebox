@@ -23,10 +23,18 @@ int min(int a, int b){
 
 BBSDelegate::BBSDelegate(){
     _classification = NULL;
+    _outputSelectorTrack = new double[BUFFER_SIZE];
+    _onsetTrack = new double[BUFFER_SIZE];
+    _similarTrack = new double[BUFFER_SIZE];
+    _segment = NULL;
+
 }
 
 BBSDelegate::~BBSDelegate(){
     delete _classification;
+    delete[] _outputSelectorTrack;
+    delete[] _onsetTrack;
+    delete[] _similarTrack;
 }
 
 bool BBSDelegate::mockClassification(){
@@ -111,9 +119,6 @@ void BBSDelegate::startRecord(){
     _trackPointer = 0;
     _lastOnsetIndex = 0;
     // TODO - delete old refs?
-    _outputSelectorTrack = new double[BUFFER_SIZE];
-    _onsetTrack = new double[BUFFER_SIZE];
-    _similarTrack = new double[BUFFER_SIZE];
     for(int i=0;i<BUFFER_SIZE;i++){
         _outputSelectorTrack[i]=_onsetTrack[i]=_similarTrack[i]=0;
     }
@@ -137,6 +142,7 @@ IClassification* BBSDelegate::getClassification(){
 
 void BBSDelegate::initSegment(double sr){
     // todo - delete old segment
+    delete _segment;
     _segment = new Segment(*this,sr);
     _segment->init();
     _state=HALT;
