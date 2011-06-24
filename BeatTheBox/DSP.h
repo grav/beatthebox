@@ -101,16 +101,6 @@ public:
 
     }
     
-    static double* copyRange(double* arr, int start, int length){
-        // TODO: since the body of the closure refers directly to arr, it isn't a real mapping?
-        double *result = new double[length];
-        for(int i=0;i<length;i++){
-            result[i]=arr[start+i];
-        }
-        return result;
-
-    }
-
     static double max(vector<double>* arr){
         return foldl(arr, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
     }
