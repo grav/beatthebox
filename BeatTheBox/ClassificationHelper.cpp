@@ -104,7 +104,7 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
     spectrogram = new double[frames*bins];
     
     for(int i = 0; i<padded.size(); i+=winSize){
-        vector<double> v(audio->begin()+i,audio->begin()+i+winSize);
+        vector<double> v(padded.begin()+i,padded.begin()+i+winSize);
         vector<double> in;
         DSP::hamming(&v,&in);
         fftw_complex *out;
