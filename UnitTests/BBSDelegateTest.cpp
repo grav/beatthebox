@@ -116,15 +116,15 @@ TEST(BBSDelegateTest, InsertSamples){
 TEST(BBSDelegateTest, WholeSample){
     std::string fileName = PATH_PREFIX+(std::string)"session2/mikkel_02.wav";
 
-    vector<double> *soundFile; 
-    SoundHelper::loadMono(fileName, soundFile);
+    vector<double> soundFile; 
+    SoundHelper::loadMono(fileName, &soundFile);
     
     SndfileHandle handle(fileName); // alloc on stack
     sf_count_t numSamples = handle.frames()*handle.channels();
     EXPECT_EQ(122880,numSamples);
     
     vector<double> paddedFile;
-    DSP::zeroPad(soundFile, AUDIO_BUFFER_SIZE, &paddedFile);
+    DSP::zeroPad(&soundFile, AUDIO_BUFFER_SIZE, &paddedFile);
 
     int onsets[] = {
         3850,

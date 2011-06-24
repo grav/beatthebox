@@ -19,10 +19,10 @@ int main (int argc, const char * argv[])
     assert(argc==2);
     // insert code here...
     std::cout << argv[1] << std::endl;
-    std::vector<double> *samples;
-    SoundHelper::loadMono(argv[1], samples);
+    std::vector<double> samples;
+    SoundHelper::loadMono(argv[1], &samples);
     LinearClassification c(LINEAR_MODEL_PATH);
-    InstrumentClass klass = c.query(samples);
+    InstrumentClass klass = c.query(&samples);
     cout << "Class: " << klass << endl;
     return 0;
 }

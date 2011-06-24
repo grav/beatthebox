@@ -28,11 +28,11 @@ void ClassificationHelper::getFeatureMap(string flatFile, map<vector<double>,Ins
     for(it = m.begin() ; it != m.end(); it++){
         num++;
         cout << "Calculating features for sample " << num << " of " << m.size() << endl;
-        vector<double> *samples;
+        vector<double> samples;
         string filename=PATH_PREFIX+(*it).first;
-        SoundHelper::loadMono(filename,samples);
+        SoundHelper::loadMono(filename,&samples);
         vector<double> key;
-        getFeatures(samples,&key);
+        getFeatures(&samples,&key);
         assert(key.size()==NUM_MELS*2);
         (*result)[key]=(*it).second;
     }

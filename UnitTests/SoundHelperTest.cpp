@@ -14,9 +14,9 @@
 TEST(SoundHelperTest,LoadMono){
     std::string fileName = PATH_PREFIX+(std::string)"session2/mikkel_02.wav";
     
-    vector<double> *samples;
-    SoundHelper::loadMono(fileName,samples);
-    EXPECT_EQ(122880,samples->size());
+    vector<double> samples;
+    SoundHelper::loadMono(fileName,&samples);
+    EXPECT_EQ(122880,samples.size());
 
     
 }

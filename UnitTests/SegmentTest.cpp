@@ -15,21 +15,21 @@
 #define SAMPLE_RATE 44100
 
 TEST(Segment,GetStart){
-    vector<double> *sample;
+    vector<double> sample;
     int segmentLength = 19635;
     int onset = 3850;
-    SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", sample);
-    vector<double> v(sample->begin(),sample->begin()+segmentLength);
+    SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", &sample);
+    vector<double> v(sample.begin(),sample.begin()+segmentLength);
     int start = Segment::getStart(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(2350,start);
 }
 
 TEST(Segment,GetStop){
-    vector<double> *sample;
+    vector<double> sample;
     int segmentLength = 19635;
     int onset = 3850;
-    SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", sample);
-    vector<double> v(sample->begin(),sample->begin()+segmentLength);
+    SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", &sample);
+    vector<double> v(sample.begin(),sample.begin()+segmentLength);
     int stop = Segment::getStop(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(14350,stop);
 }

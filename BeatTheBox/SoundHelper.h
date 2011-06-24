@@ -10,7 +10,7 @@
 
 class SoundHelper{
 public:
-    static void loadMono(std::string fileName, std::vector<double> *&samples);
+    static void loadMono(std::string fileName, std::vector<double> *samples);
     static void saveMono(std::string fileName, std::vector<double> *samples);
     static void debug(std::vector<double> *samples);
 };
