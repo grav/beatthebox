@@ -41,25 +41,29 @@ vector<double>* Perceptron::w(InstrumentClass a, InstrumentClass b, map<vector<d
     for(it=m->begin(); it!=m->end(); it++){
         InstrumentClass klass = (*it).second;
         if(klass==a || klass==b){
-            vector<double> *x = extendWithOne((*it).first);
+            vector<double> i = (*it).first;
+            vector<double> x;
+            extendWithOne(&i,&x);
             if(klass==b){
-                vector<double> *xM = times(x, -1);
-                featuresList.push_back(xM);
+                vector<double> xM;
+                times(&x, -1,&xM);
+                featuresList.push_back(new vector<double>(xM));
             } else {
-                featuresList.push_back(x);
+                featuresList.push_back(new vector<double>(x));
             }
         }
     }
-    vector<double> *wTemp = randomUnitVector(nFeatures);
-    vector<double> *w = extendWithOne(*wTemp);
-    delete wTemp;
+    vector<double> wTemp; 
+    randomUnitVector(nFeatures,&wTemp);
+    vector<double> w;
+    extendWithOne(&wTemp,&w);
     for(int i=0;i<ITERATIONS;i++){
         long index = rand() % featuresList.size();
         vector<double> *x = featuresList[index];
-        if(dot(x,w)<=0){
-            wTemp = add(w, x);
-            delete w;
-            w = wTemp;
+        if(dot(x,&w)<=0){
+            vector<double> wTemp;
+            add(&w, x,&wTemp);
+            w.assign(wTemp.begin(),wTemp.end());
             
         }
         if(i%(ITERATIONS/10)==0){
@@ -67,6 +71,15 @@ vector<double>* Perceptron::w(InstrumentClass a, InstrumentClass b, map<vector<d
         }
 
     }
-    return times(w, 1.0/l2norm(w));
+    vector<double> *result = new vector<double>();
+    times(&w, 1.0/l2norm(&w),result);
+
+    // clean up
+    for(int i=0;i<featuresList.size();i++){
+        vector<double> *v = featuresList[i];
+        delete v;
+    }
+    
+    return result;
 }
 
