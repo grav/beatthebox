@@ -12,11 +12,11 @@
 
 namespace linalg{
     double l2norm(vector<double>* v);  
-    vector<double>* add(vector<double>* a, vector<double>* b);
-    vector<double>* times(vector<double> *a, double c);
+    void add(vector<double>* a, vector<double>* b,vector<double>* r);
+    void times(vector<double> *a, double c,vector<double>* r);
     double dot(vector<double>* a, vector<double>* b);
-    vector<double>* extendWithOne(vector<double> v);
-    vector<double>* randomUnitVector(int length);
+    void extendWithOne(vector<double> *v,vector<double>* r);
+    void randomUnitVector(int length,vector<double>* r);
 
 
 };

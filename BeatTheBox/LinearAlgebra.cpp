@@ -17,21 +17,19 @@ namespace linalg{
         return sqrt(sum);
     }
 
-    vector<double>* add(vector<double>* a, vector<double>* b){
+    void add(vector<double>* a, vector<double>* b, vector<double> *r){
         assert(a->size()==b->size());
-        vector<double> *r = new vector<double>;
+        assert(r->size()==0);
         for(int i=0;i<a->size();i++){
             r->push_back((*a)[i]+(*b)[i]);
         }
-        return r;
     }
 
-    vector<double>* times(vector<double> *a, double c){
-        vector<double> *r = new vector<double>;
+    void times(vector<double> *a, double c, vector<double>* r){
+        assert(r->size()==0);
         for(int i=0;i<a->size();i++){
             r->push_back((*a)[i]*c);
         }
-        return r;
     }
 
     double dot(vector<double>* a, vector<double>* b){
@@ -43,20 +41,18 @@ namespace linalg{
         return r;
     }
 
-    vector<double>* extendWithOne(vector<double> v){
-        vector<double> *r = new vector<double>;
-        for(int i=0;i<v.size();i++){
-            r->push_back(v[i]);
+    void extendWithOne(vector<double> *v, vector<double> *r){
+        assert(r->size()==0);
+        for(int i=0;i<v->size();i++){
+            r->assign(v->begin(),v->end());
         }
         r->push_back(1);
-        return r;
     }
 
-    vector<double>* randomUnitVector(int length){
+    void randomUnitVector(int length, vector<double>* rNorm){
         vector<double> noise;
         DSP::noise(length,&noise);
         vector<double> r(noise.begin(),noise.begin()+length);
-        vector<double> *rNorm = times(&r,1.0/l2norm(&r));
-        return rNorm;
+        times(&noise,1.0/l2norm(&r),rNorm);
     }
 }
