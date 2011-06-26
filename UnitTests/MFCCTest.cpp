@@ -10,13 +10,13 @@
 #include "MFCC.h"
 
 TEST(MFCCTest, TestTable){
-    MFCC::init(256, 13, 44100, 20, 20000);
-    EXPECT_TRUE(abs(0.9811-MFCC::amplitude(99, 9))<0.03);
-    EXPECT_TRUE(abs(0.5576-MFCC::amplitude(49, 7))<0.03);
+    MFCC<double>::init(256, 13, 44100, 20, 20000);
+    EXPECT_TRUE(abs(0.9811-MFCC<double>::amplitude(99, 9))<0.03);
+    EXPECT_TRUE(abs(0.5576-MFCC<double>::amplitude(49, 7))<0.03);
 
     int mels = 13;
     int specLength = 32;
-    MFCC::init(specLength,mels,44100,20,20000);
+    MFCC<double>::init(specLength,mels,44100,20,20000);
     
     double spec[] = {
         32.4056, 0.5630,1.6819,3.1184,
@@ -32,7 +32,7 @@ TEST(MFCCTest, TestTable){
         0,2.6048,0,0.3806,0.7971,1.3360,0.9431,
         1.4173,2.1748,2.0165,2.2876,2.4428,2.6870};
     
-    double * mfccs = MFCC::getMFCCs(spec, specLength);
+    double * mfccs = MFCC<double>::getMFCCs(spec, specLength);
     
     for(int i=0;i<mels;i++){
         EXPECT_TRUE(abs(mfccs[i]-expected[i])<0.03);

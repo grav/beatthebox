@@ -11,30 +11,30 @@
 #include <math.h>
 #define NUM_MELS 13
 
-
+template <class T>
 class MFCC {
 public:
-    static double* _H;
+    static T* _H;
     static int _N,_M, _f_min, _f_max;
-    static double _deltaPhi, _fs;
+    static T _deltaPhi, _fs;
 
-    static void init(int freqs,int mels, double fs,int minF,int maxF);    
+    static void init(int freqs,int mels, T fs,int minF,int maxF);    
     static void init(int spectrumLength);
     
-    static double amplitude(int freq, int mel);
-    static double* getMFCCs(double* spectrum, int spectrumLength);
+    static T amplitude(int freq, int mel);
+    static T* getMFCCs(T* spectrum, int spectrumLength);
     
     static void generateTable();
     
-    static double phi(int f);
+    static T phi(int f);
     
-    static double freq_c(int m);
+    static T freq_c(int m);
     
-    static double freq(int k);
+    static T freq(int k);
     
-    static double phi_c(int m);
+    static T phi_c(int m);
     
-    static double compH(int k, int m);
+    static T compH(int k, int m);
     
 };
 

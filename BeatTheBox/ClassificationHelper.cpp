@@ -136,7 +136,7 @@ void ClassificationHelper<T>::getFeatures(vector<T> *audio, vector<T> *r){
     getSpectrogram(audio, winSize, spectrogram, frames, bins);
 
     getStats(spectrogram, frames, bins, NUM_MELS, ^(T *a, int l) {
-        return MFCC::getMFCCs(a,l);
+        return MFCC<T>::getMFCCs(a,l);
     }, means, vars);
     r->assign(means, means+NUM_MELS);
     r->insert(r->end(), vars,vars+NUM_MELS);
