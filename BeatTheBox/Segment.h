@@ -26,7 +26,7 @@ public:
     int getSegmentStartDelta();
     int getSegmentStopDelta();
 
-    void findSegment(std::vector<T>* signal, int onset, std::vector<T> *&result);
+    void findSegment(std::vector<T>* signal, int onset, std::vector<T> *result);
     
     static int getStart(std::vector<T>* arr, int onset, int winSize);
     static int getStop(std::vector<T>* arr, int onset, int winSize);

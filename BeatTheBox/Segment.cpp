@@ -55,7 +55,7 @@ int Segment<T>::getStop(vector<T> *arr, int onset, int winSize){
 }
 
 template <class T>
-void Segment<T>::findSegment(vector<T> *signal, int onset, vector<T> *&result){
+void Segment<T>::findSegment(vector<T> *signal, int onset, vector<T> *result){
     // TODO: make constant somewhere
     int start = getStart(signal, onset, SEGMENT_WINSIZE);
     int stop = getStop(signal, onset,SEGMENT_WINSIZE);
@@ -70,7 +70,7 @@ void Segment<T>::findSegment(vector<T> *signal, int onset, vector<T> *&result){
     }
     _startDelta = onset-start;
     _stopDelta = onset-stop;
-    result = new vector<T>(signal->begin()+start,signal->begin()+stop+1);
+    result->assign(signal->begin()+start,signal->begin()+stop+1);
 }
 
 template <class T>

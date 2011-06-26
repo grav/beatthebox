@@ -42,17 +42,17 @@ bool BBSDelegate::mockClassification(){
 }
 
 void BBSDelegate::receiveSegment(vector<double> *arr, int onset){
-    vector<double> *seg;
+    vector<double> seg;
     if(mockClassification()){
-        seg = arr;
+        seg = *arr;
     } else {
-        _segment->findSegment(arr, onset, seg);
+        _segment->findSegment(arr, onset, &seg);
 
     }
     
     if(_runSynchronized){
         // Single-threaded
-        setClass(_lastOnsetIndex, _classification->query(seg));
+        setClass(_lastOnsetIndex, _classification->query(&seg));
     } else {
         //TODO: multithreading
     }
