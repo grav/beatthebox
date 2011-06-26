@@ -12,14 +12,15 @@
 #include <iostream>
 #include "LinearModel.h"
 
+template <class T>
 class LinearClassification : public IClassification{
 public:
     LinearClassification(std::string path);
     ~LinearClassification();
     
-    InstrumentClass query(std::vector<double> *segment);
-    InstrumentClass ddag(std::vector<double> *x);
+    InstrumentClass query(std::vector<T> *segment);
+    InstrumentClass ddag(std::vector<T> *x);
     Classification type();
-    LinearModel<double> *_model;
+    LinearModel<T> *_model;
 
 };

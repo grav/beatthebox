@@ -11,29 +11,33 @@
 #include "LinearAlgebra.h"
 #include "LinearModel.h"
 
-LinearClassification::LinearClassification(std::string path){
-    _model = new LinearModel<double>(path);
+template <class T>
+LinearClassification<T>::LinearClassification(std::string path){
+    _model = new LinearModel<T>(path);
     
 }
 
-LinearClassification::~LinearClassification(){
+template <class T>
+LinearClassification<T>::~LinearClassification(){
     delete _model;
 }
 
-InstrumentClass LinearClassification::query(std::vector<double> *segment){
-    vector<double> features;
+template <class T>
+InstrumentClass LinearClassification<T>::query(std::vector<T> *segment){
+    vector<T> features;
     ClassificationHelper::getFeatures(segment,&features);
-    vector<double> x;
+    vector<T> x;
     linalg::extendWithOne(&features,&x);
     InstrumentClass result = ddag(&x);
     return result;
 }
 
-InstrumentClass LinearClassification::ddag(std::vector<double> *x){
+template <class T>
+InstrumentClass LinearClassification<T>::ddag(std::vector<T> *x){
     int a = _model->_numClasses-1;
     int b = 0;
     while(a!=b){
-        vector<double> *w = _model->getW(a,b);
+        vector<T> *w = _model->getW(a,b);
         if(linalg::dot(x, w)>0){
             b++;
         } else{
@@ -44,6 +48,9 @@ InstrumentClass LinearClassification::ddag(std::vector<double> *x){
     return _model->_classes[a];
 }
 
-Classification LinearClassification::type(){
+template <class T>
+Classification LinearClassification<T>::type(){
     return LINEAR;
 }
+
+template class LinearClassification<double>;

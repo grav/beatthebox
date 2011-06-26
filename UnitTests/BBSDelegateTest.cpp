@@ -146,7 +146,7 @@ TEST(BBSDelegateTest, WholeSample){
     delegate->_runSynchronized=true;
     delegate->initSegment(44100);
 
-    IClassification *lin = new LinearClassification(LINEAR_MODEL_PATH);
+    IClassification *lin = new LinearClassification<double>(LINEAR_MODEL_PATH);
     delegate->setClassification(lin);
     delegate->startRecord();
     EXPECT_EQ(RECORD, delegate->_state);
