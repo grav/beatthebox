@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <vector>
 #include "SoundHelper.h"
+#include <map>
 
 #define VEC vector<T>
 #define FILENAME ""
@@ -21,6 +22,12 @@ template <typename T>
 void baz(){
     vector<T> v;
     SoundHelper::loadMono(FILENAME, &v);
+}
+
+
+template <typename T>
+void foobar(){
+    typename std::vector<T>::iterator it;
 }
 
 TEST(Generics, Foo){
