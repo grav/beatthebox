@@ -16,7 +16,7 @@
 template <class T>
 class ClassificationHelper{
 public:
-    static double length(fftw_complex c){
+    static T length(fftw_complex c){
         return sqrt(pow(c[0],2)+pow(c[1],2));
     }
 
