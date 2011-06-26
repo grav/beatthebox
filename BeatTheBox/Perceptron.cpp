@@ -19,11 +19,11 @@ using namespace std;
 using namespace linalg;
 
 template <class T>
-vector<T>** Perceptron<T>::train(map<vector<T>, InstrumentClass> *m, InstrumentClass *classes, int numClasses){
+vector<T>** Perceptron<T>::train(map<vector<T>, InstrumentClass> *m, InstrumentClass *classes, size_t numClasses){
     vector<T>** ws = new vector<T>*[numClasses*numClasses];
-    for(int a=0; a<numClasses;a++){
-        for(int b=0; b<numClasses;b++){
-            int i = a*numClasses+b;
+    for(size_t a=0; a<numClasses;a++){
+        for(size_t b=0; b<numClasses;b++){
+            size_t i = a*numClasses+b;
             if(a!=b) {
                 ws[i] = w(classes[a],classes[b],m);
             } else {
@@ -37,7 +37,7 @@ vector<T>** Perceptron<T>::train(map<vector<T>, InstrumentClass> *m, InstrumentC
 template <class T>
 vector<T>* Perceptron<T>::w(InstrumentClass a, InstrumentClass b, map<vector<T>, InstrumentClass> *m){
     cout << "training " << a << " versus " << b << endl;
-    int nFeatures = NUM_MELS*2;
+    size_t nFeatures = NUM_MELS*2;
     vector<vector<T>*> featuresList;
     typename map<vector<T>, InstrumentClass>::iterator it;
     for(it=m->begin(); it!=m->end(); it++){
@@ -59,7 +59,7 @@ vector<T>* Perceptron<T>::w(InstrumentClass a, InstrumentClass b, map<vector<T>,
     randomUnitVector(nFeatures,&wTemp);
     vector<T> w;
     extendWithOne(&wTemp,&w);
-    for(int i=0;i<ITERATIONS;i++){
+    for(size_t i=0;i<ITERATIONS;i++){
         long index = rand() % featuresList.size();
         vector<T> *x = featuresList[index];
         if(dot(x,&w)<=0){
@@ -77,7 +77,7 @@ vector<T>* Perceptron<T>::w(InstrumentClass a, InstrumentClass b, map<vector<T>,
     times(&w, 1.0/l2norm(&w),result);
 
     // clean up
-    for(int i=0;i<featuresList.size();i++){
+    for(size_t i=0;i<featuresList.size();i++){
         vector<T> *v = featuresList[i];
         delete v;
     }

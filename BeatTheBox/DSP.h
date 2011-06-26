@@ -13,6 +13,7 @@
 #include <float.h>
 #include <assert.h>
 #include <vector>
+#include <limits>
 
 using namespace std;
 
@@ -22,35 +23,35 @@ public:
     template <typename T>
     static T foldl(vector<T> *arr, T init, T (^f)(T x, T y)){
         T result = init;
-        for(int i=0;i<arr->size();i++){
+        for(size_t i=0;i<arr->size();i++){
             result = f(result,(*arr)[i]);
         }
         return result;
 
     }
     template <typename T>
-    static void mapWithIndex(vector<T>* arr, T (^f)(T x, int i), vector<T>* result){
+    static void mapWithIndex(vector<T>* arr, T (^f)(T x, size_t i), vector<T>* result){
         result->resize(arr->size());
-        for(int i=0; i<arr->size();i++){
+        for(size_t i=0; i<arr->size();i++){
             (*result)[i] = f((*arr)[i], i); // apply f on i'th element of arr
         }
     }
     
     template <typename T>
     static void map(vector<T>* arr, T (^f)(T x), vector<T>* result){
-        mapWithIndex(arr, ^(T x, int i){return f(x);},result);
+        mapWithIndex(arr, ^(T x, size_t i){return f(x);},result);
     }
 
     template <typename T>
-    static void line(T from, T to, int length, vector<T>* result){
+    static void line(T from, T to, size_t length, vector<T>* result){
         result->resize(length);
-        for(int i=0;i<length;i++){
+        for(size_t i=0;i<length;i++){
             (*result)[i]=(to-from)/length * i+from;
         }
     }
     
     template <typename T>
-    static void line(int length,vector<T>* result){
+    static void line(size_t length,vector<T>* result){
         line((T)0, (T)length,length,result);
     }
     
@@ -67,7 +68,7 @@ public:
     }
     
     template <typename T>
-    static void hamming(int m,vector<T>* result){
+    static void hamming(size_t m,vector<T>* result){
         vector<T> l;
         line(m,&l);
         map(&l, ^(T n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));},result);
@@ -76,21 +77,21 @@ public:
     template <typename T>
     static void hamming(vector<T> *in, vector<T> *result){
         vector<T> hamWin;
-        hamming((int)in->size(),&hamWin);
-        mapWithIndex(in, ^(T x, int i){return x*hamWin[i];}, result);
+        hamming(in->size(),&hamWin);
+        mapWithIndex(in, ^(T x, size_t i){return x*hamWin[i];}, result);
     }
     
     template <typename T>
     static void zeroPad(vector<T>* arr, int winSize, vector<T> *resultArr){
-        int rest = (int)(arr->size() % winSize);
-        int resultLength;
+        size_t rest = (arr->size() % winSize);
+        size_t resultLength;
         if(rest == 0){
-            resultLength = (int)arr->size();
+            resultLength = arr->size();
         } else {        
-            resultLength = (int)arr->size()+(winSize-rest);
+            resultLength = arr->size()+(winSize-rest);
         }
         resultArr->resize(resultLength,0);
-        for(int i=0;i<arr->size();i++){
+        for(size_t i=0;i<arr->size();i++){
             (*resultArr)[i] = (*arr)[i];
         }
     }
@@ -99,10 +100,10 @@ public:
     static void energyEnvelope(vector<T>* arr, int winSize, vector<T> *resultArr){
         vector<T> paddedArr;
         zeroPad(arr, winSize, &paddedArr);
-        int resultLength = (int)(paddedArr.size()/winSize);
+        size_t resultLength = (paddedArr.size()/winSize);
 
         resultArr->resize(resultLength);
-        for(int i=0;i<resultLength;i++){        
+        for(size_t i=0;i<resultLength;i++){        
             vector<T> v(paddedArr.begin()+(i*winSize), 
                              paddedArr.begin()+((i+1)*winSize));
             
@@ -118,30 +119,30 @@ public:
     
     template <typename T>
     static void reverse(vector<T>* arr, vector<T> *result){
-        mapWithIndex(arr, ^(T v, int i){return (*arr)[arr->size()-1-i];},result);
+        mapWithIndex(arr, ^(T v, size_t i){return (*arr)[arr->size()-1-i];},result);
     }
     
     template <typename T>
-    static int attackTime(vector<T> *arr, int k){
+    static size_t attackTime(vector<T> *arr, size_t k){
         //TODO - make winSize constants somewhere
-        int winSize = 256;
+        size_t winSize = 256;
         vector<T> env;
-        int envLength;
+        size_t envLength;
         energyEnvelope(arr, winSize, &env);
         T max = DSP::max(&env);
-        for(int i=0;i<envLength;i++){
+        for(size_t i=0;i<envLength;i++){
             if(env[i]>k*max) return i*winSize;
         }
-        return INT_MAX;
+        return SIZE_MAX;
 
     }
     
     template <typename T>
-    static int firstLowPoint(vector<T> *arr){
+    static size_t firstLowPoint(vector<T> *arr){
         T t = 0.05; // threshold
         T max = DSP::max(arr);
-        int minIndex = 0; 
-        for(int i=0;i<arr->size();i++){
+        size_t minIndex = 0; 
+        for(size_t i=0;i<arr->size();i++){
             if((*arr)[i]<t*max){
                 return i;
             }
@@ -154,9 +155,9 @@ public:
     }
     
     template <typename T>
-    static void printMatlabArray(T *arr, int length){
+    static void prsize_tMatlabArray(T *arr, size_t length){
         std::cout << "[";
-        for(int i=0;i<length;i++){
+        for(size_t i=0;i<length;i++){
             std::cout << arr[i] << " ";
         }
         std::cout << "]";
@@ -164,7 +165,7 @@ public:
     }
     
     template <typename T>
-    static void noise(int length, vector<T> *result){
+    static void noise(size_t length, vector<T> *result){
         result->resize(length);
         map(result, ^(T x){return ((T)rand()/(T)RAND_MAX);},result);
     }

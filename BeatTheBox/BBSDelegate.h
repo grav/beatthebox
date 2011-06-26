@@ -12,7 +12,7 @@
 
 #define MAX_BUFFER_SIZE 44100 * 20;
 
-int min(int a, int b);
+size_t min(size_t a, size_t b);
 
 template <class T>
 class BBSDelegate : public ISegmentOwner<T> {
@@ -20,13 +20,13 @@ public:
     BBSDelegate();
     ~BBSDelegate();
     /* inherited from ISegmentOwner */
-    void receiveSegment(std::vector<T> arr, int onset);
-    void setClass(int index, InstrumentClass klass);
+    void receiveSegment(std::vector<T> arr, size_t onset);
+    void setClass(size_t index, InstrumentClass klass);
     IClassification<T>* getClassification();
-    void updateSimilarTrack(int index, T* read, int length);
+    void updateSimilarTrack(size_t index, T* read, size_t length);
     void handleDSP(T* sound, T* onsets, 
                            T* outputTrack, T* similarTrack,
-                           int length, IHostController *hostController);
+                           size_t length, IHostController *hostController);
     
     
     void setClassification(IClassification<T> *c);
@@ -43,9 +43,9 @@ public:
     
     void initSegment(T sr);
     
-    void setLoopSize(int size);
+    void setLoopSize(size_t size);
     
-    void switchState(int arg, int inletIndex, IHostController *hostController);
+    void switchState(size_t arg, size_t inletIndex, IHostController *hostController);
 
     bool mockClassification();
     
@@ -53,9 +53,9 @@ public:
     // AsyncClassification &_async;
     bool _runSynchronized;
     // for debugging
-    int _counter;
+    size_t _counter;
     State _state;
-    int _trackPointer;
+    size_t _trackPointer;
     
     // ins
     T *_onsetTrack;
@@ -63,9 +63,9 @@ public:
     // outs
     T *_similarTrack;
     T *_outputSelectorTrack;
-    int _loopSize;
+    size_t _loopSize;
     IClassification<T> *_classification;
-    int _lastOnsetIndex;
+    size_t _lastOnsetIndex;
     char* _path;
     // todo - init in ctor
     bool _playback;

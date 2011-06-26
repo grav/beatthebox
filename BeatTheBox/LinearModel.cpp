@@ -25,7 +25,7 @@ LinearModel<T>::~LinearModel(){
 }
 
 template <class T>
-std::vector<T> *LinearModel<T>::getW(int a, int b){
+std::vector<T> *LinearModel<T>::getW(size_t a, size_t b){
     return _ws[a*_numClasses+b];
 }
 
@@ -47,10 +47,10 @@ void LinearModel<T>::save(std::string filename){
     long nFeatures = v->size();
     fwrite(&nFeatures, sizeof(nFeatures), 1, pFile);
     //     for each class a in classes
-    for(int a=0;a<_numClasses;a++){
+    for(size_t a=0;a<_numClasses;a++){
         //        for each class b in classes
-        for(int b=0; b<_numClasses;b++){
-            int index = a*_numClasses+b;
+        for(size_t b=0; b<_numClasses;b++){
+            size_t index = a*_numClasses+b;
             if(a!=b){
                 std::cout << "writing " << index << std::endl;
                 v = _ws[index];
@@ -80,10 +80,10 @@ void LinearModel<T>::load(std::string filename){
     long nFeatures;
     fread(&nFeatures, sizeof(nFeatures), 1, pFile);
     //     for each class a in classes
-    for(int a=0;a<_numClasses;a++){
+    for(size_t a=0;a<_numClasses;a++){
         //        for each class b in classes
-        for(int b=0; b<_numClasses;b++){
-            int index = a*_numClasses+b;
+        for(size_t b=0; b<_numClasses;b++){
+            size_t index = a*_numClasses+b;
             if(a!=b){
                 std::cout << "Reading models ... " << index << std::endl;
                 std::vector<T> *v = new std::vector<T>;

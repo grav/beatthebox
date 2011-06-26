@@ -17,7 +17,7 @@
 #define BUFFER_SIZE 44100 * 20
 
 //TODO define with macro somewhere
-int min(int a, int b){
+size_t min(size_t a, size_t b){
     return a<b?a:b;
 }
 
@@ -45,7 +45,7 @@ bool BBSDelegate<T>::mockClassification(){
 }
 
 template <class T>
-void BBSDelegate<T>::receiveSegment(vector<T> arr, int onset){
+void BBSDelegate<T>::receiveSegment(vector<T> arr, size_t onset){
     vector<T> seg;
     if(mockClassification()){
         seg = arr;
@@ -63,9 +63,9 @@ void BBSDelegate<T>::receiveSegment(vector<T> arr, int onset){
 }
 
 template <class T>
-void BBSDelegate<T>::setClass(int index, InstrumentClass klass){
+void BBSDelegate<T>::setClass(size_t index, InstrumentClass klass){
     _onsetTrack[index] = klass;
-    for (int i = index - _segment->getSegmentStartDelta();
+    for (size_t i = index - _segment->getSegmentStartDelta();
          i <= index + _segment->getSegmentStopDelta();
          i++) {
         _outputSelectorTrack[i] = klass;
@@ -73,8 +73,8 @@ void BBSDelegate<T>::setClass(int index, InstrumentClass klass){
 }
 
 template <class T>
-void BBSDelegate<T>::handleDSP(T *sound, T *onsets, T *outputTrack, T *similarTrack, int length, IHostController *hostController){
-    for (int i = 0; i < length; i++) {
+void BBSDelegate<T>::handleDSP(T *sound, T *onsets, T *outputTrack, T *similarTrack, size_t length, IHostController *hostController){
+    for (size_t i = 0; i < length; i++) {
         // ignore signal until we have a loop size
         switch (_state) {
             case PLAYBACK:
@@ -127,15 +127,15 @@ void BBSDelegate<T>::startRecord(){
     _trackPointer = 0;
     _lastOnsetIndex = 0;
     // TODO - delete old refs?
-    for(int i=0;i<BUFFER_SIZE;i++){
+    for(size_t i=0;i<BUFFER_SIZE;i++){
         _outputSelectorTrack[i]=_onsetTrack[i]=_similarTrack[i]=0;
     }
 }
 
 template <class T>
-void BBSDelegate<T>::updateSimilarTrack(int index, T *drum, int length){
-    int limit = min(index+length, BUFFER_SIZE);
-    for (int i = index; i < limit; i++) {
+void BBSDelegate<T>::updateSimilarTrack(size_t index, T *drum, size_t length){
+    size_t limit = min(index+length, BUFFER_SIZE);
+    for (size_t i = index; i < limit; i++) {
         _similarTrack[i] = drum[i - index];
     }
 }
@@ -160,7 +160,7 @@ void BBSDelegate<T>::initSegment(T sr){
 }
 
 template <class T>
-void BBSDelegate<T>::setLoopSize(int size){
+void BBSDelegate<T>::setLoopSize(size_t size){
     _loopSize = size;
 }
 

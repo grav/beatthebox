@@ -15,13 +15,13 @@ template <class T>
 class ISegmentOwner{
 public:
     virtual ~ISegmentOwner(){}
-    virtual void receiveSegment(std::vector<T> arr, int onset) = 0;
-    virtual void setClass(int index, InstrumentClass klass) {};
+    virtual void receiveSegment(std::vector<T> arr, size_t onset) = 0;
+    virtual void setClass(size_t index, InstrumentClass klass) {};
     virtual IClassification<T>* getClassification() {return new ClassificationMock();};
-    virtual void updateSimilarTrack(int index, T* read, int length) {};
+    virtual void updateSimilarTrack(size_t index, T* read, size_t length) {};
     virtual void handleDSP(T* sound, T* onsets, 
                            T* outputTrack, T* similarTrack,
-                           int length, IHostController *hostController) = 0;
+                           size_t length, IHostController *hostController) = 0;
 };
 
 template <class T>
@@ -34,24 +34,24 @@ public:
     
     void handleDSP(T* sound, T* onsets, 
                    T* outputTrack, T* similarTrack,
-                   int length, IHostController *hostController) {
-        for(int i=0;i<length;i++){
+                   size_t length, IHostController *hostController) {
+        for(size_t i=0;i<length;i++){
             _s->pushSample(sound[i], onsets[i]==1);
         }
     }
     
-    void receiveSegment(std::vector<T> arr, int onset) {
+    void receiveSegment(std::vector<T> arr, size_t onset) {
         //TODO: delete old segment?
         delete _segment;
         _segment = new std::vector<T>(arr);
         _onset = onset;
     }
     
-    int getLastOnset(){
+    size_t getLastOnset(){
         return _onset;
     }
     Segment<T> *_s;
-    int _onset;
+    size_t _onset;
     std::vector<T>* _segment;
     
 };

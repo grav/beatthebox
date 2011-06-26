@@ -18,12 +18,12 @@
 
 #define LOOP_SIZE 9
 #define AUDIO_BUFFER_SIZE 4
-double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes);
+double* makeOnsetsSignal(size_t sampleLength, size_t* indexes, size_t numIndexes);
 
 // util function
-double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes){
+double* makeOnsetsSignal(size_t sampleLength, size_t* indexes, size_t numIndexes){
     double *onsets = new double[sampleLength];
-    for(int i=0;i<numIndexes;i++){
+    for(size_t i=0;i<numIndexes;i++){
         onsets[indexes[i]]=1;
     }
     return onsets;
@@ -74,12 +74,12 @@ TEST(BBSDelegateTest, InsertSamples){
     EXPECT_EQ(PLAYBACK, delegate->_state);
 
     double e1[] = {0,0,-1,0,0,-1,0,0,0};
-    for(int i=0;i<LOOP_SIZE;i++){
+    for(size_t i=0;i<LOOP_SIZE;i++){
         EXPECT_DOUBLE_EQ(e1[i], delegate->_outputSelectorTrack[i]);
     }
     
     double e2[] = {1,0,0,-1};
-    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
+    for(size_t i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_DOUBLE_EQ(e2[i], out[i]);
     }
     
@@ -87,25 +87,25 @@ TEST(BBSDelegateTest, InsertSamples){
     EXPECT_EQ(PLAYBACK, delegate->_state);
     
     double e3[] = {0,0,-1,0};
-    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
+    for(size_t i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e3[i], out[i]);
     }
     
     delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     double e4[] = {0,0,0,0};
-    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
+    for(size_t i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e4[i], out[i]);
     }
     
     delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     double e5[] = {-1,0,0,-1};
-    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
+    for(size_t i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e5[i], out[i]);
     }
     
     delegate->handleDSP(zeros, zeros, out, sim, AUDIO_BUFFER_SIZE, mock);
     double e6[] = {0,0,0,0};
-    for(int i=0;i<AUDIO_BUFFER_SIZE;i++){
+    for(size_t i=0;i<AUDIO_BUFFER_SIZE;i++){
         EXPECT_EQ(e6[i], out[i]);
     }
     
@@ -125,7 +125,7 @@ TEST(BBSDelegateTest, WholeSample){
     vector<double> paddedFile;
     DSP::zeroPad(&soundFile, AUDIO_BUFFER_SIZE, &paddedFile);
 
-    int onsets[] = {
+    size_t onsets[] = {
         3850,
         19635,
         33880,
@@ -137,9 +137,9 @@ TEST(BBSDelegateTest, WholeSample){
         108955
     };
     
-    int numIndexes = 9;
+    size_t numIndexes = 9;
     
-    double *onsetSignal = makeOnsetsSignal((int)(paddedFile.size()), onsets, numIndexes);
+    double *onsetSignal = makeOnsetsSignal((paddedFile.size()), onsets, numIndexes);
     
     IHostController *mock = new HostControllerMock();
     BBSDelegate<double> *delegate = new BBSDelegate<double>();
@@ -150,8 +150,8 @@ TEST(BBSDelegateTest, WholeSample){
     delegate->setClassification(lin);
     delegate->startRecord();
     EXPECT_EQ(RECORD, delegate->_state);
-    delegate->setLoopSize((int)(paddedFile.size()));
-    for(int i=0;i<paddedFile.size();i+=AUDIO_BUFFER_SIZE){
+    delegate->setLoopSize((paddedFile.size()));
+    for(size_t i=0;i<paddedFile.size();i+=AUDIO_BUFFER_SIZE){
 //        std::cout << i << endl;
         double out[AUDIO_BUFFER_SIZE];
         double similar[AUDIO_BUFFER_SIZE];
@@ -162,8 +162,8 @@ TEST(BBSDelegateTest, WholeSample){
     }
     
     std::vector<InstrumentClass> classes;
-    std::vector<int> indexes;
-    for(int i=0;i<paddedFile.size();i++){
+    std::vector<size_t> indexes;
+    for(size_t i=0;i<paddedFile.size();i++){
         if(delegate->_onsetTrack[i]!=0){
             classes.push_back((InstrumentClass)(delegate->_onsetTrack[i]));
             indexes.push_back(i);
@@ -181,7 +181,7 @@ TEST(BBSDelegateTest, WholeSample){
         SD,
         HH
     };
-    for(int i=0;i<classes.size();i++){
+    for(size_t i=0;i<classes.size();i++){
         EXPECT_EQ(correctClasses[i], classes[i]);
     }
 }

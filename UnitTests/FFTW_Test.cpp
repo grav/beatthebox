@@ -16,11 +16,11 @@
 
 #define N 10
 #define N2 N / 2 + 1
-void printAsMatlab(fftw_complex *arr, int length);
+void printAsMatlab(fftw_complex *arr, size_t length);
 
-void printAsMatlab(fftw_complex *arr, int length){
+void printAsMatlab(fftw_complex *arr, size_t length){
     printf("[");
-    for(int i=0;i<length;i++){
+    for(size_t i=0;i<length;i++){
         printf("%f + %f%s ", arr[i][0],arr[i][1],"i");
     }
     printf("]\n");
@@ -35,14 +35,14 @@ TEST(FFTWTest, Test){
     fftw_execute(p); 
     
     double amp[N2];
-    for(int i=0;i<N2;i++){
+    for(size_t i=0;i<N2;i++){
         amp[i] = ClassificationHelper<double>::length(out[i]);
     }
     
     fftw_destroy_plan(p); fftw_free(out);
     
     double expected[] = {45.0000,16.1803,8.5065,6.1803,5.2573,5.0000};
-    for(int i=0;i<N2;i++){
+    for(size_t i=0;i<N2;i++){
         EXPECT_TRUE(abs(expected[i]-amp[i])<0.01);
     }
 

@@ -8,12 +8,12 @@
 
 TEST(DISABLED_LinearClassification,HitRate){
     LinearClassification<double> linClas(LINEAR_MODEL_PATH);
-    int hits=0;
-    int testSize=0;
+    size_t hits=0;
+    size_t testSize=0;
     std::map<std::string, InstrumentClass> m; 
     ClassificationHelper<double>::getMap(FLAT_FILE_PATH,&m);
     std::map<std::string,InstrumentClass>::iterator it;
-    int i=0;
+    size_t i=0;
     for(it=m.begin();it!=m.end();it++){
         i++;
         std::cout << "Testing "<<i<<"/"+m.size()<<std::endl;

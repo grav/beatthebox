@@ -20,10 +20,10 @@ public:
     void save(std::string filename);
     void load(std::string filename);
 
-    std::vector<T> *getW(int a, int b);
+    std::vector<T> *getW(size_t a, size_t b);
     
     std::vector<T> **_ws;  
     InstrumentClass *_classes;
-    int _numClasses;
+    size_t _numClasses;
     
 };

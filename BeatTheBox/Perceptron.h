@@ -16,7 +16,7 @@ using namespace std;
 template <class T>
 class Perceptron{
 public:
-    vector<T>** train(map<vector<T>,InstrumentClass> *m, InstrumentClass *classes, int numClasses);
+    vector<T>** train(map<vector<T>,InstrumentClass> *m, InstrumentClass *classes, size_t numClasses);
     
     vector<T>*  w(InstrumentClass a, InstrumentClass b, map<vector<T>,InstrumentClass> *m);
     

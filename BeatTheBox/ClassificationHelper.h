@@ -23,15 +23,15 @@ public:
     static void getMap(std::string flatFile,std::map<std::string,InstrumentClass> *pClasses);
     
     static void getSpectrogram(std::vector<T> *audio, int winSize, 
-                               T *&spectrogram, int &frames, int &bins);
+                               T *&spectrogram, size_t &frames, int &bins);
     
     static void getFeatures(std::vector<T> *audio, std::vector<T> *r);
     
     static T spectralCentroid(std::vector<T> *audio);
     
-    static void getStats(T *spectrums, int numSpectrums, 
+    static void getStats(T *spectrums, size_t numSpectrums, 
                          int freqBins, int resultBins,
-                         T* (^f)(T *audio, int audioLength),
+                         T* (^f)(T *audio, size_t audioLength),
                          T *&means, T *&variances);
 
     static void getFeatureMap(std::string flatFile, std::map<std::vector<T>,InstrumentClass> *result);

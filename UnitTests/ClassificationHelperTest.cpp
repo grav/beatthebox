@@ -24,10 +24,10 @@ TEST(ClassificationHelperTest,Spectrogram){
         0.59228, 0.35114, 0.54886, 0.83083, 
         0.47888, 0.56554, 0.97078, 0.03093, 
         0.87661, 0.10419, 0.17629, 0.74675};
-    int inLength = 16;
+    size_t inLength = 16;
     int winSize = 4;
     double *spectrogram;
-    int frames; int bins;
+    size_t frames; int bins;
     ClassificationHelper<double>::getSpectrogram(new vector<double>(in, in+inLength), winSize, spectrogram, frames, bins);
     
     double expected[] = {
@@ -36,11 +36,11 @@ TEST(ClassificationHelperTest,Spectrogram){
         1.22375, 0.83092, 0.34787,
         0.34584, 0.06874, 0.06590};
     EXPECT_EQ(4, frames);
-    int outLength = ((inLength/winSize)/2 + 1) * frames;
+    size_t outLength = ((inLength/winSize)/2 + 1) * frames;
     EXPECT_EQ(12,outLength);
-    int precision = 10000;
-    for(int i=0;i<bins*frames;i++){
-        EXPECT_EQ((int)(expected[i]*precision),(int)(spectrogram[i]*precision));
+    size_t precision = 10000;
+    for(size_t i=0;i<bins*frames;i++){
+        EXPECT_EQ((expected[i]*precision),(spectrogram[i]*precision));
     }
     
 }
@@ -56,11 +56,11 @@ TEST(ClassificationHelper,GetMap){
 
 TEST(ClassificationHelper,GetStats){
     double testArr[] = {1,2,3,1,2,3,1,2,3};
-    int numBins = 3;
+    size_t numBins = 3;
     double *means; double *vars;
     
     ClassificationHelper<double>::getStats(testArr, 3, 3, 1, 
-       ^(double *audio, int audioLength) {
+       ^(double *audio, size_t audioLength) {
            double *r = new double[1];
            r[0] = ClassificationHelper<double>::spectralCentroid(new vector<double>(audio, audio+audioLength));
            return r;

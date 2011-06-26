@@ -14,7 +14,7 @@ namespace linalg{
     template <typename T>
     T l2norm(vector<T>* v){
         T sum = 0;
-        for(int i=0;i<v->size();i++){
+        for(size_t i=0;i<v->size();i++){
             sum+=pow((*v)[i],2);
         }
         return sqrt(sum);
@@ -24,7 +24,7 @@ namespace linalg{
     void add(vector<T>* a, vector<T>* b,vector<T>* r){
         assert(a->size()==b->size());
         assert(r->size()==0);
-        for(int i=0;i<a->size();i++){
+        for(size_t i=0;i<a->size();i++){
             r->push_back((*a)[i]+(*b)[i]);
         }
     }
@@ -32,7 +32,7 @@ namespace linalg{
     template <typename T>
     void times(vector<T> *a, T c,vector<T>* r){
         assert(r->size()==0);
-        for(int i=0;i<a->size();i++){
+        for(size_t i=0;i<a->size();i++){
             r->push_back((*a)[i]*c);
         }
     }
@@ -41,7 +41,7 @@ namespace linalg{
     T dot(vector<T>* a, vector<T>* b){
         assert(a->size()==b->size());
         T r = 0;
-        for(int i=0;i<a->size();i++){
+        for(size_t i=0;i<a->size();i++){
             r+= (*a)[i]*(*b)[i];
         }
         return r;
@@ -50,14 +50,14 @@ namespace linalg{
     template <typename T>
     void extendWithOne(vector<T> *v,vector<T>* r){
         assert(r->size()==0);
-        for(int i=0;i<v->size();i++){
+        for(size_t i=0;i<v->size();i++){
             r->assign(v->begin(),v->end());
         }
         r->push_back(1);
     }
 
     template <typename T>
-    void randomUnitVector(int length,vector<T>* r){
+    void randomUnitVector(size_t length,vector<T>* r){
         vector<T> noise;
         DSP::noise(length,&noise);
         times(&noise,1.0/l2norm(&noise),r);

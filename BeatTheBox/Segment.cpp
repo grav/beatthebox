@@ -15,7 +15,7 @@
 
 template <class T>
 Segment<T>::Segment(ISegmentOwner<T>& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
-    _signalLength = (int)(SECONDS * sr);
+    _signalLength = (SECONDS * sr);
     _signal = new vector<T>(_signalLength);
     init();
 }
@@ -27,17 +27,17 @@ void Segment<T>::init(){
 }
 
 template <class T>
-int Segment<T>::getSegmentStartDelta(){
+size_t Segment<T>::getSegmentStartDelta(){
     return _startDelta;
 }
 
 template <class T>
-int Segment<T>::getSegmentStopDelta(){
+size_t Segment<T>::getSegmentStopDelta(){
     return _stopDelta;
 }
 
 template <class T>
-int Segment<T>::getStart(vector<T> *arr, int onset, int winSize){
+size_t Segment<T>::getStart(vector<T> *arr, size_t onset, int winSize){
     vector<T> ee;
     vector<T> v(arr->begin(), arr->begin()+onset);
     DSP::energyEnvelope(&v, winSize, &ee);
@@ -47,7 +47,7 @@ int Segment<T>::getStart(vector<T> *arr, int onset, int winSize){
 }
 
 template <class T>
-int Segment<T>::getStop(vector<T> *arr, int onset, int winSize){
+size_t Segment<T>::getStop(vector<T> *arr, size_t onset, int winSize){
     vector<T> ee;
     vector<T> v(arr->begin()+onset, arr->end());
     DSP::energyEnvelope(&v, winSize, &ee);
@@ -55,10 +55,10 @@ int Segment<T>::getStop(vector<T> *arr, int onset, int winSize){
 }
 
 template <class T>
-void Segment<T>::findSegment(vector<T> *signal, int onset, vector<T> *result){
+void Segment<T>::findSegment(vector<T> *signal, size_t onset, vector<T> *result){
     // TODO: make constant somewhere
-    int start = getStart(signal, onset, SEGMENT_WINSIZE);
-    int stop = getStop(signal, onset,SEGMENT_WINSIZE);
+    size_t start = getStart(signal, onset, SEGMENT_WINSIZE);
+    size_t stop = getStop(signal, onset,SEGMENT_WINSIZE);
     assert(start<=onset); assert(stop>onset);
     if(start==onset && stop==onset){
         // crude hack: seems our onset detection went wrong ...
@@ -82,14 +82,14 @@ void Segment<T>::pushSample(T s, bool isOnset){
             _onsetDetected=true;
             _onset = _signalPos;
         } else {
-            int nextOnset = _signalPos;
+            size_t nextOnset = _signalPos;
             vector<T> v(_signal->begin(),_signal->begin()+nextOnset);
             _owner.receiveSegment(v,_onset);
-            for(int j=_onset;j<=nextOnset;j++){
+            for(size_t j=_onset;j<=nextOnset;j++){
                 (*_signal)[j-_onset]=(*_signal)[j];
             }
             // zero the rest
-            for(int i=nextOnset-_onset+1;i<=nextOnset;i++){
+            for(size_t i=nextOnset-_onset+1;i<=nextOnset;i++){
                 (*_signal)[i]=0;
             }
             _signalPos = nextOnset-_onset;

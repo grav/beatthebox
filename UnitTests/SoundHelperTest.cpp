@@ -23,7 +23,7 @@ TEST(SoundHelperTest,LoadMono){
 
 TEST(SoundHelperTest,SaveMono){
     std::string fileName = "/Users/grav/Desktop/test.wav";
-    int length = 44100;
+    size_t length = 44100;
     vector<double> noise;
     DSP::noise(length,&noise);
     vector<double> noiseNorm;

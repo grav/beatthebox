@@ -34,8 +34,8 @@ InstrumentClass LinearClassification<T>::query(std::vector<T> *segment){
 
 template <class T>
 InstrumentClass LinearClassification<T>::ddag(std::vector<T> *x){
-    int a = _model->_numClasses-1;
-    int b = 0;
+    size_t a = _model->_numClasses-1;
+    size_t b = 0;
     while(a!=b){
         vector<T> *w = _model->getW(a,b);
         if(linalg::dot(x, w)>0){

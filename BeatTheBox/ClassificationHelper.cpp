@@ -24,8 +24,8 @@ void ClassificationHelper<T>::getFeatureMap(string flatFile, map<vector<T>,Instr
     map<string,InstrumentClass>::iterator it;
     // load file
     // calculate features
-    // insert into map
-    int num = 0;
+    // insert size_to map
+    size_t num = 0;
     for(it = m.begin() ; it != m.end(); it++){
         num++;
         cout << "Calculating features for sample " << num << " of " << m.size() << endl;
@@ -44,7 +44,7 @@ template <class T>
 void ClassificationHelper<T>::getMap(string flatFile,map<string,InstrumentClass> *pClasses){
     
     FILE *pFile;
-    long lSize;
+    size_t lSize;
     char *buffer;
     size_t result;
     
@@ -65,7 +65,7 @@ void ClassificationHelper<T>::getMap(string flatFile,map<string,InstrumentClass>
     /* the whole file is now loaded in the memory buffer. */
     
     long i=0; // buffer pointer
-    int j=0; // fileName pointer
+    size_t j=0; // fileName pointer
     char fileName[1024];
     while(i<lSize){
         fileName[j]=buffer[i];
@@ -73,10 +73,10 @@ void ClassificationHelper<T>::getMap(string flatFile,map<string,InstrumentClass>
         if(buffer[i]==0){ // null termination
             // get instrument class
             i++;
-            InstrumentClass k = InstrumentClass((int)buffer[i]);
+            InstrumentClass k = InstrumentClass(buffer[i]);
             string s = fileName;
             (*pClasses)[s]=k;
-            j=0; // reset fileName pointer
+            j=0; // reset fileName __pointer__
         }
         i++;
     }
@@ -90,19 +90,19 @@ void ClassificationHelper<T>::getMap(string flatFile,map<string,InstrumentClass>
 
 template <class T>
 void ClassificationHelper<T>::getSpectrogram(vector<T> *audio, int winSize, 
-                                          T *&spectrogram, int &frames, int &bins){
+                                          T *&spectrogram, size_t &frames, int &bins){
 
     vector<T> padded;
     DSP::zeroPad(audio, winSize, &padded);
     
-    frames = (int)(padded.size())/winSize;
+    frames = (padded.size())/winSize;
     bins = winSize/2+1;
     
     assert(winSize*frames==padded.size());
 
     spectrogram = new T[frames*bins];
     
-    for(int i = 0; i<padded.size(); i+=winSize){
+    for(size_t i = 0; i<padded.size(); i+=winSize){
         vector<T> v(padded.begin()+i,padded.begin()+i+winSize);
         vector<T> in;
         DSP::hamming(&v,&in);
@@ -116,7 +116,7 @@ void ClassificationHelper<T>::getSpectrogram(vector<T> *audio, int winSize,
         fftw_execute(p);
         
         // copy from out to spectrogram
-        int frame = i/winSize;
+        size_t frame = i/winSize;
         for(int bin=0;bin<bins;bin++){
             spectrogram[frame*bins+bin]=length(out[bin]);
         }
@@ -132,10 +132,10 @@ template <class T>
 void ClassificationHelper<T>::getFeatures(vector<T> *audio, vector<T> *r){
     int winSize = 256; // TODO make constant somewhere
     T *spectrogram, *means, *vars;
-    int frames; int bins;
+    size_t frames; int bins;
     getSpectrogram(audio, winSize, spectrogram, frames, bins);
 
-    getStats(spectrogram, frames, bins, NUM_MELS, ^(T *a, int l) {
+    getStats(spectrogram, frames, bins, NUM_MELS, ^(T *a, size_t l) {
         return MFCC<T>::getMFCCs(a,l);
     }, means, vars);
     r->assign(means, means+NUM_MELS);
@@ -146,7 +146,7 @@ void ClassificationHelper<T>::getFeatures(vector<T> *audio, vector<T> *r){
 template <class T>
 T ClassificationHelper<T>::spectralCentroid(vector<T> *audio){
     vector<T> sArr;
-    DSP::mapWithIndex(audio, ^T(T x, int i) {
+    DSP::mapWithIndex(audio, ^T(T x, size_t i) {
         return (i+1)*x;
     },&sArr);
     T s = DSP::sum(&sArr);
@@ -159,12 +159,12 @@ T ClassificationHelper<T>::spectralCentroid(vector<T> *audio){
 }
 
 template <class T>
-void ClassificationHelper<T>::getStats(T *spectrums, int numSpectrums, int freqBins, int resultBins, 
-                                    T* (^f)(T *audio, int audioLength), 
+void ClassificationHelper<T>::getStats(T *spectrums, size_t numSpectrums, int freqBins, int resultBins, 
+                                    T* (^f)(T *audio, size_t audioLength), 
                                     T *&means, T *&variances){
     
     T results[numSpectrums*resultBins];
-    for(int spec=0;spec<numSpectrums;spec++){
+    for(size_t spec=0;spec<numSpectrums;spec++){
         T *result = f(&spectrums[spec*freqBins],freqBins);
         for(int bin=0;bin<resultBins;bin++){
             results[spec*resultBins+bin] = result[bin];
@@ -176,12 +176,12 @@ void ClassificationHelper<T>::getStats(T *spectrums, int numSpectrums, int freqB
     variances = new T[resultBins];
     for(int bin = 0; bin<resultBins;bin++){
         T sum=0;
-        for(int spec = 0; spec< numSpectrums;spec++){
+        for(size_t spec = 0; spec< numSpectrums;spec++){
             sum+=results[spec*resultBins+bin];
         }
         means[bin]=sum/numSpectrums;
         T varSum = 0;
-        for(int spec = 0; spec< numSpectrums;spec++){
+        for(size_t spec = 0; spec< numSpectrums;spec++){
             varSum += pow(results[spec*resultBins+bin]-means[bin],2);
         }
         variances[bin] = varSum/(numSpectrums-1); // unbiased estimate

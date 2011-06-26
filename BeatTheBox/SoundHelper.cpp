@@ -16,7 +16,7 @@ void SoundHelper::loadMono(std::string fileName, std::vector<double> *samples){
     SndfileHandle handle(fileName); // alloc on stack
     sf_count_t numSamples = handle.frames()*handle.channels();
     assert(numSamples>0);
-    double *samplesArr = new double[(int)numSamples];
+    double *samplesArr = new double[numSamples];
     sf_count_t read = handle.read(samplesArr,numSamples);
     samples->assign(samplesArr,samplesArr+numSamples);
     assert(read==numSamples);
@@ -24,7 +24,7 @@ void SoundHelper::loadMono(std::string fileName, std::vector<double> *samples){
 }
 
 void SoundHelper::saveMono(std::string fileName, std::vector<double> *samples){
-    const int format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
+    const size_t format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
     SndfileHandle handle(fileName,SFM_WRITE,format,1,44100);
     sf_count_t framesWritten = handle.writef(&(samples->front()), samples->size());
     assert(handle);

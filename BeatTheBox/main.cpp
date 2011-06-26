@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-int main (int argc, const char * argv[])
+size_t main (size_t argc, const char * argv[])
 {
     return 0;
     

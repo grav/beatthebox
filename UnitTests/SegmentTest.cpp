@@ -16,21 +16,21 @@
 
 TEST(Segment,GetStart){
     vector<double> sample;
-    int segmentLength = 19635;
-    int onset = 3850;
+    size_t segmentLength = 19635;
+    size_t onset = 3850;
     SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", &sample);
     vector<double> v(sample.begin(),sample.begin()+segmentLength);
-    int start = Segment<double>::getStart(&v, onset, SEGMENT_WINSIZE);
+    size_t start = Segment<double>::getStart(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(2350,start);
 }
 
 TEST(Segment,GetStop){
     vector<double> sample;
-    int segmentLength = 19635;
-    int onset = 3850;
+    size_t segmentLength = 19635;
+    size_t onset = 3850;
     SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", &sample);
     vector<double> v(sample.begin(),sample.begin()+segmentLength);
-    int stop = Segment<double>::getStop(&v, onset, SEGMENT_WINSIZE);
+    size_t stop = Segment<double>::getStop(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(14350,stop);
 }
 
@@ -55,7 +55,7 @@ TEST(SegmentTest, InsertSamples){
 
     double expected[] = {1, 2, 3, 4, 7, 9, 25, 3, 2, 4, 6};
     
-    for(int i=0;i<so._segment->size();i++){
+    for(size_t i=0;i<so._segment->size();i++){
         EXPECT_EQ(expected[i], (*(so._segment))[i]);
     }
     EXPECT_EQ(6,so._onset);
@@ -64,8 +64,8 @@ TEST(SegmentTest, InsertSamples){
     EXPECT_EQ(6,s._signalPos);
 
     double expected2[] = {25,3,2,4,6,8,0,0,0,0,0,0,0};
-    int expectedLength2 = 13;
-    for(int i=0;i<expectedLength2;i++){
+    size_t expectedLength2 = 13;
+    for(size_t i=0;i<expectedLength2;i++){
         EXPECT_EQ(expected2[i], (*(s._signal))[i]);
     }
     
@@ -79,7 +79,7 @@ TEST(SegmentTest, InsertSamples){
     EXPECT_EQ(5, so._onset);
     double expected3[] = {25, 3, 2, 4, 6, 8, 10, 12, 14, 16, 18};
     double expectedLength3 = 11;
-    for(int i=0;i<expectedLength3;i++){
+    for(size_t i=0;i<expectedLength3;i++){
         EXPECT_EQ(expected3[i], (*(so._segment))[i]);
     }
 }

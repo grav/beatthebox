@@ -15,26 +15,26 @@ template <class T>
 class MFCC {
 public:
     static T* _H;
-    static int _N,_M, _f_min, _f_max;
+    static size_t _N,_M, _f_min, _f_max;
     static T _deltaPhi, _fs;
 
-    static void init(int freqs,int mels, T fs,int minF,int maxF);    
-    static void init(int spectrumLength);
+    static void init(size_t freqs,size_t mels, T fs,size_t minF,size_t maxF);    
+    static void init(size_t spectrumLength);
     
-    static T amplitude(int freq, int mel);
-    static T* getMFCCs(T* spectrum, int spectrumLength);
+    static T amplitude(size_t freq, size_t mel);
+    static T* getMFCCs(T* spectrum, size_t spectrumLength);
     
     static void generateTable();
     
-    static T phi(int f);
+    static T phi(size_t f);
     
-    static T freq_c(int m);
+    static T freq_c(size_t m);
     
-    static T freq(int k);
+    static T freq(size_t k);
     
-    static T phi_c(int m);
+    static T phi_c(size_t m);
     
-    static T compH(int k, int m);
+    static T compH(size_t k, size_t m);
     
 };
 
