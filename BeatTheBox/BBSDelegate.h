@@ -20,12 +20,12 @@ public:
     BBSDelegate();
     ~BBSDelegate();
     /* inherited from ISegmentOwner */
-    void receiveSegment(std::vector<double> arr, int onset);
+    void receiveSegment(std::vector<T> arr, int onset);
     void setClass(int index, InstrumentClass klass);
     IClassification<T>* getClassification();
-    void updateSimilarTrack(int index, double* read, int length);
-    void handleDSP(double* sound, double* onsets, 
-                           double* outputTrack, double* similarTrack,
+    void updateSimilarTrack(int index, T* read, int length);
+    void handleDSP(T* sound, T* onsets, 
+                           T* outputTrack, T* similarTrack,
                            int length, IHostController *hostController);
     
     
@@ -41,7 +41,7 @@ public:
 
     bool isReady();
     
-    void initSegment(double sr);
+    void initSegment(T sr);
     
     void setLoopSize(int size);
     
@@ -58,18 +58,18 @@ public:
     int _trackPointer;
     
     // ins
-    double *_onsetTrack;
+    T *_onsetTrack;
     
     // outs
-    double *_similarTrack;
-    double *_outputSelectorTrack;
+    T *_similarTrack;
+    T *_outputSelectorTrack;
     int _loopSize;
     IClassification<T> *_classification;
     int _lastOnsetIndex;
     char* _path;
     // todo - init in ctor
     bool _playback;
-    Segment<double> *_segment;
+    Segment<T> *_segment;
 
 };
 

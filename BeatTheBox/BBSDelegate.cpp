@@ -45,8 +45,8 @@ bool BBSDelegate<T>::mockClassification(){
 }
 
 template <class T>
-void BBSDelegate<T>::receiveSegment(vector<double> arr, int onset){
-    vector<double> seg;
+void BBSDelegate<T>::receiveSegment(vector<T> arr, int onset){
+    vector<T> seg;
     if(mockClassification()){
         seg = arr;
     } else {
@@ -73,7 +73,7 @@ void BBSDelegate<T>::setClass(int index, InstrumentClass klass){
 }
 
 template <class T>
-void BBSDelegate<T>::handleDSP(double *sound, double *onsets, double *outputTrack, double *similarTrack, int length, IHostController *hostController){
+void BBSDelegate<T>::handleDSP(T *sound, T *onsets, T *outputTrack, T *similarTrack, int length, IHostController *hostController){
     for (int i = 0; i < length; i++) {
         // ignore signal until we have a loop size
         switch (_state) {
@@ -133,7 +133,7 @@ void BBSDelegate<T>::startRecord(){
 }
 
 template <class T>
-void BBSDelegate<T>::updateSimilarTrack(int index, double *drum, int length){
+void BBSDelegate<T>::updateSimilarTrack(int index, T *drum, int length){
     int limit = min(index+length, BUFFER_SIZE);
     for (int i = index; i < limit; i++) {
         _similarTrack[i] = drum[i - index];
@@ -152,9 +152,9 @@ IClassification<T>* BBSDelegate<T>::getClassification(){
 }
 
 template <class T>
-void BBSDelegate<T>::initSegment(double sr){
+void BBSDelegate<T>::initSegment(T sr){
     delete _segment;
-    _segment = new Segment<double>(*this,sr);
+    _segment = new Segment<T>(*this,sr);
     _segment->init();
     _state=HALT;
 }
