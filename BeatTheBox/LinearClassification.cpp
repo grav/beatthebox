@@ -12,7 +12,7 @@
 #include "LinearModel.h"
 
 LinearClassification::LinearClassification(std::string path){
-    _model = new LinearModel(path);
+    _model = new LinearModel<double>(path);
     
 }
 

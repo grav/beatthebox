@@ -9,23 +9,28 @@
 #include "LinearModel.h"
 #include <string>
 #include <iostream>
-LinearModel::LinearModel(){
+template <class T>
+LinearModel<T>::LinearModel(){
 }
 
-LinearModel::LinearModel(std::string path){
+template <class T>
+LinearModel<T>::LinearModel(std::string path){
     load(path);
 }
 
-LinearModel::~LinearModel(){
+template <class T>
+LinearModel<T>::~LinearModel(){
     delete[] _ws;
     delete[] _classes;
 }
 
-std::vector<double> *LinearModel::getW(int a, int b){
+template <class T>
+std::vector<T> *LinearModel<T>::getW(int a, int b){
     return _ws[a*_numClasses+b];
 }
 
-void LinearModel::save(std::string filename){
+template <class T>
+void LinearModel<T>::save(std::string filename){
     FILE *pFile;
     
     pFile=fopen(filename.c_str(), "wb");
@@ -60,7 +65,8 @@ void LinearModel::save(std::string filename){
 
 }
 
-void LinearModel::load(std::string filename){
+template <class T>
+void LinearModel<T>::load(std::string filename){
     FILE *pFile;
     
     pFile=fopen(filename.c_str(), "rb");
@@ -95,3 +101,5 @@ void LinearModel::load(std::string filename){
     fclose (pFile);
 
 }
+
+template class LinearModel<double>;

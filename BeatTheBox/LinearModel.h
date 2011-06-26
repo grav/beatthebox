@@ -10,6 +10,7 @@
 
 #include <vector>
 #include "constants.h"
+template <class T>
 class LinearModel{
 public:
     LinearModel();
@@ -18,9 +19,10 @@ public:
     
     void save(std::string filename);
     void load(std::string filename);
-    std::vector<double> *getW(int a, int b);
+
+    std::vector<T> *getW(int a, int b);
     
-    std::vector<double> **_ws;  
+    std::vector<T> **_ws;  
     InstrumentClass *_classes;
     int _numClasses;
     

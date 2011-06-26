@@ -20,6 +20,6 @@ public:
     InstrumentClass query(std::vector<double> *segment);
     InstrumentClass ddag(std::vector<double> *x);
     Classification type();
-    LinearModel *_model;
+    LinearModel<double> *_model;
 
 };
