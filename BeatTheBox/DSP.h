@@ -19,60 +19,69 @@ using namespace std;
 class DSP{
 public:
     
-    static double foldl(vector<double> *arr, double init, double (^f)(double x, double y)){
-        double result = init;
+    template <typename T>
+    static T foldl(vector<T> *arr, T init, T (^f)(T x, T y)){
+        T result = init;
         for(int i=0;i<arr->size();i++){
             result = f(result,(*arr)[i]);
         }
         return result;
 
     }
-    
-    static void mapWithIndex(vector<double>* arr, double (^f)(double x, int i), vector<double>* result){
+    template <typename T>
+    static void mapWithIndex(vector<T>* arr, T (^f)(T x, int i), vector<T>* result){
         result->resize(arr->size());
         for(int i=0; i<arr->size();i++){
             (*result)[i] = f((*arr)[i], i); // apply f on i'th element of arr
         }
     }
-                              
-    static void map(vector<double>* arr, double (^f)(double x), vector<double>* result){
-        mapWithIndex(arr, ^(double x, int i){return f(x);},result);
+    
+    template <typename T>
+    static void map(vector<T>* arr, T (^f)(T x), vector<T>* result){
+        mapWithIndex(arr, ^(T x, int i){return f(x);},result);
     }
 
-    static void line(double from, double to, int length, vector<double>* result){
+    template <typename T>
+    static void line(T from, T to, int length, vector<T>* result){
         result->resize(length);
         for(int i=0;i<length;i++){
             (*result)[i]=(to-from)/length * i+from;
         }
     }
     
-    static void line(int length,vector<double>* result){
-        line(0, (double)length,length,result);
+    template <typename T>
+    static void line(int length,vector<T>* result){
+        line((T)0, (T)length,length,result);
     }
     
-    static double sum(vector<double>* arr){
-        return foldl(arr, 0, ^(double x, double y){return x+y;});
+    template <typename T>
+    static T sum(vector<T>* arr){
+        return foldl(arr, (T)0, ^(T x, T y){return x+y;});
     }
      
-    static double rms(vector<double>* arr){
-        vector<double> result;
-        map(arr, ^(double x){return pow(x, 2);},&result);
+    template <typename T>
+    static T rms(vector<T>* arr){
+        vector<T> result;
+        map(arr, ^(T x){return pow(x, 2);},&result);
         return sqrt(sum(&result)/arr->size());
     }
     
-    static void hamming(int m,vector<double>* result){
-        vector<double> l;
+    template <typename T>
+    static void hamming(int m,vector<T>* result){
+        vector<T> l;
         line(m,&l);
-        map(&l, ^(double n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));},result);
+        map(&l, ^(T n){return (0.54-0.46*cos((2*M_PI*n)/(m-1)));},result);
     }
     
-    static void hamming(vector<double> *in, vector<double> *result){
-        vector<double> hamWin;
+    template <typename T>
+    static void hamming(vector<T> *in, vector<T> *result){
+        vector<T> hamWin;
         hamming((int)in->size(),&hamWin);
-        mapWithIndex(in, ^(double x, int i){return x*hamWin[i];}, result);
+        mapWithIndex(in, ^(T x, int i){return x*hamWin[i];}, result);
     }
     
-    static void zeroPad(vector<double>* arr, int winSize, vector<double> *resultArr){
+    template <typename T>
+    static void zeroPad(vector<T>* arr, int winSize, vector<T> *resultArr){
         int rest = (int)(arr->size() % winSize);
         int resultLength;
         if(rest == 0){
@@ -86,14 +95,15 @@ public:
         }
     }
     
-    static void energyEnvelope(vector<double>* arr, int winSize, vector<double> *resultArr){
-        vector<double> paddedArr;
+    template <typename T>
+    static void energyEnvelope(vector<T>* arr, int winSize, vector<T> *resultArr){
+        vector<T> paddedArr;
         zeroPad(arr, winSize, &paddedArr);
         int resultLength = (int)(paddedArr.size()/winSize);
 
         resultArr->resize(resultLength);
         for(int i=0;i<resultLength;i++){        
-            vector<double> v(paddedArr.begin()+(i*winSize), 
+            vector<T> v(paddedArr.begin()+(i*winSize), 
                              paddedArr.begin()+((i+1)*winSize));
             
             (*resultArr)[i]=rms(&v);
@@ -101,31 +111,35 @@ public:
 
     }
     
-    static double max(vector<double>* arr){
-        return foldl(arr, -DBL_MAX, ^(double r, double x){return x>r?x:r;});
+    template <typename T>
+    static T max(vector<T>* arr){
+        return foldl(arr, -DBL_MAX, ^(T r, T x){return x>r?x:r;});
     }
     
-    static void reverse(vector<double>* arr, vector<double> *result){
-        mapWithIndex(arr, ^(double v, int i){return (*arr)[arr->size()-1-i];},result);
+    template <typename T>
+    static void reverse(vector<T>* arr, vector<T> *result){
+        mapWithIndex(arr, ^(T v, int i){return (*arr)[arr->size()-1-i];},result);
     }
     
-    static int attackTime(vector<double> *arr, int k){
+    template <typename T>
+    static int attackTime(vector<T> *arr, int k){
         //TODO - make winSize constants somewhere
         int winSize = 256;
-        vector<double> *env;
+        vector<T> env;
         int envLength;
-        energyEnvelope(arr, winSize, env);
-        double max = DSP::max(env);
+        energyEnvelope(arr, winSize, &env);
+        T max = DSP::max(&env);
         for(int i=0;i<envLength;i++){
-            if((*env)[i]>k*max) return i*winSize;
+            if(env[i]>k*max) return i*winSize;
         }
         return INT_MAX;
 
     }
     
-    static int firstLowPoint(vector<double> *arr){
-        double t = 0.05; // threshold
-        double max = DSP::max(arr);
+    template <typename T>
+    static int firstLowPoint(vector<T> *arr){
+        T t = 0.05; // threshold
+        T max = DSP::max(arr);
         int minIndex = 0; 
         for(int i=0;i<arr->size();i++){
             if((*arr)[i]<t*max){
@@ -139,7 +153,8 @@ public:
 
     }
     
-    static void printMatlabArray(double *arr, int length){
+    template <typename T>
+    static void printMatlabArray(T *arr, int length){
         std::cout << "[";
         for(int i=0;i<length;i++){
             std::cout << arr[i] << " ";
@@ -148,9 +163,10 @@ public:
 
     }
     
-    static void noise(int length, vector<double> *result){
+    template <typename T>
+    static void noise(int length, vector<T> *result){
         result->resize(length);
-        map(result, ^(double x){return ((double)rand()/(double)RAND_MAX);},result);
+        map(result, ^(T x){return ((T)rand()/(T)RAND_MAX);},result);
     }
     
 };
