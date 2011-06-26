@@ -11,12 +11,57 @@
 #include "DSP.h"
 
 namespace linalg{
-    double l2norm(vector<double>* v);  
-    void add(vector<double>* a, vector<double>* b,vector<double>* r);
-    void times(vector<double> *a, double c,vector<double>* r);
-    double dot(vector<double>* a, vector<double>* b);
-    void extendWithOne(vector<double> *v,vector<double>* r);
-    void randomUnitVector(int length,vector<double>* r);
+    template <typename T>
+    T l2norm(vector<T>* v){
+        T sum = 0;
+        for(int i=0;i<v->size();i++){
+            sum+=pow((*v)[i],2);
+        }
+        return sqrt(sum);
+    }
 
+    template <typename T>
+    void add(vector<T>* a, vector<T>* b,vector<T>* r){
+        assert(a->size()==b->size());
+        assert(r->size()==0);
+        for(int i=0;i<a->size();i++){
+            r->push_back((*a)[i]+(*b)[i]);
+        }
+    }
+
+    template <typename T>
+    void times(vector<T> *a, T c,vector<T>* r){
+        assert(r->size()==0);
+        for(int i=0;i<a->size();i++){
+            r->push_back((*a)[i]*c);
+        }
+    }
+
+    template <typename T>
+    T dot(vector<T>* a, vector<T>* b){
+        assert(a->size()==b->size());
+        T r = 0;
+        for(int i=0;i<a->size();i++){
+            r+= (*a)[i]*(*b)[i];
+        }
+        return r;
+    }
+
+    template <typename T>
+    void extendWithOne(vector<T> *v,vector<T>* r){
+        assert(r->size()==0);
+        for(int i=0;i<v->size();i++){
+            r->assign(v->begin(),v->end());
+        }
+        r->push_back(1);
+    }
+
+    template <typename T>
+    void randomUnitVector(int length,vector<T>* r){
+        vector<T> noise;
+        DSP::noise(length,&noise);
+        times(&noise,1.0/l2norm(&noise),r);
+    }
 
 };
+

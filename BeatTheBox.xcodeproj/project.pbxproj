@@ -13,7 +13,6 @@
 		AE07EE5613B4C44800529161 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
 		AE07EE5713B4C44A00529161 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
 		AE07EE5813B4C45900529161 /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
-		AE07EE5913B4C45B00529161 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AE07EE5A13B4C45D00529161 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
 		AE07EE5C13B4C47200529161 /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB6571366E9F7002CCE9A /* Segment.cpp */; };
 		AE07EE5D13B4C47700529161 /* SegmentOwner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66A1367589B002CCE9A /* SegmentOwner.cpp */; };
@@ -27,7 +26,6 @@
 		AE3B333513902965007BEDE9 /* MFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE2137C1767005F6ED2 /* MFCC.cpp */; };
 		AE3B333613902965007BEDE9 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
 		AE3B333913902965007BEDE9 /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
-		AE3B333D13902965007BEDE9 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AE3B333E13902965007BEDE9 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
 		AE3B333F13902965007BEDE9 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
 		AE3B334813902965007BEDE9 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
@@ -52,8 +50,6 @@
 		AEC43BF0137FF85900718764 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
 		AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
 		AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF213807D3900718764 /* PerceptronTest.cpp */; };
-		AEC43BF71381436100718764 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
-		AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AEC43BFB1381490700718764 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
 		AEC43BFC1381490700718764 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
 		AEC43BFF138153E500718764 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
@@ -65,7 +61,6 @@
 		AEF9204C13A750EF0008C9B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF9204B13A750EF0008C9B5 /* main.cpp */; };
 		AEF9205313A752A40008C9B5 /* libfftw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */; };
 		AEF9205413A752A70008C9B5 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED3169B1379AF0F002CD225 /* libsndfile.dylib */; };
-		AEF9205513A752BB0008C9B5 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AEF9205613A752C80008C9B5 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
 		AEF9205713A752CC0008C9B5 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
 		AEF9205813A752CE0008C9B5 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BEE137FF85900718764 /* Perceptron.cpp */; };
@@ -78,7 +73,6 @@
 		AEF9209413A776860008C9B5 /* ClassificationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB04BE5137C2724005F6ED2 /* ClassificationHelper.cpp */; };
 		AEF9209513A7768D0008C9B5 /* Classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFFB66F13675974002CCE9A /* Classification.cpp */; };
 		AEF9209613A776940008C9B5 /* SoundHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB872AE137DA850000903FA /* SoundHelper.cpp */; };
-		AEF9209713A776960008C9B5 /* LinearAlgebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF51381435D00718764 /* LinearAlgebra.cpp */; };
 		AEF9209813A776990008C9B5 /* LinearClassification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BF91381490300718764 /* LinearClassification.cpp */; };
 		AEF9209913A7769C0008C9B5 /* LinearModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC43BFD138153D400718764 /* LinearModel.cpp */; };
 		AEF9209A13A777090008C9B5 /* libfftw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB04BF0137D6216005F6ED2 /* libfftw3.dylib */; };
@@ -198,7 +192,6 @@
 		AEC43BEE137FF85900718764 /* Perceptron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perceptron.cpp; sourceTree = "<group>"; };
 		AEC43BEF137FF85900718764 /* Perceptron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perceptron.h; sourceTree = "<group>"; };
 		AEC43BF213807D3900718764 /* PerceptronTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = PerceptronTest.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		AEC43BF51381435D00718764 /* LinearAlgebra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearAlgebra.cpp; sourceTree = "<group>"; };
 		AEC43BF61381435F00718764 /* LinearAlgebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearAlgebra.h; sourceTree = "<group>"; };
 		AEC43BF91381490300718764 /* LinearClassification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearClassification.cpp; sourceTree = "<group>"; };
 		AEC43BFA1381490500718764 /* LinearClassification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearClassification.h; sourceTree = "<group>"; };
@@ -377,7 +370,6 @@
 				AEB04BE6137C2724005F6ED2 /* ClassificationHelper.h */,
 				AEB872AE137DA850000903FA /* SoundHelper.cpp */,
 				AEB872AF137DA850000903FA /* SoundHelper.h */,
-				AEC43BF51381435D00718764 /* LinearAlgebra.cpp */,
 				AEC43BF61381435F00718764 /* LinearAlgebra.h */,
 				AEC43BF91381490300718764 /* LinearClassification.cpp */,
 				AEC43BFA1381490500718764 /* LinearClassification.h */,
@@ -603,7 +595,6 @@
 				AE07EE5D13B4C47700529161 /* SegmentOwner.cpp in Sources */,
 				AE07EE5513B4C44500529161 /* MFCC.cpp in Sources */,
 				AE07EE4F13B4C38000529161 /* main.cpp in Sources */,
-				AE07EE5913B4C45B00529161 /* LinearAlgebra.cpp in Sources */,
 				AE07EE5813B4C45900529161 /* SoundHelper.cpp in Sources */,
 				AE07EE5613B4C44800529161 /* ClassificationHelper.cpp in Sources */,
 			);
@@ -626,7 +617,6 @@
 				AE3B333613902965007BEDE9 /* ClassificationHelper.cpp in Sources */,
 				AE3B333913902965007BEDE9 /* SoundHelper.cpp in Sources */,
 				AE3B33501390297B007BEDE9 /* main.cpp in Sources */,
-				AE3B333D13902965007BEDE9 /* LinearAlgebra.cpp in Sources */,
 				AE3B333E13902965007BEDE9 /* LinearClassification.cpp in Sources */,
 				AE3B333F13902965007BEDE9 /* LinearModel.cpp in Sources */,
 			);
@@ -646,7 +636,6 @@
 				AEB04BE7137C2724005F6ED2 /* ClassificationHelper.cpp in Sources */,
 				AEB872B0137DA850000903FA /* SoundHelper.cpp in Sources */,
 				AEC43BF0137FF85900718764 /* Perceptron.cpp in Sources */,
-				AEC43BF71381436100718764 /* LinearAlgebra.cpp in Sources */,
 				AEC43BFB1381490700718764 /* LinearClassification.cpp in Sources */,
 				AEC43BFF138153E500718764 /* LinearModel.cpp in Sources */,
 			);
@@ -672,7 +661,6 @@
 				AEB872B7137DDAC4000903FA /* SoundHelperTest.cpp in Sources */,
 				AEC43BF1137FF85900718764 /* Perceptron.cpp in Sources */,
 				AEC43BF413807D3B00718764 /* PerceptronTest.cpp in Sources */,
-				AEC43BF81381436100718764 /* LinearAlgebra.cpp in Sources */,
 				AEC43BFC1381490700718764 /* LinearClassification.cpp in Sources */,
 				AEC43C00138153E500718764 /* LinearModel.cpp in Sources */,
 				AEC43C0213815B7900718764 /* LinearClassificationTest.cpp in Sources */,
@@ -695,7 +683,6 @@
 				AEF9205813A752CE0008C9B5 /* Perceptron.cpp in Sources */,
 				AEF9205713A752CC0008C9B5 /* LinearModel.cpp in Sources */,
 				AEF9205613A752C80008C9B5 /* LinearClassification.cpp in Sources */,
-				AEF9205513A752BB0008C9B5 /* LinearAlgebra.cpp in Sources */,
 				AEF9204C13A750EF0008C9B5 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,7 +694,6 @@
 				AEF9209C13A777440008C9B5 /* MFCC.cpp in Sources */,
 				AEF9209913A7769C0008C9B5 /* LinearModel.cpp in Sources */,
 				AEF9209813A776990008C9B5 /* LinearClassification.cpp in Sources */,
-				AEF9209713A776960008C9B5 /* LinearAlgebra.cpp in Sources */,
 				AEF9209613A776940008C9B5 /* SoundHelper.cpp in Sources */,
 				AEF9209513A7768D0008C9B5 /* Classification.cpp in Sources */,
 				AEF9209413A776860008C9B5 /* ClassificationHelper.cpp in Sources */,
@@ -1008,6 +994,7 @@
 				AE07EE5413B4C38000529161 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE088AB013B32CC9007D58EC /* Build configuration list for PBXNativeTarget "simple" */ = {
 			isa = XCConfigurationList;
