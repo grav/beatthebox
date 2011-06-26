@@ -17,7 +17,7 @@ public:
     virtual ~ISegmentOwner(){}
     virtual void receiveSegment(std::vector<T> arr, int onset) = 0;
     virtual void setClass(int index, InstrumentClass klass) {};
-    virtual IClassification* getClassification() {return new ClassificationMock();};
+    virtual IClassification<T>* getClassification() {return new ClassificationMock();};
     virtual void updateSimilarTrack(int index, double* read, int length) {};
     virtual void handleDSP(double* sound, double* onsets, 
                            double* outputTrack, double* similarTrack,

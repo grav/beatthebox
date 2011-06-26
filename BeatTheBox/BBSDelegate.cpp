@@ -141,13 +141,13 @@ void BBSDelegate<T>::updateSimilarTrack(int index, double *drum, int length){
 }
 
 template <class T>
-void BBSDelegate<T>::setClassification(IClassification *c){
+void BBSDelegate<T>::setClassification(IClassification<T> *c){
     delete _classification;
     _classification = c;
 }
 
 template <class T>
-IClassification* BBSDelegate<T>::getClassification(){
+IClassification<T>* BBSDelegate<T>::getClassification(){
     return _classification;
 }
 

@@ -22,14 +22,14 @@ public:
     /* inherited from ISegmentOwner */
     void receiveSegment(std::vector<double> arr, int onset);
     void setClass(int index, InstrumentClass klass);
-    IClassification* getClassification();
+    IClassification<T>* getClassification();
     void updateSimilarTrack(int index, double* read, int length);
     void handleDSP(double* sound, double* onsets, 
                            double* outputTrack, double* similarTrack,
                            int length, IHostController *hostController);
     
     
-    void setClassification(IClassification *c);
+    void setClassification(IClassification<T> *c);
 
     void drumDir(char* path);
     
@@ -64,7 +64,7 @@ public:
     double *_similarTrack;
     double *_outputSelectorTrack;
     int _loopSize;
-    IClassification *_classification;
+    IClassification<T> *_classification;
     int _lastOnsetIndex;
     char* _path;
     // todo - init in ctor

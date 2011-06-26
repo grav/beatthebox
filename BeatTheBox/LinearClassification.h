@@ -13,7 +13,7 @@
 #include "LinearModel.h"
 
 template <class T>
-class LinearClassification : public IClassification{
+class LinearClassification : public IClassification<T>{
 public:
     LinearClassification(std::string path);
     ~LinearClassification();
