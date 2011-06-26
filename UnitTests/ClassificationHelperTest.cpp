@@ -12,10 +12,10 @@
 
 TEST(ClassificationHelperTest,SpectralCentroid){
     double test[] = {1,2,3};
-    EXPECT_EQ(14.0/6.0, ClassificationHelper::spectralCentroid(new vector<double>(test,test+3)));
+    EXPECT_EQ(14.0/6.0, ClassificationHelper<double>::spectralCentroid(new vector<double>(test,test+3)));
     
     double test2[] = {1,-1,0};
-    EXPECT_EQ(0,ClassificationHelper::spectralCentroid(new vector<double>(test2,test2+3)));
+    EXPECT_EQ(0,ClassificationHelper<double>::spectralCentroid(new vector<double>(test2,test2+3)));
 }
 
 TEST(ClassificationHelperTest,Spectrogram){
@@ -28,7 +28,7 @@ TEST(ClassificationHelperTest,Spectrogram){
     int winSize = 4;
     double *spectrogram;
     int frames; int bins;
-    ClassificationHelper::getSpectrogram(new vector<double>(in, in+inLength), winSize, spectrogram, frames, bins);
+    ClassificationHelper<double>::getSpectrogram(new vector<double>(in, in+inLength), winSize, spectrogram, frames, bins);
     
     double expected[] = {
         0.90154, 0.47746, 0.04826,
@@ -47,7 +47,7 @@ TEST(ClassificationHelperTest,Spectrogram){
 
 TEST(ClassificationHelper,GetMap){
     map<std::string,InstrumentClass> pClasses;
-    ClassificationHelper::getMap(FLAT_FILE_PATH,&pClasses);
+    ClassificationHelper<double>::getMap(FLAT_FILE_PATH,&pClasses);
     
     EXPECT_EQ(798,pClasses.size());
     EXPECT_EQ(BD, pClasses["martin/segments/human4_04.wav"]);
@@ -59,15 +59,15 @@ TEST(ClassificationHelper,GetStats){
     int numBins = 3;
     double *means; double *vars;
     
-    ClassificationHelper::getStats(testArr, 3, 3, 1, 
+    ClassificationHelper<double>::getStats(testArr, 3, 3, 1, 
        ^(double *audio, int audioLength) {
            double *r = new double[1];
-           r[0] = ClassificationHelper::spectralCentroid(new vector<double>(audio, audio+audioLength));
+           r[0] = ClassificationHelper<double>::spectralCentroid(new vector<double>(audio, audio+audioLength));
            return r;
        }, means, vars);
     
     EXPECT_EQ(0,vars[0]);
-    EXPECT_EQ(ClassificationHelper::spectralCentroid(new vector<double>(testArr,testArr+numBins)),
+    EXPECT_EQ(ClassificationHelper<double>::spectralCentroid(new vector<double>(testArr,testArr+numBins)),
               means[0]);
 }
 

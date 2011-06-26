@@ -21,6 +21,6 @@ TEST(DISABLED_PerceptronTest,TestIt){
 
     int numClasses = 3;
     std::map<std::vector<double>,InstrumentClass> featuresMap;
-    ClassificationHelper::getFeatureMap(FLAT_FILE_PATH,&featuresMap);
+    ClassificationHelper<double>::getFeatureMap(FLAT_FILE_PATH,&featuresMap);
     perceptron->train(&featuresMap,classes, numClasses);
 }

@@ -36,7 +36,7 @@ TEST(FFTWTest, Test){
     
     double amp[N2];
     for(int i=0;i<N2;i++){
-        amp[i] = ClassificationHelper::length(out[i]);
+        amp[i] = ClassificationHelper<double>::length(out[i]);
     }
     
     fftw_destroy_plan(p); fftw_free(out);

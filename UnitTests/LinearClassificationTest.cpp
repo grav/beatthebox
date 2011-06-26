@@ -11,7 +11,7 @@ TEST(DISABLED_LinearClassification,HitRate){
     int hits=0;
     int testSize=0;
     std::map<std::string, InstrumentClass> m; 
-    ClassificationHelper::getMap(FLAT_FILE_PATH,&m);
+    ClassificationHelper<double>::getMap(FLAT_FILE_PATH,&m);
     std::map<std::string,InstrumentClass>::iterator it;
     int i=0;
     for(it=m.begin();it!=m.end();it++){

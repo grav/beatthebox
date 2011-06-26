@@ -11,6 +11,9 @@
 #include "fftw3.h"
 #include <math.h>
 
+// todo - maybe make namespace instead?
+
+template <class T>
 class ClassificationHelper{
 public:
     static double length(fftw_complex c){
@@ -19,19 +22,19 @@ public:
 
     static void getMap(std::string flatFile,std::map<std::string,InstrumentClass> *pClasses);
     
-    static void getSpectrogram(std::vector<double> *audio, int winSize, 
-                               double *&spectrogram, int &frames, int &bins);
+    static void getSpectrogram(std::vector<T> *audio, int winSize, 
+                               T *&spectrogram, int &frames, int &bins);
     
-    static void getFeatures(std::vector<double> *audio, std::vector<double> *r);
+    static void getFeatures(std::vector<T> *audio, std::vector<T> *r);
     
-    static double spectralCentroid(std::vector<double> *audio);
+    static T spectralCentroid(std::vector<T> *audio);
     
-    static void getStats(double *spectrums, int numSpectrums, 
+    static void getStats(T *spectrums, int numSpectrums, 
                          int freqBins, int resultBins,
-                         double* (^f)(double *audio, int audioLength),
-                         double *&means, double *&variances);
+                         T* (^f)(T *audio, int audioLength),
+                         T *&means, T *&variances);
 
-    static void getFeatureMap(std::string flatFile, std::map<std::vector<double>,InstrumentClass> *result);
+    static void getFeatureMap(std::string flatFile, std::map<std::vector<T>,InstrumentClass> *result);
     
 };
 
