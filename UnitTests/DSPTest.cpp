@@ -12,7 +12,7 @@
 TEST(FPTests, foldr){
     double arr[] = {0.4, 0.5, 0.2, 1.3, 0.8};
     int length = 5;
-    int init = 1;
+    double init = 1;
     double result = DSP::foldl(new vector<double>(arr, arr+length), init, ^(double x, double y){return x+y;});
     EXPECT_EQ(4.2, result);
 }
