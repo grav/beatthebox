@@ -1,7 +1,9 @@
 #include "gtest/gtest.h"
 #include <vector>
+#include "SoundHelper.h"
 
 #define VEC vector<T>
+#define FILENAME ""
 
 using namespace std;
 
@@ -15,6 +17,12 @@ T bar(VEC v){
     return v[0]+10;
 }
 
+template <typename T>
+void baz(){
+    vector<T> v;
+    SoundHelper::loadMono(FILENAME, &v);
+}
+
 TEST(Generics, Foo){
     float f = 1;
     EXPECT_EQ(2,foo(f));
@@ -24,6 +32,6 @@ TEST(Generics, Foo){
     double a[] = {1,2,3};
     vector<double> v(a,a+3);
     EXPECT_EQ(11, bar(v));
-    
+
 }
 
