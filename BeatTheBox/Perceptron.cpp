@@ -39,7 +39,6 @@ vector<T>* Perceptron<T>::w(InstrumentClass a, InstrumentClass b, map<vector<T>,
     cout << "training " << a << " versus " << b << endl;
     int nFeatures = NUM_MELS*2;
     vector<vector<T>*> featuresList;
-    // Todo - why can't we use <T> instead of <double>
     typename map<vector<T>, InstrumentClass>::iterator it;
     for(it=m->begin(); it!=m->end(); it++){
         InstrumentClass klass = (*it).second;
