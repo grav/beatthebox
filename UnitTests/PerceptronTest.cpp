@@ -17,7 +17,7 @@ using namespace std;
 
 TEST(DISABLED_PerceptronTest,TestIt){
     InstrumentClass classes[] = {BD,SD,HH};
-    Perceptron *perceptron = new Perceptron();
+    Perceptron<double> *perceptron = new Perceptron<double>();
 
     int numClasses = 3;
     std::map<std::vector<double>,InstrumentClass> featuresMap;

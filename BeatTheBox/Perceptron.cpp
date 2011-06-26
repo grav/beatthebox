@@ -18,8 +18,9 @@
 using namespace std;
 using namespace linalg;
 
-vector<double>** Perceptron::train(map<vector<double>, InstrumentClass> *m, InstrumentClass *classes, int numClasses){
-    vector<double>** ws = new vector<double>*[numClasses*numClasses];
+template <class T>
+vector<T>** Perceptron<T>::train(map<vector<T>, InstrumentClass> *m, InstrumentClass *classes, int numClasses){
+    vector<T>** ws = new vector<T>*[numClasses*numClasses];
     for(int a=0; a<numClasses;a++){
         for(int b=0; b<numClasses;b++){
             int i = a*numClasses+b;
@@ -33,35 +34,37 @@ vector<double>** Perceptron::train(map<vector<double>, InstrumentClass> *m, Inst
     return ws; 
 }
 
-vector<double>* Perceptron::w(InstrumentClass a, InstrumentClass b, map<vector<double>, InstrumentClass> *m){
+template <class T>
+vector<T>* Perceptron<T>::w(InstrumentClass a, InstrumentClass b, map<vector<T>, InstrumentClass> *m){
     cout << "training " << a << " versus " << b << endl;
     int nFeatures = NUM_MELS*2;
-    vector<vector<double>*> featuresList;
-    map<vector<double>, InstrumentClass>::iterator it;
+    vector<vector<T>*> featuresList;
+    // Todo - why can't we use <T> instead of <double>
+    typename map<vector<T>, InstrumentClass>::iterator it;
     for(it=m->begin(); it!=m->end(); it++){
         InstrumentClass klass = (*it).second;
         if(klass==a || klass==b){
-            vector<double> i = (*it).first;
-            vector<double> x;
+            vector<T> i = (*it).first;
+            vector<T> x;
             extendWithOne(&i,&x);
             if(klass==b){
-                vector<double> xM;
-                times(&x, (double)-1,&xM);
-                featuresList.push_back(new vector<double>(xM));
+                vector<T> xM;
+                times(&x, (T)-1,&xM);
+                featuresList.push_back(new vector<T>(xM));
             } else {
-                featuresList.push_back(new vector<double>(x));
+                featuresList.push_back(new vector<T>(x));
             }
         }
     }
-    vector<double> wTemp; 
+    vector<T> wTemp; 
     randomUnitVector(nFeatures,&wTemp);
-    vector<double> w;
+    vector<T> w;
     extendWithOne(&wTemp,&w);
     for(int i=0;i<ITERATIONS;i++){
         long index = rand() % featuresList.size();
-        vector<double> *x = featuresList[index];
+        vector<T> *x = featuresList[index];
         if(dot(x,&w)<=0){
-            vector<double> wTemp;
+            vector<T> wTemp;
             add(&w, x,&wTemp);
             w.assign(wTemp.begin(),wTemp.end());
             
@@ -71,15 +74,17 @@ vector<double>* Perceptron::w(InstrumentClass a, InstrumentClass b, map<vector<d
         }
 
     }
-    vector<double> *result = new vector<double>();
+    vector<T> *result = new vector<T>();
     times(&w, 1.0/l2norm(&w),result);
 
     // clean up
     for(int i=0;i<featuresList.size();i++){
-        vector<double> *v = featuresList[i];
+        vector<T> *v = featuresList[i];
         delete v;
     }
     
     return result;
 }
+
+template class Perceptron<double>;
 

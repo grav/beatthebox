@@ -13,10 +13,11 @@
 
 using namespace std;
 
+template <class T>
 class Perceptron{
 public:
-    vector<double>** train(map<vector<double>,InstrumentClass> *m, InstrumentClass *classes, int numClasses);
+    vector<T>** train(map<vector<T>,InstrumentClass> *m, InstrumentClass *classes, int numClasses);
     
-    vector<double>*  w(InstrumentClass a, InstrumentClass b, map<vector<double>,InstrumentClass> *m);
+    vector<T>*  w(InstrumentClass a, InstrumentClass b, map<vector<T>,InstrumentClass> *m);
     
 };
