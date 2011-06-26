@@ -30,14 +30,14 @@ double* makeOnsetsSignal(int sampleLength, int* indexes, int numIndexes){
 }
 
 TEST(BBSDelegateTest, mockClassification){
-    BBSDelegate delegate;
+    BBSDelegate<double> delegate;
     delegate.setClassification(new ClassificationMock());
     EXPECT_TRUE(delegate.mockClassification());
 }
 
 TEST(BBSDelegateTest, InsertSamples){
     IHostController *mock = new HostControllerMock();
-    BBSDelegate *delegate = new BBSDelegate();
+    BBSDelegate<double> *delegate = new BBSDelegate<double>();
     delegate->_runSynchronized=true;
     delegate->setClassification(new ClassificationMock());
     
@@ -142,7 +142,7 @@ TEST(BBSDelegateTest, WholeSample){
     double *onsetSignal = makeOnsetsSignal((int)(paddedFile.size()), onsets, numIndexes);
     
     IHostController *mock = new HostControllerMock();
-    BBSDelegate *delegate = new BBSDelegate();
+    BBSDelegate<double> *delegate = new BBSDelegate<double>();
     delegate->_runSynchronized=true;
     delegate->initSegment(44100);
 
