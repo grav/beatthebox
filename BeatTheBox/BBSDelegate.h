@@ -14,7 +14,7 @@
 
 int min(int a, int b);
 
-class BBSDelegate : public ISegmentOwner {
+class BBSDelegate : public ISegmentOwner<double> {
 public:
     BBSDelegate();
     ~BBSDelegate();

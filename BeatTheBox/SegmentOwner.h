@@ -11,10 +11,11 @@
 #include "Segment.h"
 #include <vector>
 
+template <class T>
 class ISegmentOwner{
 public:
     virtual ~ISegmentOwner(){}
-    virtual void receiveSegment(std::vector<double> arr, int onset) = 0;
+    virtual void receiveSegment(std::vector<T> arr, int onset) = 0;
     virtual void setClass(int index, InstrumentClass klass) {};
     virtual IClassification* getClassification() {return new ClassificationMock();};
     virtual void updateSimilarTrack(int index, double* read, int length) {};
@@ -23,7 +24,8 @@ public:
                            int length, IHostController *hostController) = 0;
 };
 
-class SegmentOwnerMock : public ISegmentOwner{
+template <class T>
+class SegmentOwnerMock : public ISegmentOwner<T>{
 public:
     void setSegment(Segment<double> *segment){
         // todo - delete old s?

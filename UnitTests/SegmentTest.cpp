@@ -38,7 +38,7 @@ TEST(SegmentTest, InsertSamples){
     IHostController *mock = new HostControllerMock();
     double signal[] = {1,2,3,4};
     double zeros[] = {0,0,0,0}; 
-    SegmentOwnerMock so = SegmentOwnerMock();
+    SegmentOwnerMock<double> so = SegmentOwnerMock<double>();
     Segment<double> s(so, SAMPLE_RATE);
     so.setSegment(&s);
     so.handleDSP(signal,zeros,zeros,zeros,TEST_SIZE,mock);

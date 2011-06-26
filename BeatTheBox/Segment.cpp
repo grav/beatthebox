@@ -14,7 +14,7 @@
 #define SECONDS 10
 
 template <class T>
-Segment<T>::Segment(ISegmentOwner& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
+Segment<T>::Segment(ISegmentOwner<T>& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
     _signalLength = (int)(SECONDS * sr);
     _signal = new vector<T>(_signalLength);
     init();

@@ -13,6 +13,7 @@
 
 #define SEGMENT_WINSIZE 300
 
+template <class T>
 class ISegmentOwner; // forward-declaration
 
 template <class T>
@@ -21,7 +22,7 @@ private:
     int _startDelta;
     int _stopDelta;
 public:
-    Segment(ISegmentOwner& owner, double sr);
+    Segment(ISegmentOwner<T>& owner, double sr);
     void init();
     int getSegmentStartDelta();
     int getSegmentStopDelta();
@@ -45,6 +46,6 @@ public:
     // flag signalling whether an onset has ever been detected
 	// will be set to and remain true, when the first onset is detected
 	bool _onsetDetected;
-    ISegmentOwner& _owner;
+    ISegmentOwner<T>& _owner;
     
 };
