@@ -1,9 +1,7 @@
 WHAT IS IT?
 BeatTheBox is going to be a game ... at some point. 
 
-Currently, it's just some library code, ported from Java. The library code will eventually be able to recognize different types of human beatboxing drumsounds. Take a look at http://cs.au.dk/~grav/thesis for more information. 
-
-Be aware that the code currently has a lot of memory leaks, since it used to hang around a friendly garbage collector on the JVM.
+Currently, it's just some library code, ported from Java. The library code is able to train a linear model and recognize different types of human beatboxing drum sounds. Take a look at http://cs.au.dk/~grav/thesis for more information. 
 
 LIBRARY DEPENDENCIES
 The code currently depends on the FFTW3 library (just the c-version).
