@@ -46,7 +46,7 @@ vector<double>* Perceptron::w(InstrumentClass a, InstrumentClass b, map<vector<d
             extendWithOne(&i,&x);
             if(klass==b){
                 vector<double> xM;
-                times(&x, -1,&xM);
+                times(&x, (double)-1,&xM);
                 featuresList.push_back(new vector<double>(xM));
             } else {
                 featuresList.push_back(new vector<double>(x));
