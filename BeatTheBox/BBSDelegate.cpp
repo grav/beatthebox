@@ -24,9 +24,9 @@ int min(int a, int b){
 template <class T>
 BBSDelegate<T>::BBSDelegate(){
     _classification = NULL;
-    _outputSelectorTrack = new double[BUFFER_SIZE];
-    _onsetTrack = new double[BUFFER_SIZE];
-    _similarTrack = new double[BUFFER_SIZE];
+    _outputSelectorTrack = new T[BUFFER_SIZE];
+    _onsetTrack = new T[BUFFER_SIZE];
+    _similarTrack = new T[BUFFER_SIZE];
     _segment = NULL;
 
 }
