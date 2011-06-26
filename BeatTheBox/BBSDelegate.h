@@ -19,7 +19,7 @@ public:
     BBSDelegate();
     ~BBSDelegate();
     /* inherited from ISegmentOwner */
-    void receiveSegment(std::vector<double>* arr, int onset);
+    void receiveSegment(std::vector<double> arr, int onset);
     void setClass(int index, InstrumentClass klass);
     IClassification* getClassification();
     void updateSimilarTrack(int index, double* read, int length);

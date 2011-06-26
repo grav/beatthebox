@@ -83,8 +83,7 @@ void Segment<T>::pushSample(T s, bool isOnset){
             _onset = _signalPos;
         } else {
             int nextOnset = _signalPos;
-            // todo - maybe allocate on heap?
-            vector<T> *v = new vector<T>(_signal->begin(),_signal->begin()+nextOnset);
+            vector<T> v(_signal->begin(),_signal->begin()+nextOnset);
             _owner.receiveSegment(v,_onset);
             for(int j=_onset;j<=nextOnset;j++){
                 (*_signal)[j-_onset]=(*_signal)[j];

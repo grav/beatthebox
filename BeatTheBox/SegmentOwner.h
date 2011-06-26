@@ -14,7 +14,7 @@
 class ISegmentOwner{
 public:
     virtual ~ISegmentOwner(){}
-    virtual void receiveSegment(std::vector<double>* arr, int onset) = 0;
+    virtual void receiveSegment(std::vector<double> arr, int onset) = 0;
     virtual void setClass(int index, InstrumentClass klass) {};
     virtual IClassification* getClassification() {return new ClassificationMock();};
     virtual void updateSimilarTrack(int index, double* read, int length) {};
@@ -38,9 +38,10 @@ public:
         }
     }
     
-    void receiveSegment(std::vector<double>* arr, int onset) {
+    void receiveSegment(std::vector<double> arr, int onset) {
         //TODO: delete old segment?
-        _segment = arr;
+        delete _segment;
+        _segment = new std::vector<double>(arr);
         _onset = onset;
     }
     

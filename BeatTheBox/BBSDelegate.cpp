@@ -41,12 +41,12 @@ bool BBSDelegate::mockClassification(){
     return _classification->type()==MOCK;
 }
 
-void BBSDelegate::receiveSegment(vector<double> *arr, int onset){
+void BBSDelegate::receiveSegment(vector<double> arr, int onset){
     vector<double> seg;
     if(mockClassification()){
-        seg = *arr;
+        seg = arr;
     } else {
-        _segment->findSegment(arr, onset, &seg);
+        _segment->findSegment(&arr, onset, &seg);
 
     }
     
@@ -141,7 +141,6 @@ IClassification* BBSDelegate::getClassification(){
 }
 
 void BBSDelegate::initSegment(double sr){
-    // todo - delete old segment
     delete _segment;
     _segment = new Segment<double>(*this,sr);
     _segment->init();
