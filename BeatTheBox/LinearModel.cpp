@@ -43,7 +43,7 @@ void LinearModel<T>::save(std::string filename){
     fwrite(&_numClasses, sizeof(_numClasses), 1, pFile);
     fwrite(_classes, sizeof(InstrumentClass), _numClasses, pFile);
 //     write num features
-    std::vector<double> *v = _ws[1];
+    std::vector<T> *v = _ws[1];
     long nFeatures = v->size();
     fwrite(&nFeatures, sizeof(nFeatures), 1, pFile);
     //     for each class a in classes
@@ -55,7 +55,7 @@ void LinearModel<T>::save(std::string filename){
                 std::cout << "writing " << index << std::endl;
                 v = _ws[index];
                 // write whole vector
-                fwrite(&(v->front()), sizeof(double), v->size(), pFile);
+                fwrite(&(v->front()), sizeof(T), v->size(), pFile);
             }
         }
     }
@@ -76,7 +76,7 @@ void LinearModel<T>::load(std::string filename){
     _classes = new InstrumentClass[_numClasses];
     fread(_classes,sizeof(InstrumentClass), _numClasses, pFile);
     //     write num features
-    _ws = new std::vector<double>*[_numClasses*_numClasses];
+    _ws = new std::vector<T>*[_numClasses*_numClasses];
     long nFeatures;
     fread(&nFeatures, sizeof(nFeatures), 1, pFile);
     //     for each class a in classes
@@ -86,9 +86,9 @@ void LinearModel<T>::load(std::string filename){
             int index = a*_numClasses+b;
             if(a!=b){
                 std::cout << "Reading models ... " << index << std::endl;
-                std::vector<double> *v = new std::vector<double>;
-                double arr[nFeatures];
-                fread(arr, sizeof(double), nFeatures, pFile);
+                std::vector<T> *v = new std::vector<T>;
+                T arr[nFeatures];
+                fread(arr, sizeof(T), nFeatures, pFile);
                 v->assign(arr, arr+nFeatures);
                 _ws[index] = v;
             } else {

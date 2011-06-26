@@ -25,7 +25,7 @@ LinearClassification<T>::~LinearClassification(){
 template <class T>
 InstrumentClass LinearClassification<T>::query(std::vector<T> *segment){
     vector<T> features;
-    ClassificationHelper<double>::getFeatures(segment,&features);
+    ClassificationHelper<T>::getFeatures(segment,&features);
     vector<T> x;
     linalg::extendWithOne(&features,&x);
     InstrumentClass result = ddag(&x);
