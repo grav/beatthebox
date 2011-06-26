@@ -115,7 +115,6 @@ void ClassificationHelper::getSpectrogram(vector<double> *audio, int winSize,
         // copy from out to spectrogram
         int frame = i/winSize;
         for(int bin=0;bin<bins;bin++){
-            // TODO - normalize?
             spectrogram[frame*bins+bin]=length(out[bin]);
         }
         
