@@ -15,6 +15,7 @@
 
 class ISegmentOwner; // forward-declaration
 
+template <class T>
 class Segment{
 private: 
     int _startDelta;
@@ -25,17 +26,17 @@ public:
     int getSegmentStartDelta();
     int getSegmentStopDelta();
 
-    void findSegment(std::vector<double>* signal, int onset, std::vector<double> *&result);
+    void findSegment(std::vector<T>* signal, int onset, std::vector<T> *&result);
     
-    static int getStart(std::vector<double>* arr, int onset, int winSize);
-    static int getStop(std::vector<double>* arr, int onset, int winSize);
+    static int getStart(std::vector<T>* arr, int onset, int winSize);
+    static int getStop(std::vector<T>* arr, int onset, int winSize);
     
-    void pushSample(double s, bool isOnset);
+    void pushSample(T s, bool isOnset);
     
     
                         
-    std::vector<double>* _signal;
     int _signalLength;
+    std::vector<T>* _signal;
 	// current position in the signal
     int _signalPos;
 	// index of detected onset of the signal

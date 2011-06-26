@@ -20,7 +20,7 @@ TEST(Segment,GetStart){
     int onset = 3850;
     SoundHelper::loadMono(PATH_PREFIX+(std::string)"session2/mikkel_02.wav", &sample);
     vector<double> v(sample.begin(),sample.begin()+segmentLength);
-    int start = Segment::getStart(&v, onset, SEGMENT_WINSIZE);
+    int start = Segment<double>::getStart(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(2350,start);
 }
 
@@ -30,7 +30,7 @@ TEST(Segment,GetStop){
     int onset = 3850;
     SoundHelper::loadMono(PATH_PREFIX+(std::string)+"session2/mikkel_02.wav", &sample);
     vector<double> v(sample.begin(),sample.begin()+segmentLength);
-    int stop = Segment::getStop(&v, onset, SEGMENT_WINSIZE);
+    int stop = Segment<double>::getStop(&v, onset, SEGMENT_WINSIZE);
     EXPECT_EQ(14350,stop);
 }
 
@@ -39,7 +39,7 @@ TEST(SegmentTest, InsertSamples){
     double signal[] = {1,2,3,4};
     double zeros[] = {0,0,0,0}; 
     SegmentOwnerMock so = SegmentOwnerMock();
-    Segment s(so, SAMPLE_RATE);
+    Segment<double> s(so, SAMPLE_RATE);
     so.setSegment(&s);
     so.handleDSP(signal,zeros,zeros,zeros,TEST_SIZE,mock);
     EXPECT_EQ(TEST_SIZE, s._signalPos);

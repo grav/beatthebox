@@ -13,42 +13,49 @@
 #include "SoundHelper.h"
 #define SECONDS 10
 
-Segment::Segment(ISegmentOwner& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
+template <class T>
+Segment<T>::Segment(ISegmentOwner& owner, double sr) : _owner(owner), _startDelta(0), _stopDelta(0){
     _signalLength = (int)(SECONDS * sr);
-    _signal = new vector<double>(_signalLength);
+    _signal = new vector<T>(_signalLength);
     init();
 }
 
-void Segment::init(){
+template <class T>
+void Segment<T>::init(){
     _signalPos = 0;
     _onsetDetected = false;
 }
 
-int Segment::getSegmentStartDelta(){
+template <class T>
+int Segment<T>::getSegmentStartDelta(){
     return _startDelta;
 }
 
-int Segment::getSegmentStopDelta(){
+template <class T>
+int Segment<T>::getSegmentStopDelta(){
     return _stopDelta;
 }
 
-int Segment::getStart(vector<double> *arr, int onset, int winSize){
-    vector<double> ee;
-    vector<double> v(arr->begin(), arr->begin()+onset);
+template <class T>
+int Segment<T>::getStart(vector<T> *arr, int onset, int winSize){
+    vector<T> ee;
+    vector<T> v(arr->begin(), arr->begin()+onset);
     DSP::energyEnvelope(&v, winSize, &ee);
-    vector<double> reversed;
+    vector<T> reversed;
     DSP::reverse(&ee,&reversed);
     return onset-winSize*DSP::firstLowPoint(&reversed);
 }
 
-int Segment::getStop(vector<double> *arr, int onset, int winSize){
-    vector<double> ee;
-    vector<double> v(arr->begin()+onset, arr->end());
+template <class T>
+int Segment<T>::getStop(vector<T> *arr, int onset, int winSize){
+    vector<T> ee;
+    vector<T> v(arr->begin()+onset, arr->end());
     DSP::energyEnvelope(&v, winSize, &ee);
     return onset+winSize*DSP::firstLowPoint(&ee);    
 }
 
-void Segment::findSegment(vector<double> *signal, int onset, vector<double> *&result){
+template <class T>
+void Segment<T>::findSegment(vector<T> *signal, int onset, vector<T> *&result){
     // TODO: make constant somewhere
     int start = getStart(signal, onset, SEGMENT_WINSIZE);
     int stop = getStop(signal, onset,SEGMENT_WINSIZE);
@@ -63,10 +70,11 @@ void Segment::findSegment(vector<double> *signal, int onset, vector<double> *&re
     }
     _startDelta = onset-start;
     _stopDelta = onset-stop;
-    result = new vector<double>(signal->begin()+start,signal->begin()+stop+1);
+    result = new vector<T>(signal->begin()+start,signal->begin()+stop+1);
 }
 
-void Segment::pushSample(double s, bool isOnset){
+template <class T>
+void Segment<T>::pushSample(T s, bool isOnset){
     (*_signal)[_signalPos] = s;
     if (isOnset){
         if(!_onsetDetected){
@@ -76,7 +84,7 @@ void Segment::pushSample(double s, bool isOnset){
         } else {
             int nextOnset = _signalPos;
             // todo - maybe allocate on heap?
-            vector<double> *v = new vector<double>(_signal->begin(),_signal->begin()+nextOnset);
+            vector<T> *v = new vector<T>(_signal->begin(),_signal->begin()+nextOnset);
             _owner.receiveSegment(v,_onset);
             for(int j=_onset;j<=nextOnset;j++){
                 (*_signal)[j-_onset]=(*_signal)[j];
@@ -91,3 +99,5 @@ void Segment::pushSample(double s, bool isOnset){
     }
     _signalPos++;
 }
+
+template class Segment<double>;

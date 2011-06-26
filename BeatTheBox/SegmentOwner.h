@@ -25,7 +25,7 @@ public:
 
 class SegmentOwnerMock : public ISegmentOwner{
 public:
-    void setSegment(Segment *segment){
+    void setSegment(Segment<double> *segment){
         // todo - delete old s?
         _s = segment;
     }
@@ -47,7 +47,7 @@ public:
     int getLastOnset(){
         return _onset;
     }
-    Segment *_s;
+    Segment<double> *_s;
     int _onset;
     std::vector<double>* _segment;
     

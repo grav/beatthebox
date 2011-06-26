@@ -68,7 +68,7 @@ public:
     char* _path;
     // todo - init in ctor
     bool _playback;
-    Segment *_segment;
+    Segment<double> *_segment;
 
 };
 
